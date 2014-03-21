@@ -6,22 +6,36 @@ class VotesController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
-  # GET /events/:event_id/votes/:organiser_id
+  # GET /events/:event_id/votes/:id
   def index
     @votes = @event.votes.find(params[:id])
     render json: @votes
   end
 
-  # POST /votes/:event_id/votes/:organiser_id
-  def create
-    @vote = Vote.new(params[:vote])
-    @vote.save
-    render json: @vote
+  # GET /events/:event_id/votes
+  def show
+    render json: @event.votes
   end
 
-  # DELETE /votes/:event_id
+  # POST /events/:event_id/votes
+  def create
+    @vote = @event.Vote.new(params[:vote])
+    respond_to do |format|
+      if @vote.save
+        format.json { head :no_content, status: :created }
+      else
+        format.json { render json: @vote.errors, status: :unprocessable_entity }
+    end
+  end
+
+  # DELETE /votes/:vote_id
   def destroy
     @vote = Vote.find(params[:id])
-    @vote.destroy
+    respond_to do |format|
+      if @vote.destroy
+        format.json { head :no_content, status: :ok }
+      else
+        format.json { render json: @vote.errors, status: :unprocessable_entity }
+      end
   end
 end
