@@ -11,6 +11,14 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require bs/bootstrap
+//= require angular
 //= require turbolinks
+//= require datePicker/bootstrap-datetimepicker.min
+//= require datePicker/bootstrap-datetimepicker.fr
+//= require scrollto/waypoints.min
+//= require scrollto/waypoints-sticky
+//= require scrollto/jquery.cycle2.min
+//= require scrollto/jquery.scrollto
+//= require ctrl
 //= require_tree .
