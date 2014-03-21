@@ -11,6 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140320025742) do
+
+  create_table "events", force: true do |t|
+    t.datetime "date"
+    t.datetime "cutoff_at"
+    t.string   "link1"
+    t.string   "name1"
+    t.string   "link2"
+    t.string   "name2"
+    t.string   "link3"
+    t.string   "name3"
+    t.string   "link4"
+    t.string   "name4"
+    t.string   "link5"
+    t.string   "name5"
+    t.datetime "date1"
+    t.datetime "date2"
+    t.datetime "date3"
+    t.string   "hash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.string   "email"
+    t.integer  "link1"
+    t.integer  "link2"
+    t.integer  "link3"
+    t.integer  "link4"
+    t.integer  "link5"
+    t.integer  "date1"
+    t.integer  "date2"
+    t.integer  "date3"
+    t.boolean  "confirmed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

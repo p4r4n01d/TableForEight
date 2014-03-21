@@ -17,6 +17,8 @@ class CreateEvents < ActiveRecord::Migration
       t.datetime :date2
       t.datetime :date3
       t.string :hash
+      t.string :organiser_email
+      t.string :organiser_name
 
       t.timestamps
     end
