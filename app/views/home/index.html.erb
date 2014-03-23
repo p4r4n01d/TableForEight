@@ -1,9 +1,117 @@
-      <main class="container">
+
+			<main class="container" ng-controller='eventCtrl'>
+			<form>
 			<section class="row" id="home">
 				<article class="col-md-12">
 					<header>
-						<h2>Event Planner - Welcome!</h2>
+						<h2>Event Planner</h2>
 					</header>
+				</article>
+			</section>
+			<section class="row" id="people">
+				<article class="col-md-12">
+					<div class="service">
+						<i class="glyphicon glyphicon-list-alt service-icon"></i>
+						<div class="desc">
+							<h4>People / Guests</h4>
+							<label class="control-label spacingAround letterSpacingFonts">Your email</label>
+							<div class="input-group spacingAround">
+							  <span class="input-group-addon">@</span>
+							  <input type="text" class="form-control letterSpacingFonts" placeholder="Whats your email?" ng-model="organiser_email" />
+							</div>
+							<label class="control-label spacingAround letterSpacingFonts">Who is this?</label>
+							<div class="input-group spacingAround">
+							  <span class="input-group-addon">@</span>
+							  <input type="text" class="form-control letterSpacingFonts" placeholder="Who is this?" ng-model="organiser_name" />
+							</div>
+							<label class="control-label spacingAround letterSpacingFonts" >Guest List</label>
+							<div class="input-group spacingAround">
+							<textarea class="form-control letterSpacingFonts" id="textarea" rows="6" placeholder="Enter the guest emails" ng-model="guest_list"></textarea>
+							</div>
+						</div>
+					</div>	
+				</article>
+			</section>
+			<section class="row" id="rest">
+				<article class="col-md-6">
+					<div class="service">
+						<i class="glyphicon glyphicon-list-alt service-icon"></i>
+						<div class="desc">
+							<h4>Restaurant List</h4>
+							<label class="control-label spacingAround">{{ urlTitle.text0 }}</label>
+							<div class="input-group spacingAround">
+							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
+							  <input type="text" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl[0]"  ng-paste="getTitle(0)'" ng-init="urlTitle.text0='Restaurant Title'; restUrl0='Restaurant URL'"/>
+							</div>
+							<label class="control-label spacingAround">{{ urlTitle.text1 }}</label>
+							<div class="input-group spacingAround">
+							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
+							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl[1]"  ng-paste="getTitle(1)'" ng-init="urlTitle.text1='Restaurant Title'; restUrl1='Restaurant URL'" />
+							</div>
+							<label class="control-label spacingAround">{{ urlTitle.text2 }}</label>
+							<div class="input-group spacingAround">
+							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
+							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl[2]"  ng-paste="getTitle(2)'" ng-init="urlTitle.text2='Restaurant Title'; restUrl2='Restaurant URL'" />
+							</div>
+							<label class="control-label spacingAround">{{ urlTitle.text3 }}</label>
+							<div class="input-group spacingAround">
+							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
+							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl[3]"  ng-paste="getTitle(3)'" ng-init="urlTitle.text3='Restaurant Title'; restUrl3='Restaurant URL'" />
+							</div>
+							<label class="control-label spacingAround">{{ urlTitle.text4 }}</label>
+							<div class="input-group spacingAround">
+							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
+							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl[4]"  ng-paste="getTitle(4)'" ng-init="urlTitle.text4='Restaurant Title'; restUrl4='Restaurant URL'" />
+							</div>
+						</div>
+					</div>	
+				</article>
+				<article class="col-md-6">
+					<div class="service">
+						<i class="glyphicon glyphicon-calendar service-icon"></i>
+						<div class="desc">
+						<h4>When is this?</h4>
+						<div class="form-group">
+							<label for="dtp_input1" class="control-label">Date and Time 1</label>
+							<div class="input-group date form_datetime" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								<input class="form-control" size="16" type="text" value="" readonly>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input1" value="" ng-model="date1" />
+						</div>
+						<div class="form-group">
+							<label for="dtp_input2" class="control-label">Date and Time 2</label>
+							<div class="input-group date form_datetime" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input2">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								<input class="form-control" size="16" type="text" value="" readonly>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input2" value="" ng-model="date2" />
+						</div>
+						<div class="form-group">
+							<label for="dtp_input3" class="control-label">Date and Time 3</label>
+							<div class="input-group date form_datetime" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input3">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								<input class="form-control" size="16" type="text" value="" readonly>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							</div>
+							<input type="hidden" id="dtp_input3" value="" ng-model="date2" />
+						</div>
+					</div>	
+				</article>
+			</section>
+			<section class="row" id="invite">
+				<article>
+					<div class="service">
+						<i class="glyphicon glyphicon-envelope service-icon"></i>
+						<div class="desc">
+							<button type="button" class="btn btn-default" ng-click="JSONInvite()">
+							  <span class="glyphicon glyphicon-envelope"></span> Plan
+							</button>
+							<div id="resultDivContainer"></div>
+						</div>
+					</div>
 				</article>
 			</section>
 			</main><!--/Content-->

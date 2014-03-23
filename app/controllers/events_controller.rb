@@ -4,11 +4,8 @@ class EventsController < ApplicationController
 
   skip_before_filter :authenticate_user! # we do not need devise authentication here
   before_filter :fetch_user, :except => [:index, :create]
-
-  def fetch_user
-	@events = Event.find_by_id(params[:id])
-  end
-
+  
+  #GET /api/events (.:format)
   def index
 	@events = Event.all
 	respond_to do |format|
@@ -16,6 +13,7 @@ class EventsController < ApplicationController
 	end
   end
 
+  #GET /api/events/:id/ (.:format)
   def show
 	respond_to do |format|
 	  format.json { render json: @event }
@@ -23,13 +21,13 @@ class EventsController < ApplicationController
   end
 
   def create
-	@events = User.new(params[:event])
-	@events.temp_password = Devise.friendly_token
+	@event = Event.new(params[:event])
+	#@event.temp_password = Devise.friendly_token
 	respond_to do |format|
-	  if @events.save
+	  if @event.save
 		format.json { render json: @event, status: :created }
 	  else
-		format.json { render json: @event.errors, status: :unprocessable_entity }
+		format.json { render json: @event.errors.full_messages, data: @event, status: :unprocessable_entity }
 	  end
 	end
   end
@@ -39,7 +37,7 @@ class EventsController < ApplicationController
 	  if @event.update_attributes(params[:event])
 		format.json { head :no_content, status: :ok }
 	  else
-		format.json { render json: @event.errors, status: :unprocessable_entity }
+		format.json { render json: @event.errors.full_messages, status: :unprocessable_entity }
 	  end
 	end
   end
@@ -49,8 +47,13 @@ class EventsController < ApplicationController
 	  if @event.destroy
 		format.json { head :no_content, status: :ok }
 	  else
-		format.json { render json: @event.errors, status: :unprocessable_entity }
+		format.json { render json: @event.errors.full_messages, status: :unprocessable_entity }
 	  end
 	end
+  end
+  
+  private
+  def fetch_user
+	@event = Event.find_by_id(params[:id])
   end
 end

@@ -1,4 +1,39 @@
-<table>
-new
+<script type="text/javascript">
+
+JSONTest = function() {
+
+    var resultDiv = $("#resultDivContainer");
+ var jObej = {
+"event": 
+{ "date":"" ,
+ "cutoff_at":"2014,03,31",
+ "link1":"url1",
+ "name1":"test1",
+ "link2":"url2",
+ "name2":"test2",
+ "link3":"url3",
+ "name3":"test3",
+ "link4":"url4",
+ "name4":"test4",
+ "link5":"url5",
+ "name5":"test5",
+ "date1":"2014,04,01",
+ "date2":"2014,04,02",
+ "date3":"2014,04,03",
+ "hash":"testhash",
+ "organiser_email":"julian@jsthink.com",
+ "organiser_name":"julian" }
+ };
  
-</table>
+JSONParse("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
+};
+
+</script>
+
+<main class="container">
+<h1>My jQuery JSON Web Page</h1>
+
+<div id="resultDivContainer"></div>
+
+<button type="button" onclick="JSONTest()">JSON</button>
+</main>

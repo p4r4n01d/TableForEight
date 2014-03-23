@@ -1,90 +1,37 @@
-function allowDrop(ev)
-{
-	ev.preventDefault();
-}
-
-function drag(ev)
-{
-	ev.dataTransfer.setData("Text",ev.target.id);
-}
-
-function drop(ev)
-{
-	ev.preventDefault();
-	var data = ev.dataTransfer.getData("Text");
-	ev.target.appendChild(document.getElementById(data));
-}
-
-function getPage(){
-	setInterval(function(){jTimer()},1000);
-}
-
-function jTimer()
-{
-	$.get("tserver.php",function(data,status){
-		if(status == "success"){
-		  $("#tserver").html(data);
-		}
+function JSONParse(url, jsObj, type, divResult) {
+    var resultDiv = divResult;
+	var dataSaved = false;
+    alert(JSON.stringify(jsObj));
+    $.ajax({
+        url: url,
+        type: type,
+        data: JSON.stringify(jsObj),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (result) {
+            switch (result) {
+                case true:
+					dataSaved=true;
+                    processResponse(result);
+                    //divResult = result;
+                    break;
+                default:
+					dataSaved=true;
+                    //divResult = result;
+					divResult.html(result);
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+        //alert(xhr.status);
+        //alert(thrownError);
+        //divResult = xhr.status + "<br />" + thrownError;
+        divResult.html(xhr.status + "<br />" + thrownError);
+        }
     });
+	return dataSaved;
 }
 
-function checkUser()
-{
-	if(typeof(Storage)!=="undefined")
-	  {  
-		  if(localStorage.getItem("userName")=="Old")
-		  {
-			  alert("Welcome Back.");
-			  $("#buttOne").css("background", "-webkit-linear-gradient( #F00, #900)");
-			  $("#buttOne").css("background", "-o-linear-gradient(#F00, #900)");
-			  $("#buttOne").css("background", "-moz-linear-gradient(#F00, #900)");
-			  $("#buttOne").css("background", "linear-gradient(#F00, #900)");
-		  }
-		  else{
-			  localStorage.setItem("userName", "Old");
-			  alert("New User Added!");
-			  $("#buttOne").css("background", "-webkit-linear-gradient( #F00, #900)");
-			  $("#buttOne").css("background", "-o-linear-gradient(#F00, #900)");
-			  $("#buttOne").css("background", "-moz-linear-gradient(#F00, #900)");
-			  $("#buttOne").css("background", "linear-gradient(#F00, #900)");
-		  }
-	  }
-	else
-	{
-		$("#buttonDiv").html("Browser does not support Web Storage.");
-	}
-}
-
-
-jQuery(function($){
-
-   $('.nav').bind('Navfit', function(){
-            var nav = $(this), items = nav.find('a');
-                  
-            $('body').removeClass('nav-menu');                    
-                  
-            // when the nav wraps under the logo, or when options are stacked, display the nav as a menu              
-            if ( (nav.offset().top > nav.prev().offset().top) || ($(items[items.length-1]).offset().top > $(items[0]).offset().top) ) {
-            
-               // add a class for scoping menu styles
-               $('body').addClass('nav-menu');
-               
-            };
-         })
-      
-      // toggle the menu items' visiblity
-      .find('#nav-btn').bind('click focus', function(){
-            $(this).parent().toggleClass('expanded')
-         });  
-   
-   // ...and update the nav on window events
-   $(window).bind('load resize orientationchange', function(){
-      $('.nav').trigger('Navfit');
-   });
-   
-});
-
-function restCtrl($scope) {
+function eventCtrl($scope) {
 	$scope.urlTitle = { text0: "Restaurant Title",
 						text1: "Restaurant Title ",
 						text2: "Restaurant Title ",
@@ -92,18 +39,62 @@ function restCtrl($scope) {
 						text4: "Restaurant Title ",
 	};
 	
-}
-
-function inviteCtrl($scope) {
-	
-    $scope.greet = function ()
+    $scope.getTitle = function (restUrl)
     { 
-		$.get("temp.html",function(data,status){
+		$.get("restUrl"+restUrl,function(data,status){
 												 alert("Data:" +data + ", status:" +status);
 			if(status == "success"){
-				$scope.greeting = "Title: " + $(data).filter('title').text();
+				var Url_title= $(data).filter('title').text();
+				switch(restUrl)
+				{
+					case 0:
+					$scope.urlTitle.text0 = Url_title; 
+					  break;
+					case 1:
+					$scope.urlTitle.text1 = Url_title;
+					  break;
+					case 2:
+					$scope.urlTitle.text2 = Url_title;
+					  break;
+					case 3:
+					$scope.urlTitle.text3 = Url_title;
+					  break;
+					case 4:
+					$scope.urlTitle.text4 = Url_title;
+					  break;
+					default:
+					$scope.urlTitle.text = Url_title;
+				}
 			}
 		});
-		$scope.message = "Hi " + $scope.yourName + "! Welcome!"; 
+	};
+	
+	JSONInvite = function() {
+	 var jObej = {
+	"event": 
+	{ "date":"" ,
+	 "cutoff_at":"2014,03,31",
+	 "link1":$scope.restUrl0,
+	 "name1":$scope.urlTitle.text0,
+	 "link2":$scope.restUrl1,
+	 "name2":$scope.urlTitle.text1,
+	 "link3":$scope.restUrl2,
+	 "name3":$scope.urlTitle.text2,
+	 "link4":$scope.restUrl3,
+	 "name4":$scope.urlTitle.text3,
+	 "link5":$scope.restUrl4,
+	 "name5":$scope.urlTitle.text4,
+	 "date1":$scope.date1,
+	 "date2":$scope.date2,
+	 "date3":$scope.date2,
+	 "hash":"testhash",
+	 "organiser_email":$scope.organiser_email,
+	 "organiser_name":$scope.organiser_name }
+	 };
+	 
+	JSONParse("http://localhost:3000/api/events", jObej.event, "POST", $scope.message);
 	};
 }
+
+
+
