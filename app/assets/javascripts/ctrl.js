@@ -1,8 +1,9 @@
 function JSONParse(url, jsObj, type, divResult) {
     var resultDiv = divResult;
 	var dataSaved = false;
-    alert(JSON.stringify(jsObj));
+    //alert(JSON.stringify(jsObj));
     $.ajax({
+		headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
         url: url,
         type: type,
         data: JSON.stringify(jsObj),
@@ -25,7 +26,7 @@ function JSONParse(url, jsObj, type, divResult) {
         //alert(xhr.status);
         //alert(thrownError);
         //divResult = xhr.status + "<br />" + thrownError;
-        divResult.html(xhr.status + "<br />" + thrownError);
+        divResult.html(xhr.status + "<br />" + thrownError + "<br />json OBJECT: " + JSON.stringify(jsObj));
         }
     });
 	return dataSaved;
@@ -69,7 +70,7 @@ function eventCtrl($scope) {
 		});
 	};
 	
-	JSONInvite = function() {
+	$scope.sendInvite = function() {
 	 var jObej = {
 	"event": 
 	{ "date":"" ,
@@ -92,7 +93,8 @@ function eventCtrl($scope) {
 	 "organiser_name":$scope.organiser_name }
 	 };
 	 
-	JSONParse("http://localhost:3000/api/events", jObej.event, "POST", $scope.message);
+    var resultDiv = $("#resultDivContainer");
+	JSONParse("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
 	};
 }
 
