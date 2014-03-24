@@ -24,7 +24,8 @@ class VotesController < ApplicationController
     @vote = @event.Vote.new(params[:vote])
     respond_to do |format|
       if @vote.save
-        format.json { head :no_content, status: :created }
+        UserMailer.welcome_email(@vote, 'Evan Please add the event here').deliver
+        format.json { head :no_content, status: :created, notice: 'Email was sent to Guests.' }
       else
         format.json { render json: @vote.errors, status: :unprocessable_entity }
     end
