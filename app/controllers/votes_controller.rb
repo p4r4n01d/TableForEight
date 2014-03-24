@@ -1,15 +1,7 @@
 class VotesController < ApplicationController
 
-  before_filter :get_event only :index, :show, :create
+  before_filter :get_event only :index, :show, :create, :countvotes
   before_filter :get_vote only :destroy, :update
-
-  def get_event
-    @event = Event.find(params[:event_id])
-  end
-
-  def get_vote
-    @vote = Vote.find(params[:id])
-  end
 
   # GET /events/:event_id/votes/:id
   def index
@@ -20,6 +12,11 @@ class VotesController < ApplicationController
   # GET /events/:event_id/votes
   def show
     render json: @event.votes
+  end
+
+  # GET /events/:event_id/countvotes
+  def countvotes
+    render json: @event.Vote.count_votes
   end
 
   # POST /events/:event_id/votes
@@ -54,4 +51,17 @@ class VotesController < ApplicationController
       end
     end
   end
+
+  private
+    def get_event
+      @event = Event.find(params[:event_id])
+    end
+
+    def get_vote
+      @vote = Vote.find(params[:id])
+    end
+
+    def post_params
+      params.require(:email).permit(:link1, :link2, :link3, :link4, :link5, :date1, :date2, :date3, :confirmed)
+    end
 end
