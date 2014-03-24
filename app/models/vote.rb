@@ -3,36 +3,19 @@ class Vote < ActiveRecord::Base
 
   validates_presence_of :email
 
-  def link1sum
-    attributes['link1sum']
+  def create_method(base, number)
+    name = "#{base}#{number}sum"
+    define_method(name) do
+      attributes["#{name}"]
+    end
   end
 
-  def link2sum
-    attributes['link2sum']
+  (1..5).each do |x|
+    create_method("link", x)
   end
 
-  def link3sum
-    attributes['link3sum']
-  end
-
-  def link4sum
-    attributes['link4sum']
-  end
-
-  def link5sum
-    attributes['link5sum']
-  end
-
-  def date1sum
-    attributes['date1sum']
-  end
-
-  def date2sum
-    attributes['date2sum']
-  end
-
-  def date3sum
-    attributes['date3sum']
+  (1..3).each do |x|
+    create_method("date", x)
   end
 
   def self.count_votes
