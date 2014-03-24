@@ -5,51 +5,71 @@ src: url(font/timeburner_regular.ttf);
 }
 
 body{
+	background-color: #D83C33;
 	padding-top: 40px;
-	background-color: #FFF;
 	font-family: cusFont;
+	color: #FFF;
 }
-
+/**/
+nav {
+	opacity:0.95;
+	filter:Alpha(opacity=95);
+}
+.nav{
+	float: right;
+}
+.navbar-nav{
+	padding-top: 8px;
+}
+.navbar{
+	background-color: #323232;
+	color: white;
+}
+.navbar-default .navbar-nav > li > a {
+	color: #aaa;
+	font-weight: bolder;
+	margin: 0 0 0 20px;
+	font-size: 1.2em;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+	-webkit-transition:All 0.7s ease-in-out;
+    -moz-transition:All 0.7s ease-in-out;
+    -o-transition:All 0.7s ease-in-out;	
+	outline:none;
+	color: #FFF;
+}
 div.navbar-header{
 	margin: 8px 22px;
-	color:#036;
-	text-shadow: 1px 2px 2px #999;
 }
 
+.logo{
+	height: 125px; width: 125px;
+	border-radius: 100px;
+	border-bottom: 1px solid white;
+	float: left;
+	position: relative;
+	top: -20px;
+	padding: 15px;
+	background-color: #323232;
+  	z-index: 1035;
+}
 main{
 	margin: 8px 5px;
 }
 .spacingAround{
 	margin: 4px 3px;
 }
-.letterSpacingFonts{
-	text-transform: uppercase;
-	letter-spacing: 2px;
+.cusorhand{
+	cursor: pointer;
 }
-
+.headerimg{
+	display:block;
+    float: none;
+    margin: 0 auto;
+	background-color:#006;
+}
 /* NAVIGATION*/
-nav {
-	opacity:0.9;
-	filter:Alpha(opacity=90);
-}
-nav ul li a:hover {
-	
-	-webkit-transition:All 1s ease;
-    -moz-transition:All 1s ease;
-    -o-transition:All 1s ease;
-     
-	background: -webkit-linear-gradient( #EAF0FF, #EEF2F0);
-	background: -o-linear-gradient(#EAF0FF, #EEF2F0);
-	background: -moz-linear-gradient(#EAF0FF, #EEF2F0); 
-	background: linear-gradient(#EAF0FF, #EEF2F0); 
-	
-    -webkit-transform: rotate(0deg) scale(0.95);
-    -moz-transform: rotate(0deg) scale(0.95);
-    -o-transform: rotate(0deg) scale(0.95);
-	
-	box-shadow: 5px 5px 5px #999;
-	border-radius: 10px;
-}
 
 /* END NAVIGATION*/
 
@@ -58,7 +78,10 @@ nav ul li a:hover {
 @media only screen 
 and (min-device-width: 1px) 
 and (max-device-width: 767px) {
-	nav ul li a:hover {
+	.navbar-nav{
+		float: left;
+	}
+	.navbar-nav > li > a:hover {
 	-webkit-transition:All 1s ease;
     -moz-transition:All 1s ease;
     -o-transition:All 1s ease;
@@ -82,12 +105,11 @@ and (max-device-width: 767px) {
 	padding: 10px 10px 5px;
 }
 .service:hover {
-	background: #fcfcfc;
-	box-shadow: 0 0 5px #ddd;
-    -webkit-transition: box-shadow 0.2s ease-in-out;
-    -moz-transition: box-shadow 0.2s ease-in-out;
-    -o-transition: box-shadow 0.2s ease-in-out;
-    transition: box-shadow 0.2s ease-in-out;
+	background: transparent;
+	box-shadow: 0 0 5px #fff;
+	-webkit-transition:All 1s ease;
+    -moz-transition:All 1s ease;
+    -o-transition:All 1s ease;
 }
 .service:hover i {
 	color: #656565;

@@ -2,13 +2,18 @@
 			<main class="container" ng-controller='eventCtrl'>
 			<form>
 			<section class="row" id="home">
-				<article class="col-md-12">
+				<article class="col-md-5 headerimg">
 					<header>
-						<h2>Event Planner</h2>
+						<h1>What is Table For Eight?</h1>
 					</header>
+					<img class="img-responsive" src="/assets/Table-For-Eight-logo.png">
 				</article>
 			</section>
 			<section class="row" id="people">
+				<article class="col-md-12"><br /><br /><br /><br />
+				</article>
+			</section>
+			<section class="row">
 				<article class="col-md-12">
 					<div class="service">
 						<i class="glyphicon glyphicon-list-alt service-icon"></i>
@@ -16,17 +21,17 @@
 							<h4>People / Guests</h4>
 							<label class="control-label spacingAround letterSpacingFonts">Your email</label>
 							<div class="input-group spacingAround">
-							  <span class="input-group-addon">@</span>
+							  <span class="input-group-addon glyphicon glyphicon-envelope"></span>
 							  <input type="text" class="form-control letterSpacingFonts" placeholder="Whats your email?" ng-model="organiser_email" />
 							</div>
 							<label class="control-label spacingAround letterSpacingFonts">Who is this?</label>
 							<div class="input-group spacingAround">
-							  <span class="input-group-addon">@</span>
+							  <span class="input-group-addon glyphicon glyphicon-user"></span>
 							  <input type="text" class="form-control letterSpacingFonts" placeholder="Who is this?" ng-model="organiser_name" />
 							</div>
 							<label class="control-label spacingAround letterSpacingFonts" >Guest List</label>
 							<div class="input-group spacingAround">
-							<textarea class="form-control letterSpacingFonts" id="textarea" rows="6" placeholder="Enter the guest emails" ng-model="guest_list"></textarea>
+							<textarea class="form-control letterSpacingFonts" id="textarea" rows="6" placeholder="Enter the guest emails" ng-model="guest_list" cols="50"></textarea>
 							</div>
 						</div>
 					</div>	
@@ -38,31 +43,33 @@
 						<i class="glyphicon glyphicon-list-alt service-icon"></i>
 						<div class="desc">
 							<h4>Restaurant List</h4>
-							<label class="control-label spacingAround">{{ urlTitle.text0 }}</label>
+							<label class="control-label spacingAround">{{ urlTitle0 }}</label>
 							<div class="input-group spacingAround">
 							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
-							  <input type="text" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl[0]"  ng-paste="getTitle(0)'" ng-init="urlTitle.text0='Restaurant Title'; restUrl0='Restaurant URL'"/>
+							  <input type="text" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl0" ng-change="fetch(restUrl0, 0)"/>
 							</div>
-							<label class="control-label spacingAround">{{ urlTitle.text1 }}</label>
+							<label class="control-label spacingAround">{{ urlTitle1 }}</label>
 							<div class="input-group spacingAround">
 							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
-							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl[1]"  ng-paste="getTitle(1)'" ng-init="urlTitle.text1='Restaurant Title'; restUrl1='Restaurant URL'" />
+							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl1" ng-change="fetch(restUrl1, 1)" />
 							</div>
-							<label class="control-label spacingAround">{{ urlTitle.text2 }}</label>
+							<label class="control-label spacingAround">{{ urlTitle2 }}</label>
 							<div class="input-group spacingAround">
 							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
-							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl[2]"  ng-paste="getTitle(2)'" ng-init="urlTitle.text2='Restaurant Title'; restUrl2='Restaurant URL'" />
+							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl2" ng-change="fetch(restUrl2, 2)"  />
 							</div>
-							<label class="control-label spacingAround">{{ urlTitle.text3 }}</label>
+							<label class="control-label spacingAround">{{ urlTitle3 }}</label>
 							<div class="input-group spacingAround">
 							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
-							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl[3]"  ng-paste="getTitle(3)'" ng-init="urlTitle.text3='Restaurant Title'; restUrl3='Restaurant URL'" />
+							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl3" ng-change="fetch(restUrl3, 3)" />
 							</div>
-							<label class="control-label spacingAround">{{ urlTitle.text4 }}</label>
+							<label class="control-label spacingAround">{{ urlTitle4 }}</label>
 							<div class="input-group spacingAround">
 							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
-							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl[4]"  ng-paste="getTitle(4)'" ng-init="urlTitle.text4='Restaurant Title'; restUrl4='Restaurant URL'" />
+							  <input type="text" class="form-control" placeholder="Restaurant URL" ng-model="restUrl4" ng-change="fetch(restUrl4, 4)" />
 							</div>
+							<h4>{{ status }}</h4>
+							<h6>{{ data }}</h6>
 						</div>
 					</div>	
 				</article>
@@ -73,30 +80,30 @@
 						<h4>When is this?</h4>
 						<div class="form-group">
 							<label for="dtp_input1" class="control-label">Date and Time 1</label>
-							<div class="input-group date form_datetime" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+							<div class="input-group date form_datetime cusorhand" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-								<input class="form-control" size="16" type="text" value="" readonly>
+								<input class="form-control" size="16" type="text" value="" readonly ng-model="date1">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
-							<input type="hidden" id="dtp_input1" value="" ng-model="date1" />
+							<input type="hidden" id="dtp_input1" value="" />
 						</div>
 						<div class="form-group">
 							<label for="dtp_input2" class="control-label">Date and Time 2</label>
-							<div class="input-group date form_datetime" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input2">
+							<div class="input-group date form_datetime cusorhand" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input2">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-								<input class="form-control" size="16" type="text" value="" readonly>
+								<input class="form-control" size="16" type="text" value="" readonly ng-model="date2">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
-							<input type="hidden" id="dtp_input2" value="" ng-model="date2" />
+							<input type="hidden" id="dtp_input2" value="" />
 						</div>
 						<div class="form-group">
 							<label for="dtp_input3" class="control-label">Date and Time 3</label>
-							<div class="input-group date form_datetime" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input3">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-								<input class="form-control" size="16" type="text" value="" readonly>
+							<div class="input-group date form_datetime cusorhand" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input3">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
+								<input class="form-control" size="16" type="text" value="" readonly ng-model="date3">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
-							<input type="hidden" id="dtp_input3" value="" ng-model="date2" />
+							<input type="hidden" id="dtp_input3" value="" />
 						</div>
 					</div>	
 				</article>
@@ -106,12 +113,13 @@
 					<div class="service">
 						<i class="glyphicon glyphicon-envelope service-icon"></i>
 						<div class="desc">
+							<h4>Send your Invite</h4>
 							<button type="button" class="btn btn-default" ng-click="sendInvite()">
-							  <span class="glyphicon glyphicon-envelope"></span> Plan
+							  <span class="glyphicon glyphicon-envelope"></span> Invite
 							</button>
 							<div id="resultDivContainer"></div>
 						</div>
 					</div>
 				</article>
 			</section>
-			</main><!--/Content-->
+			</main>

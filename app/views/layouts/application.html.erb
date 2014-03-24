@@ -30,17 +30,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="#">Table48</a> 
+                      <a class="navbar-brand" href="#"><img class="logo" src="/assets/Table-For-Eight-logo.png"></a> 
                     </div>
                 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-datanavbar-collapsePanel">
                       <ul class="nav navbar-nav">
-                        <li><a href="/events" class="scrollto">Intro</a></li>
-                        <li><a href="#people" class="scrollto">People</a></li>
-                        <li><a href="#rest" class="scrollto">Restaurants</a></li>
-                        <li><a href="#dates" class="scrollto">Dates</a></li>
-                        <li><a href="#invite" class="scrollto">Invite</a></li>
+                        <li><a href="/events" class="scrollto">What?</a></li>
+                        <li><a href="#people" class="scrollto">Who?</a></li>
+                        <li><a href="#rest" class="scrollto">Where &amp; When?</a></li>
+                        <li><a href="#invite" class="scrollto">Invite?</a></li>
                       </ul>
                     </div><!-- /.navbar-collapse -->
                   </div><!-- /.container-fluid -->
@@ -53,5 +52,57 @@
             </footer><!--/Footer-->
         </div> 
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script type="text/javascript">
+            $('.form_datetime').datetimepicker({
+                //language:  'fr',
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1
+            });
+            $('.form_date').datetimepicker({
+                language:  'fr',
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $('.form_time').datetimepicker({
+                language:  'fr',
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 1,
+                minView: 0,
+                maxView: 1,
+                forceParse: 0
+            });
+        </script>
+                <script>
+            $('#slider').cycle({
+                fx : 'scrollVert',
+                timeout: 3000,
+                speed: 200,
+                slides: '.slide'
+            });
+
+                        $('.navbar').waypoint('sticky');
+
+                        $('.navbar a, a.scrollto, a#arrow_down').click(function(e){
+                                $('html,body').scrollTo(this.hash, this.hash);
+                                e.preventDefault();
+                        });
+
+                        $(function() {
+                                Grid.init();
+                        });
+                </script> 
     </body>
 </html>

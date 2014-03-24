@@ -32,44 +32,61 @@ function JSONParse(url, jsObj, type, divResult) {
 	return dataSaved;
 }
 
-function eventCtrl($scope) {
-	$scope.urlTitle = { text0: "Restaurant Title",
-						text1: "Restaurant Title ",
-						text2: "Restaurant Title ",
-						text3: "Restaurant Title ",
-						text4: "Restaurant Title ",
+
+function eventCtrl($scope, $http, $templateCache) {
+	
+	$scope.method = 'GET';
+	 
+	$scope.fetch = function(titleURL, restaurantTitle) {
+	$scope.code = null;
+	$scope.response = null;
+	 
+	$http({method: $scope.method, url: titleURL, cache: $templateCache}).
+	success(function(data, status) {
+	var tempdata = $(data).filter("title").text();
+	switch(restaurantTitle)
+	{
+		case 0:
+		$scope.urlTitle0 = tempdata;
+		break;
+		case 1:
+		$scope.urlTitle1 = tempdata;
+		break;
+		case 2:
+		$scope.urlTitle2 = tempdata;
+		break;
+		case 3:
+		$scope.urlTitle3 = tempdata;
+		break;
+		case 4:
+		$scope.urlTitle4 = tempdata;
+		break;
+	}
+	}).
+	error(function(data, status) {
+	var tempdata = data || "Request failed";
+	switch(restaurantTitle)
+	{
+		case 0:
+		$scope.urlTitle0 = tempdata;
+		break;
+		case 1:
+		$scope.urlTitle1 = tempdata;
+		break;
+		case 2:
+		$scope.urlTitle2 = tempdata;
+		break;
+		case 3:
+		$scope.urlTitle3 = tempdata;
+		break;
+		case 4:
+		$scope.urlTitle4 = tempdata;
+		break;
+	}
+	});
 	};
 	
-    $scope.getTitle = function (restUrl)
-    { 
-		$.get("restUrl"+restUrl,function(data,status){
-												 alert("Data:" +data + ", status:" +status);
-			if(status == "success"){
-				var Url_title= $(data).filter('title').text();
-				switch(restUrl)
-				{
-					case 0:
-					$scope.urlTitle.text0 = Url_title; 
-					  break;
-					case 1:
-					$scope.urlTitle.text1 = Url_title;
-					  break;
-					case 2:
-					$scope.urlTitle.text2 = Url_title;
-					  break;
-					case 3:
-					$scope.urlTitle.text3 = Url_title;
-					  break;
-					case 4:
-					$scope.urlTitle.text4 = Url_title;
-					  break;
-					default:
-					$scope.urlTitle.text = Url_title;
-				}
-			}
-		});
-	};
-	
+	// SENDING INVITATION
 	$scope.sendInvite = function() {
 	 var jObej = {
 	"event": 
@@ -87,16 +104,17 @@ function eventCtrl($scope) {
 	 "name5":$scope.urlTitle.text4,
 	 "date1":$scope.date1,
 	 "date2":$scope.date2,
-	 "date3":$scope.date2,
+	 "date3":$scope.date3,
 	 "hash":"testhash",
 	 "organiser_email":$scope.organiser_email,
 	 "organiser_name":$scope.organiser_name }
 	 };
-	 
+	alert(JSON.stringify(jObej));
     var resultDiv = $("#resultDivContainer");
-	JSONParse("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
+	//JSONParse("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
 	};
 }
+
 
 
 

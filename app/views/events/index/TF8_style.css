@@ -1,0 +1,106 @@
+html, body {
+	background-color: #D83C33;
+	padding: 0;
+	margin: 0;
+	font-family: justin, sans-serif;
+
+	height: 100%;
+}
+
+@font-face {
+	font-family: justin;
+	src: url(timeburner_regular.ttf);
+}
+
+.banner {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100px;
+
+	background-color: #323232;
+	color: white;
+}
+
+.banner:before, .banner:after
+{
+	content: "";
+	position: absolute;
+	background: #323232;
+	top: 0;
+	bottom: 0;
+	width: 1000px;
+
+	z-index: -1;
+}
+.banner:before
+{
+	right: 100%;
+}
+.banner:after
+{
+	left: 100%;
+}
+
+
+.banner .banner_inner {
+	width: 70%;
+	max-width: 69em;
+	margin: 0 auto;
+	padding: 0 ;
+}
+
+.banner h1 {
+	font-size: 1.2em;
+}
+
+.banner nav {
+	float: right;
+}
+.banner nav a {
+	color: #aaa;
+	font-weight: 200;
+	margin: 0 0 0 20px;
+	font-size: 1.2em;
+}
+.banner nav a:hover {
+	color: white;
+}
+.banner nav a:link {
+	text-decoration: none;
+}
+
+#logo {
+	border-radius: 100px;
+	height: 100px;
+	float: left;
+
+	padding: 25px;
+	background-color: #323232;
+}
+
+
+#content {
+	padding: 130px 0 0 0;
+	text-align: center;
+
+	color: white;
+}
+
+.section_wrapper {
+	height: 500px;
+	width: 100%;
+
+	display: block;
+	text-align: center;
+}
+.section_wrapper:before, .section_wrapper:after {
+
+}
+
+#who, #when {
+	background-color: #FEAF20;
+}
+
