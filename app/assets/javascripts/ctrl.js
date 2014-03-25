@@ -1,4 +1,4 @@
-function JSONParse(url, jsObj, type, divResult) {
+function JSONInterface(url, jsObj, type, divResult) {
     var resultDiv = divResult;
 	var dataSaved = false;
     //alert(JSON.stringify(jsObj));
@@ -111,7 +111,15 @@ function eventCtrl($scope, $http, $templateCache) {
 	 };
 	alert(JSON.stringify(jObej));
     var resultDiv = $("#resultDivContainer");
-	//JSONParse("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
+	var emailList = str.split(";");
+	if(emailList.length>0)
+	{
+		JSONInterface("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
+		for(i=0;i<emailList.length;i++)
+		{
+			JSONInterface("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
+		}
+	}
 	};
 }
 

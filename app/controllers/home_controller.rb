@@ -3,4 +3,6 @@ class HomeController < ApplicationController
   end
   def new
   end
+  def event
+  end
 end

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+	<h1>Hello, <%= @user.email %></h1>
+	<p>
+	  I <%= @event.organiser_name %>, planning a dinner out and I've listed down the possible restaurants and dates below. Do vote whichever you want best?<br/>
+	</p>
+	<form action="<%= @url %>" method="post">
+	<table>
+	<tr>
+	<td>
+	</td>
+	<td>Yes
+	</td>
+	<td>No
+	</td>
+	</tr>
+	<tr>
+	<td><%= @event.name1 %><br />URL: <%= @event.link1 %>
+	</td>
+	<td>< input type="radio" id="link1" value="1" />
+	</td>
+	<td>< input type="radio" id="link1" value="-1" />
+	</td>
+	</tr>
+	<tr>
+	<td><%= @event.name2 %><br /><%= @event.link2 %>
+	</td>
+	<td>< input type="radio" id="link2" value="1" />
+	</td>
+	<td>< input type="radio" id="link2" value="-1" />
+	</td>
+	</tr>
+	<tr>
+	<td><%= @event.name3 %><br /><%= @event.link3 %>
+	</td>
+	<td>< input type="radio" id="link3" value="1" />
+	</td>
+	<td>< input type="radio" id="link3" value="-1" />
+	</td>
+	</tr>
+	<tr>
+	<td><%= @event.name4 %><br /><%= @event.link4 %>
+	</td>
+	<td>< input type="radio" id="link4" value="1" />
+	</td>
+	<td>< input type="radio" id="link4" value="-1" />
+	</td>
+	</tr>
+	<tr>
+	<td><%= @event.name5 %><br /><%= @event.link5 %>
+	</td>
+	<td>< input type="radio" id="link5" value="1" />
+	</td>
+	<td>< input type="radio" id="link5" value="-1" />
+	</td>
+	</tr>
+	</table>
+	<table>
+	<tr>
+	<td>
+	</td>
+	<td>Yes
+	</td>
+	<td>No
+	</td>
+	<td>Maybe
+	</td>
+	</tr>
+	<tr>
+	<td>Date 1
+	</td>
+	<td>< input type="radio" id="date1" value="1" />
+	</td>
+	<td>< input type="radio" id="date1" value="-1" />
+	</td>
+	<td>< input type="radio" id="date1" value="0" />
+	</td>
+	</tr>
+	<tr>
+	<td>Date 2
+	</td>
+	<td>< input type="radio" id="date2" value="1" />
+	</td>
+	<td>< input type="radio" id="date2" value="-1" />
+	</td>
+	<td>< input type="radio" id="date2" value="0" />
+	</td>
+	</tr>
+	<tr>
+	<td>Date 3
+	</td>
+	<td>< input type="radio" id="date3" value="1" />
+	</td>
+	<td>< input type="radio" id="date3" value="-1" />
+	</td>
+	<td>< input type="radio" id="date3" value="0" />
+	</td>
+	</tr>
+	</table>
+	</form>
+	<p>
+	  To login to the site, just follow this link: <%= @url %>.
+	</p>
+	<p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
