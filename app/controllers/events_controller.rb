@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   
     before_filter :fetch_user, :except => [:index, :create]
   
-  #GET /api/events (.:format)
+  # GET /api/events (.:format)
   def index
 	@events = Event.all
 	respond_to do |format|
@@ -15,13 +15,14 @@ class EventsController < ApplicationController
 	end
   end
 
-  #GET /api/events/:id/ (.:format)
+  # GET /api/events/:id/ (.:format)
   def show
 	respond_to do |format|
 	  format.json { render json: @event }
 	end
   end
 
+  # POST /api/events (.:format)
   def create
 	@event = Event.new(event_params)
 	@event.temp_password = Devise.friendly_token
@@ -34,6 +35,7 @@ class EventsController < ApplicationController
 	end
   end
 
+  # PATCH /api/events/:id (.:format)
   def update
 	respond_to do |format|
 	  if @event.update_attributes(event_params)
@@ -44,6 +46,7 @@ class EventsController < ApplicationController
 	end
   end
 
+  # PUT /api/events/:id (.:format)
   def destroy
 	respond_to do |format|
 	  if @event.destroy
