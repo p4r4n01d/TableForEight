@@ -117,7 +117,8 @@ function eventCtrl($scope, $http, $templateCache) {
 		JSONInterface("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
 		for(i=0;i<emailList.length;i++)
 		{
-			JSONInterface("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
+			alert(emailList);
+			//JSONInterface("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
 		}
 	}
 	};

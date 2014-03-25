@@ -1,20 +1,27 @@
 @font-face
 {
-font-family: cusFont;
+font-family: cusBodyFont;
+src: url(font/muli_regular.ttf);
+}
+@font-face
+{
+font-family: cusTitleFont;
 src: url(font/timeburner_regular.ttf);
 }
 
 body{
 	background-color: #D83C33;
 	padding-top: 40px;
-	font-family: cusFont;
+	font-family: cusBodyFont;
 	color: #FFF;
 }
 h1{
+	font-family: cusTitleFont;
 	font-size: 33px;
 }
 /**/
 nav {
+	font-family: cusTitleFont;
 	opacity:0.95;
 	filter:Alpha(opacity=95);
 }
