@@ -1,16 +1,18 @@
 TableForEight::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
- resources :home
- resources :voting
- resources :jerome
+  root to: "home#index"
+  get '/voting/:event_id/:vote_id', to: 'voting#index'
+  get '/result/:event_id', to: 'result#index'
+  post '/events/:event_id/:vote_id', to: 'votes#update', :defaults => { :format => 'json' } 
+  
+ 
  scope :api do
   resources :events, :defaults => { :format => 'json' }  do
     resources :votes, shallow: true, :defaults => { :format => 'json' }
   end  
   end
 
-  root to: "home#index"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
