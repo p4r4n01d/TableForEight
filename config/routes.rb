@@ -3,6 +3,7 @@ TableForEight::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
  resources :home
  resources :justin
+ resources :jerome
  scope :api do
   resources :events, :defaults => { :format => 'json' }  do
     resources :votes, shallow: true, :defaults => { :format => 'json' }
