@@ -59,17 +59,13 @@ describe EventsController do
 
     it "successfully creates a new event" do
       DatabaseCleaner.start
-      # Add the event parameters here
       event = FactoryGirl.build(:event)
       post :create, event
 
       # Check for 201 status code
       assert_response(201)
 
-      # Check the data we got back is ok
-      ['link1', 'organiser_email', 'date1'].each do |x|
-        expect(JSON.parse(response.body)[x]).to eq(event.send x)
-      end
+      JSON.parse(response.body)["events"]["id"].should == event.id
       DatabaseCleaner.clean
     end
 
@@ -112,12 +108,10 @@ describe EventsController do
       DatabaseCleaner.clean
     end
 
-    it "does not destroy an non-existant event" do
-      DatabaseCleaner.start
-      delete :destroy, {:id => -1}
+    it "does not destroy a non-existant event" do
+      delete :destroy, {:id => 100}
       # Check for 422 status code
       assert_response(422)
-      DatabaseCleaner.clean
     end
   end
 

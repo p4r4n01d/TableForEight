@@ -21,10 +21,12 @@ class EventsController < ApplicationController
   def create
 	@event = Event.new(event_params)
 	respond_to do |format|
-	  if @event.save
+	  # Have to make sure event is non-null first
+	  if !!@event && @event.save
 		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.id}}}
 	  else
-		format.json { render json: @event.errors.full_messages, data: @event, status: :unprocessable_entity }
+	    format.json { render json: db_op_failed(params[:id]),
+	        status: :unprocessable_entity }
 	  end
 	end
   end
@@ -32,10 +34,11 @@ class EventsController < ApplicationController
   # PATCH /api/events/:id (.:format)
   def update
 	respond_to do |format|
-	  if @event.update_attributes(event_params)
+	  if !!@event && @event.update_attributes(event_params)
 		format.json { head :no_content, status: :ok }
 	  else
-		format.json { render json: @event.errors.full_messages, status: :unprocessable_entity }
+	    format.json { render json: db_op_failed(params[:id]),
+	        status: :unprocessable_entity }
 	  end
 	end
   end
@@ -43,10 +46,11 @@ class EventsController < ApplicationController
   # PUT /api/events/:id (.:format)
   def destroy
 	respond_to do |format|
-	  if @event.destroy
+	  if !!@event && @event.destroy
 		format.json { head :no_content, status: :ok }
 	  else
-		format.json { render json: @event.errors.full_messages, status: :unprocessable_entity }
+	    format.json { render json: db_op_failed(params[:id]),
+	        status: :unprocessable_entity }
 	  end
 	end
   end
@@ -56,6 +60,14 @@ class EventsController < ApplicationController
 	@event = Event.find_by_id(params[:id])
   end
   
+  def db_op_failed(id)
+  	!@event ? no_such_event(id) : @event.errors.full_messages
+  end
+  
+  def no_such_event(id)
+    {"message" => "No event could be found with id: " << id}
+  end
+
   def event_params
 	unless params[:event].blank?
 	  params.require(:event).permit(:date, :cutoff_at, :link1, :name1, :link2, :name2, :link3, :name3, :link4, :name4, :link5, :name5, :date1, :date2, :date3, :hash, :organiser_email, :organiser_name)
