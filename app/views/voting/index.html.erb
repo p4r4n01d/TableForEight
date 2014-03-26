@@ -8,41 +8,25 @@
 
 					<% (1..5).each do |i| %>
 
-
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							Title
+							Restaurant Title
 
 							<div class="btn-group" style="float: right">
 							  <button type="button" class="btn btn-default" >
-							  	<span class="glyphicon glyphicon-thumbs-up"></span>
+							  	Yes <span class="glyphicon glyphicon-thumbs-up"></span>
 							  </button>
 							  <button type="button" class="btn btn-default">
-							  	<span class="glyphicon glyphicon-thumbs-down"></span>
+							  	No <span class="glyphicon glyphicon-thumbs-down"></span>
 							  </button>
 							</div>
+
+							<div class="panel-footer">
+								<a href="#">Restaurant URL</a>
+							</div>
+
 						</div>
 					</div>
-
-
-<!--					<ul class="list-group">
-					<% (1..5).each do |i| %>
-
-					<li class="list-group-item" style="color:black">
-						lel
-					</li>
-
-					<% end %>
-					</ul>
--->
-
-<!--					<label class="control-label spacingAround">{{ name<%= i %> }}</label>
-					<div class="input-group spacingAround">
-						<span class="input-group-addon glyphicon glyphicon-globe"></span>
-
-						<input type="text" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl<%= i %>" ng-change="fetch(restUrl<%= i %>, <%= i %>)"/>
-					</div>
--->
 
 					<% end %>
 
@@ -57,13 +41,17 @@
 					<% (1..3).each do |i| %>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							Title
 
 							<div class="btn-group" style="float: right">
-							  <button type="button" class="btn btn-default">Yes</button>
-							  <button type="button" class="btn btn-default">No</button>
+							  <button type="button" class="btn btn-default">Yes <span class="glyphicon glyphicon-thumbs-up"></span></button>
+							  <button type="button" class="btn btn-default">No <span class="glyphicon glyphicon-thumbs-down"></span></button>
 							  <button type="button" class="btn btn-default">Maybe</button>
 							</div>
+
+							<div class="panel-footer">
+								Date and Time
+							</div>
+
 						</div>
 					</div>
 					<% end %>
