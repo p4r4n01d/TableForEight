@@ -8,7 +8,8 @@
 
 					<% (1..5).each do |i| %>
 						
-						hash:<%= @events.hash %><br />
+						id:<%= @events.id %><br />
+						organiser:<%= @events.organiser_email %><br />
 						vote id:<%= @votes.id %><br />
 						guest:<%= @votes.email %><br />
 					<div class="panel panel-default">
