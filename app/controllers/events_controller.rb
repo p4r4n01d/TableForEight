@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   # PATCH /api/events/:id (.:format)
   def update
 	respond_to do |format|
-	  if @event.update_attributes(resource_params)
+	  if @event.update_attributes(event_params)
 		format.json { head :no_content, status: :ok }
 	  else
 		format.json { render json: @event.errors.full_messages, status: :unprocessable_entity }
