@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20140320234002) do
     t.datetime "date2"
     t.datetime "date3"
     t.string   "hash"
+    t.string   "organiser_email"
+    t.string   "organiser_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
-    t.string   "organiser_name"
   end
 
   create_table "organisers", force: true do |t|

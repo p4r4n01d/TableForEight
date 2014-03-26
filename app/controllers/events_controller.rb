@@ -1,11 +1,9 @@
 class EventsController < ApplicationController
-  
-  http_basic_authenticate_with :name => "test", :password => "test1234"
 
   skip_before_filter :authenticate_user! # we do not need devise authentication here
   before_filter :fetch_user, :except => [:index, :create]
   
-    before_filter :fetch_user, :except => [:index, :create]
+  before_filter :fetch_user, :except => [:index, :create]
   
   # GET /api/events (.:format)
   def index
