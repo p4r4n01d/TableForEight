@@ -10,6 +10,6 @@
  *
  *= require_self
  *= require bs/bootstrap
- *=requrie datePicker/bootstrap-datetimepicker.min
+ *= require datePicker/datetimepicker.min
  *= require_tree .
  */

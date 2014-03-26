@@ -19,7 +19,13 @@ h1{
 	font-family: cusTitleFont;
 	font-size: 33px;
 }
+
 /**/
+.subcontainer{
+	padding: 15px;
+	height: screen-height;
+}
+
 nav {
 	font-family: cusTitleFont;
 	opacity:0.95;
@@ -74,9 +80,11 @@ main{
 	cursor: pointer;
 }
 .headerimg{
-	display:block;
-    float: none;
-    margin: 0 auto;
+	float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	text-align:center;
 }
 /* NAVIGATION*/
 
@@ -102,10 +110,21 @@ and (max-device-width: 767px) {
 	}
 }
 
-
-/* Mobile Menu alterations
-
-/* END @media Queries*/
+.colorDark{
+	color: #666;
+}
+.lighter-background{
+	color: #D83C33;
+	background-color: #FFF;	
+	opacity:0.90;
+	filter:Alpha(opacity=90);
+}
+.darker-background{
+	color: #D83C33;
+	background-color: #940603;	
+	opacity:0.90;
+	filter:Alpha(opacity=90);
+}
 
 
 .service {
@@ -114,14 +133,14 @@ and (max-device-width: 767px) {
 	padding: 10px 10px 5px;
 }
 .service:hover {
-	background: transparent;
-	box-shadow: 0 0 5px #fff;
+	background: #FFF;
+	box-shadow: 0 0 5px #D83C33;
 	-webkit-transition:All 1s ease;
     -moz-transition:All 1s ease;
     -o-transition:All 1s ease;
 }
 .service:hover i {
-	color: #656565;
+	color: #D83C33;
 }
 
 .service .desc {
@@ -136,7 +155,7 @@ and (max-device-width: 767px) {
 .service .service-icon {
 	float: left;
 	padding: 10px;
-	color: #72c02c;
+	color: #666;
 	font-size: 30px;  
 	text-align: center;
     -webkit-transition: all 0.4s ease-in-out;
@@ -151,6 +170,19 @@ and (max-device-width: 767px) {
 	font-size: 43px;
 }
 
+.service-dark {
+	color: #FFF;
+}
+.service-dark:hover i {
+	color: #F99;
+}
+.service-dark:hover {
+	background:transparent;
+	box-shadow: 0 0 5px #ccc;
+	-webkit-transition:All 1s ease;
+    -moz-transition:All 1s ease;
+    -o-transition:All 1s ease;
+}
 
 .description {
 	padding: 30px 0;

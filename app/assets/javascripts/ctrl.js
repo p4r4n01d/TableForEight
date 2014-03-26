@@ -4,6 +4,8 @@ function JSONInterface(url, jsObj, type, divResult) {
     //alert(JSON.stringify(jsObj));
     $.ajax({
 		headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+        'name': 'test',
+        'password': 'test1234',
         url: url,
         type: type,
         data: JSON.stringify(jsObj),
@@ -46,20 +48,20 @@ function eventCtrl($scope, $http, $templateCache) {
 	var tempdata = $(data).filter("title").text();
 	switch(restaurantTitle)
 	{
-		case 0:
-		$scope.urlTitle0 = tempdata;
-		break;
 		case 1:
-		$scope.urlTitle1 = tempdata;
+		$scope.name1 = tempdata;
 		break;
 		case 2:
-		$scope.urlTitle2 = tempdata;
+		$scope.name2 = tempdata;
 		break;
 		case 3:
-		$scope.urlTitle3 = tempdata;
+		$scope.name3 = tempdata;
 		break;
 		case 4:
-		$scope.urlTitle4 = tempdata;
+		$scope.name4 = tempdata;
+		break;
+		case 5:
+		$scope.name5 = tempdata;
 		break;
 	}
 	}).
@@ -67,20 +69,20 @@ function eventCtrl($scope, $http, $templateCache) {
 	var tempdata = data || "Request failed";
 	switch(restaurantTitle)
 	{
-		case 0:
-		$scope.urlTitle0 = tempdata;
-		break;
 		case 1:
-		$scope.urlTitle1 = tempdata;
+		$scope.name1 = tempdata;
 		break;
 		case 2:
-		$scope.urlTitle2 = tempdata;
+		$scope.name2 = tempdata;
 		break;
 		case 3:
-		$scope.urlTitle3 = tempdata;
+		$scope.name3 = tempdata;
 		break;
 		case 4:
-		$scope.urlTitle4 = tempdata;
+		$scope.name4 = tempdata;
+		break;
+		case 5:
+		$scope.name5 = tempdata;
 		break;
 	}
 	});
@@ -91,17 +93,17 @@ function eventCtrl($scope, $http, $templateCache) {
 	 var jObej = {
 	"event": 
 	{ "date":"" ,
-	 "cutoff_at":"2014,03,31",
-	 "link1":$scope.restUrl0,
-	 "name1":$scope.urlTitle.text0,
-	 "link2":$scope.restUrl1,
-	 "name2":$scope.urlTitle.text1,
-	 "link3":$scope.restUrl2,
-	 "name3":$scope.urlTitle.text2,
-	 "link4":$scope.restUrl3,
-	 "name4":$scope.urlTitle.text3,
-	 "link5":$scope.restUrl4,
-	 "name5":$scope.urlTitle.text4,
+	 "cutoff_at":$scope.date4,
+	 "link1":$scope.restUrl1,
+	 "name1":$scope.name1,
+	 "link2":$scope.restUrl2,
+	 "name2":$scope.name2,
+	 "link3":$scope.restUrl3,
+	 "name3":$scope.name3,
+	 "link4":$scope.restUrl4,
+	 "name4":$scope.name4,
+	 "link5":$scope.restUrl5,
+	 "name5":$scope.name5,
 	 "date1":$scope.date1,
 	 "date2":$scope.date2,
 	 "date3":$scope.date3,
