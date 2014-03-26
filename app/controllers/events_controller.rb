@@ -1,10 +1,5 @@
 class EventsController < ApplicationController
   
-  http_basic_authenticate_with :name => "test", :password => "test1234"
-
-  skip_before_filter :authenticate_user! # we do not need devise authentication here
-  before_filter :fetch_user, :except => [:index, :create]
-  
     before_filter :fetch_user, :except => [:index, :create]
   
   # GET /api/events (.:format)
@@ -24,11 +19,10 @@ class EventsController < ApplicationController
 
   # POST /api/events (.:format)
   def create
-	@event = Event.new(event_params)
-	@event.temp_password = Devise.friendly_token
+	@event = Event.new(resource_params)
 	respond_to do |format|
 	  if @event.save
-		format.json { render json: @event, status: :created }
+		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.id}}}
 	  else
 		format.json { render json: @event.errors.full_messages, data: @event, status: :unprocessable_entity }
 	  end
@@ -38,7 +32,7 @@ class EventsController < ApplicationController
   # PATCH /api/events/:id (.:format)
   def update
 	respond_to do |format|
-	  if @event.update_attributes(event_params)
+	  if @event.update_attributes(resource_params)
 		format.json { head :no_content, status: :ok }
 	  else
 		format.json { render json: @event.errors.full_messages, status: :unprocessable_entity }
@@ -62,7 +56,9 @@ class EventsController < ApplicationController
 	@event = Event.find_by_id(params[:id])
   end
   
-  def event_params
-	params.require(:event).permit(:date, :cutoff_at, :link1, :name1, :link2, :name2, :link3, :name3, :link4, :name4, :link5, :name5, :date1, :date1, :date1, :hash, :organiser_email, :organiser_name)
+  def resource_params
+	unless params[:event].blank?
+	  params.require(:event).permit(:date, :cutoff_at, :link1, :name1, :link2, :name2, :link3, :name3, :link4, :name4, :link5, :name5, :date1, :date2, :date3, :hash, :organiser_email, :organiser_name)
+	end
   end
 end

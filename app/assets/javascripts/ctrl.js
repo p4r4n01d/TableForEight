@@ -1,37 +1,22 @@
-function JSONInterface(url, jsObj, type, divResult) {
-    var resultDiv = divResult;
-	var dataSaved = false;
-    //alert(JSON.stringify(jsObj));
+function JSONInterface(url, jsObj, type, get_status) {
+	NewjsonObject = null;
+    divResult = $("#resultDivContainer");
     $.ajax({
 		headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-        'name': 'test',
-        'password': 'test1234',
         url: url,
         type: type,
         data: JSON.stringify(jsObj),
         dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function (result) {
-            switch (result) {
-                case true:
-					dataSaved=true;
-                    processResponse(result);
-                    //divResult = result;
-                    break;
-                default:
-					dataSaved=true;
-                    //divResult = result;
-					divResult.html(result);
-            }
+        async: false,
+        contentType: "application/json; charset=utf-8",        
+		success: function (result, status) {
+			if(status=="success" && result.status==get_status) NewjsonObject=result.events.id;
         },
         error: function (xhr, ajaxOptions, thrownError) {
-        //alert(xhr.status);
-        //alert(thrownError);
-        //divResult = xhr.status + "<br />" + thrownError;
-        divResult.html(xhr.status + "<br />" + thrownError + "<br />json OBJECT: " + JSON.stringify(jsObj));
+        	divResult.html(xhr.status + "<br />" + thrownError);
         }
     });
-	return dataSaved;
+	return NewjsonObject;
 }
 
 
@@ -90,9 +75,11 @@ function eventCtrl($scope, $http, $templateCache) {
 	
 	// SENDING INVITATION
 	$scope.sendInvite = function() {
-	 var jObej = {
+	newDate = new Date();
+	datetime = "" + newDate.today + " " + newDate.timeNow;
+	EventJSON = {
 	"event": 
-	{ "date":"" ,
+	{ "date":$scope.date1,
 	 "cutoff_at":$scope.date4,
 	 "link1":$scope.restUrl1,
 	 "name1":$scope.name1,
@@ -107,20 +94,41 @@ function eventCtrl($scope, $http, $templateCache) {
 	 "date1":$scope.date1,
 	 "date2":$scope.date2,
 	 "date3":$scope.date3,
-	 "hash":"testhash",
+	 "hash":$scope.organiser_email+datetime,
 	 "organiser_email":$scope.organiser_email,
 	 "organiser_name":$scope.organiser_name }
 	 };
-	alert(JSON.stringify(jObej));
-    var resultDiv = $("#resultDivContainer");
-	var emailList = str.split(";");
+	emailList = $scope.guest_list.split(";");
 	if(emailList.length>0)
 	{
-		JSONInterface("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
-		for(i=0;i<emailList.length;i++)
+		
+		EventJsonNew=JSONInterface("http://localhost:3000/api/events", EventJSON, "POST", "created");
+		if(EventJsonNew!=null)
 		{
-			alert(emailList);
-			//JSONInterface("http://localhost:3000/api/events", jObej.event, "POST", resultDiv);
+			DataSaved=false;
+			for(i=0;i<=emailList.length;i++)
+			{
+				alert(emailList[i] + ":::: EventID:" + EventJsonNew);
+				VoteJSON = {
+				"vote": 
+				{ "email":emailList[i],
+				 "link1":"-1",
+				 "link2":"-1",
+				 "link3":"-1",
+				 "link4":"-1",
+				 "link5":"-1",
+				 "date1":"-1",
+				 "date2":"-1",
+				 "date3":"-1",
+				 "confirmed":false }
+				};
+				//alter votes controller to give out the same format in creating votes
+				VoteJsonNew=JSONInterface("http://localhost:3000/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
+				alert("VoteID:" + VoteJsonNew);
+				if(VoteJsonNew!=null) DataSaved=true;
+			}
+			if(DataSaved) $scope.inviteResult = "Email Sent";
+			else $scope.inviteResult = "Email Not Sent";
 		}
 	}
 	};

@@ -6,7 +6,7 @@
 					<header>
 						<h1>Plan. Dine. Socialise.</h1>
 					</header>
-					<img class="img-responsive" class="img" src="/assets/Table-For-Eight-logo.png">
+					<img class="img-responsive headerimg" src="/assets/Table-For-Eight-logo.png">
 				</article>
 			</section>
 			<section class="row" id="people">
@@ -41,7 +41,7 @@
 				<article class="subcontainer">
 				<article class="col-md-6">
 					<div class="service service-dark">
-						<i class="glyphicon glyphicon-glass service-icon"></i>
+						<i class="glyphicon glyphicon-cutlery service-icon"></i>
 						<div class="desc">
 							<h2>Where?</h2>
 						<% (1..5).each do |i| %>
@@ -89,6 +89,7 @@
 						<i class="glyphicon glyphicon-envelope service-icon"></i>
 						<div class="desc">
 							<h2>Invite?</h2>
+							<p> {{ inviteResult }}</p>
 							<button type="button" class="btn btn-default" ng-click="sendInvite()">
 							  <span class="glyphicon glyphicon-envelope"></span> Invite
 							</button>

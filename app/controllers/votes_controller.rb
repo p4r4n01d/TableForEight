@@ -1,17 +1,21 @@
 class VotesController < ApplicationController
 
-  before_filter :get_event only :index, :show, :create, :countvotes
-  before_filter :get_vote only :destroy, :update
-
+  before_filter :get_vote, :except => [:index, :show, :create, :countvotes]
+  before_filter :get_event, :except => [:destroy, :update]
+    
   # GET /events/:event_id/votes/:id
   def index
-    @votes = @event.votes.find(params[:id])
-    render json: @votes
+  @votes = @event.votes
+  respond_to do |format|
+    format.json { render :json=>{:events=>@event,:votes=>@votes}}
+  end
   end
 
   # GET /events/:event_id/votes
   def show
-    render json: @event.votes
+    respond_to do |format|
+      format.json { render json: @event.votes }
+    end
   end
 
   # GET /events/:event_id/countvotes
@@ -21,13 +25,14 @@ class VotesController < ApplicationController
 
   # POST /events/:event_id/votes
   def create
-    @vote = @event.Vote.new(params[:vote])
+    @vote = @event.votes.create(vote_params)
     respond_to do |format|
       if @vote.save
         UserMailer.welcome_email(@vote, @event).deliver
-        format.json { head :no_content, status: :created, notice: 'Email was sent to Guests.' }
+        format.json { render :json=>{:status=>'created',:events=>{:id=>@vote.id}}}
       else
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
+        format.json { render json: @vote.errors.full_message, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -39,6 +44,7 @@ class VotesController < ApplicationController
       else
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
+    end
   end
 
 
@@ -55,14 +61,14 @@ class VotesController < ApplicationController
 
   private
     def get_event
-      @event = Event.find(params[:event_id])
+      @event = Event.find_by_id(params[:event_id])
     end
 
     def get_vote
-      @vote = Vote.find(params[:id])
+      @vote = Vote.find_by_id(params[:id])
     end
 
-    def post_params
-      params.require(:email).permit(:link1, :link2, :link3, :link4, :link5, :date1, :date2, :date3, :confirmed)
+    def vote_params
+      params.require(:vote).permit(:email, :link1, :link2, :link3, :link4, :link5, :date1, :date2, :date3, :confirmed)
     end
 end

@@ -1,7 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :votes
-
-  validates_presence_of :link1
-  validates_presence_of :date1
-  validates_presence_of :organiser_email
+  
+  validates :organiser_email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validates :organiser_email, :link1, :date1, :presence =>true
 end

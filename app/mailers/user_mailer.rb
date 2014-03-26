@@ -4,7 +4,6 @@ class UserMailer < ActionMailer::Base
    def welcome_email(user, event)
     @event = event
     @user = user
-    @url  = user_url(@user)
     delivery_options = { user_name: 'tab4eight@gmail.com',
                          password: 'tab4eight1234',
                          address: 'smtp.gmail.com',
