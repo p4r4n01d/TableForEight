@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320234002) do
+ActiveRecord::Schema.define(version: 20140320025742) do
 
   create_table "events", force: true do |t|
     t.datetime "date"
@@ -30,15 +30,8 @@ ActiveRecord::Schema.define(version: 20140320234002) do
     t.datetime "date2"
     t.datetime "date3"
     t.string   "hash"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "email"
+    t.string   "organiser_email"
     t.string   "organiser_name"
-  end
-
-  create_table "organisers", force: true do |t|
-    t.string   "name"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,8 +47,11 @@ ActiveRecord::Schema.define(version: 20140320234002) do
     t.integer  "date2"
     t.integer  "date3"
     t.boolean  "confirmed"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "votes", ["event_id"], name: "index_votes_on_event_id"
 
 end

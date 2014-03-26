@@ -11,7 +11,8 @@ class CreateVotes < ActiveRecord::Migration
       t.integer :date2
       t.integer :date3
       t.boolean :confirmed
-
+      t.references :event, index: true
+      
       t.timestamps
     end
   end

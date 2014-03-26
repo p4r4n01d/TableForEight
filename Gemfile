@@ -43,3 +43,9 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use Devise
+gem 'devise'
+
+# Use safe Attributes
+gem 'safe_attributes'
