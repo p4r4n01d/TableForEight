@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   
-    before_filter :fetch_user, :except => [:index, :create]
+    before_filter :fetch_event, :except => [:index, :create]
   
   # GET /api/events (.:format)
   def index
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
 
   # POST /api/events (.:format)
   def create
-	@event = Event.new(resource_params)
+	@event = Event.new(event_params)
 	respond_to do |format|
 	  if @event.save
 		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.id}}}
@@ -52,11 +52,11 @@ class EventsController < ApplicationController
   end
   
   private
-  def fetch_user
+  def fetch_event
 	@event = Event.find_by_id(params[:id])
   end
   
-  def resource_params
+  def event_params
 	unless params[:event].blank?
 	  params.require(:event).permit(:date, :cutoff_at, :link1, :name1, :link2, :name2, :link3, :name3, :link4, :name4, :link5, :name5, :date1, :date2, :date3, :hash, :organiser_email, :organiser_name)
 	end

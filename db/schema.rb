@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20140320025742) do
     t.string   "hash"
     t.string   "organiser_email"
     t.string   "organiser_name"
+<<<<<<< HEAD
+=======
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organisers", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+>>>>>>> 2fac8ec54089bba5f383375e49effdf6dbed6b7f
     t.datetime "created_at"
     t.datetime "updated_at"
   end
