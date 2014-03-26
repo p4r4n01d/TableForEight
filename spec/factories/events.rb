@@ -1,6 +1,6 @@
 FactoryGirl.define do
   sequence :organiser_email do |n|
-    "organiser#{n}.gmail.com.au"
+    "organiser#{n}@gmail.com.au"
   end
 
   factory :event do

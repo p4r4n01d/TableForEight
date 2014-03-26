@@ -3,11 +3,6 @@ require 'rake'
 
 describe EventsController do
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # EventsController. Be sure to keep this updated too.
-  let(:valid_session) { { 'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Basic.encode_credentials("test", "test1234") } }
-
   describe "Events API" do
   
     before :each do
@@ -15,100 +10,114 @@ describe EventsController do
     end
   
     it "can send an empty list of events" do
-      get events_path, nil, :valid_session
+      get :index
 
       # Check for 200 status code
       expect(response).to be_success
 
       # Check that we didn't receive any data back
-      expect(json['events'].length).to eq(0)
+      expect(JSON.parse(response.body).length).to eq(0)
     end
 
     it "sends a list of events" do
+      DatabaseCleaner.start
       event = FactoryGirl.create_list(:event, 10)
 
-      get events_path, nil, :valid_session
+      get :index
 
       # Check for 200 status code
       expect(response).to be_success
 
       # check that the message attributes are the same.
-      expect(json['events'].length).to eq(10) # check to make sure the right amount
+      expect(JSON.parse(response.body).length).to eq(10) # check to make sure the right amount
+      DatabaseCleaner.clean
     end
 
     it "sends a single event" do
+      DatabaseCleaner.start
       event = FactoryGirl.create(:event)
-      get :show, {:id => event.id}, nil
+      get :show, {:id => event.id}
 
       # Check for 200 status code
       assert_response(200)
-      expect(response).to be_success
 
       # check that the message attributes are the same.
-      expect(JSON.parse(response.body)['link1']).to eq(event.link1)
+      expect(JSON.parse(response.body)['id']).to eq(event.id)
+      DatabaseCleaner.clean
     end
 
     it "sends null when event does not exist" do
-      get "/api/events/-1", nil, :valid_session
+      DatabaseCleaner.start
+      get :show, {:id => -1}
 
       # Check for 200 status code
       expect(response).to be_success
 
       response.body.should == "null"
+      DatabaseCleaner.clean
     end
 
     it "successfully creates a new event" do
+      DatabaseCleaner.start
       # Add the event parameters here
       event = FactoryGirl.build(:event)
-      post events_path, :event, :valid_session
+      post :create, event
 
       # Check for 201 status code
-      expect(response).to be_success
+      assert_response(201)
 
       # Check the data we got back is ok
-      ['link1', 'name1', 'organiser_email', 'organiser_name'].each do |x|
-        expect(json[x]).to eq(event.send x)
+      ['link1', 'organiser_email', 'date1'].each do |x|
+        expect(JSON.parse(response.body)[x]).to eq(event.send x)
       end
+      DatabaseCleaner.clean
     end
 
     it "does not create event with invalid fields" do
+      DatabaseCleaner.start
       event = FactoryGirl.build(:event, "link1" => nil)
-      post events_path, :event, :valid_session
+      post :create, event
 
       # Check for 422 status code
       assert_response(422)
+      DatabaseCleaner.clean
     end
 
     it "updates an existing event" do
-        event = FactoryGirl.create(:event)
+      DatabaseCleaner.start
+      event = FactoryGirl.create(:event)
 
-        patch "api/events/#{event.id}", {"organiser_name" => "John"}, :valid_session
+      patch :update, {:id => event.id, "organiser_name" => "John"}
 
-        expect(response).to be_success
-
-        # Check field was sucessfully updated
-        expect(json['organiser_name']).to eq(event.organiser_name)
+      expect(response).to be_success
+      DatabaseCleaner.clean
     end
 
     it "does not update existing event with invalid fields" do
+      DatabaseCleaner.start
       event = FactoryGirl.create(:event)
 
-      patch "/api/events/#{event.id}", {"link1" => nil}, :valid_session
+      patch :update, {"id" => event.id, "link1" => nil}
 
       # Check for 422 status code
       assert_response(422)
+      DatabaseCleaner.clean
     end
 
     it "destroys an existing event" do
+      DatabaseCleaner.start
       event = FactoryGirl.create(:event)
-      delete "/api/events/#{event.id}", nil, :valid_session
+      delete :destroy, {:id => event.id}
       expect(response).to be_success
+      DatabaseCleaner.clean
     end
 
     it "does not destroy an non-existant event" do
-      delete "/api/events/-1", nil, :valid_session
+      DatabaseCleaner.start
+      delete :destroy, {:id => -1}
       # Check for 422 status code
       assert_response(422)
+      DatabaseCleaner.clean
     end
   end
 
