@@ -126,6 +126,7 @@ function eventCtrl($scope, $http, $templateCache) {
 				VoteJsonNew=JSONInterface("http://localhost:3000/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
 				alert("VoteID:" + VoteJsonNew);
 				if(VoteJsonNew!=null) DataSaved=true;
+				else DataSaved=false;
 			}
 			if(DataSaved) $scope.inviteResult = "Email Sent";
 			else $scope.inviteResult = "Email Not Sent";
@@ -133,6 +134,13 @@ function eventCtrl($scope, $http, $templateCache) {
 	}
 	};
 }
+
+$('#popoverRestoYes').popover();
+$('#popoverRestoNo').popover();
+$('#popoverDateYes').popover();
+$('#popoverDateNo').popover();
+$('#popoverDateMaybe').popover();
+$('#popoverOption').popover({ trigger: "hover" });
 
 
 

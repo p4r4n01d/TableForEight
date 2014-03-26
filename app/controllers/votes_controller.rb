@@ -1,11 +1,11 @@
 class VotesController < ApplicationController
 
-  before_filter :get_vote, :except => [:index, :show, :create, :countvotes]
-  before_filter :get_event, :except => [:destroy, :update]
+  before_filter :get_event, :except => [:index, :destroy, :update, :show, :countvotes]
+  before_filter :get_vote, :except => [:index, :destroy, :update, :create]
+  before_filter :get_event_vote, :except => [:show, :create, :countvotes]
     
-  # GET /events/:event_id/votes/:id
+  # GET /events/:event_id/votes/:id .find(:all)
   def index
-  @votes = @event.votes
   respond_to do |format|
     format.json { render :json=>{:events=>@event,:votes=>@votes}}
   end
@@ -67,8 +67,15 @@ class VotesController < ApplicationController
     def get_vote
       @vote = Vote.find_by_id(params[:id])
     end
+    
+    def get_event_vote
+      @event = Event.find_by_id(params[:event_id])
+      @vote = @event.votes.find_by_id(params[:id])
+    end
 
     def vote_params
-      params.require(:vote).permit(:email, :link1, :link2, :link3, :link4, :link5, :date1, :date2, :date3, :confirmed)
+      unless params[:event].blank?
+       params.require(:vote).permit(:email, :link1, :link2, :link3, :link4, :link5, :date1, :date2, :date3, :confirmed)
+      end
     end
 end

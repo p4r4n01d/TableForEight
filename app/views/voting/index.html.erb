@@ -7,7 +7,10 @@
 					<h2>Where?</h2>
 
 					<% (1..5).each do |i| %>
-
+						
+						hash:<%= @events.hash %><br />
+						vote id:<%= @votes.id %><br />
+						guest:<%= @votes.email %><br />
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							Restaurant Title

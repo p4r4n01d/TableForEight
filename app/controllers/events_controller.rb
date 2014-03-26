@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   
-  before_filter :fetch_event, :except => [:index, :create]
+    before_filter :fetch_event, :except => [:index, :create]
   
   # GET /api/events (.:format)
   def index

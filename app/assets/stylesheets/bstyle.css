@@ -86,6 +86,9 @@ main{
     margin-right: auto;
 	text-align:center;
 }
+.btn-float-left{
+	float:right;
+}
 /* NAVIGATION*/
 
 /* END NAVIGATION*/
