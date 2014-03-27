@@ -56,7 +56,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       if !!@vote && @vote.update_attributes(vote_params)
         format.json { render :json => {:status => 'ok',
-          :events => {:id => @vote.id}}, status: :ok}
+          :events => {:id => @vote.id}}}
       else
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end

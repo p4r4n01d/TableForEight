@@ -31,7 +31,7 @@ function eventCtrl($scope, $http, $templateCache) {
 		};
 		VoteJSON.vote[type]=result;
 		VoteJsonNew = null;
-		VoteJsonNew=JSONInterface("/api/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
+		VoteJsonNew=JSONInterface("/api/event/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
 		tempVote_resutl="";
 		if(VoteJsonNew!=null) tempVote_resutl = "Thank You for Voting";
 		else tempVote_resutl = "Vote Not Set";
@@ -248,7 +248,7 @@ function eventCtrl($scope, $http, $templateCache) {
 	 "organiser_email":$scope.organiser_email,
 	 "organiser_name":$scope.organiser_name }
 	 };
-	emailList = $scope.guest_list.split(";");
+	emailList = $scope.guest_list.replace("\n","").replace(" ","").split(";");
 	if(emailList.length>0)
 	{
 		
@@ -256,7 +256,7 @@ function eventCtrl($scope, $http, $templateCache) {
 		if(EventJsonNew!=null)
 		{
 			DataSaved=false;
-			for(i=0;i<=emailList.length;i++)
+			for(i=0;i<emailList.length;i++)
 			{
 				VoteJSON = {
 				"vote": 
