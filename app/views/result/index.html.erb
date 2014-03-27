@@ -21,10 +21,12 @@
 								<h4 class="result-indiv">
 									<%= @events.attributes['name'+"%01d" % i ] %>
 								<div class="btn-float-right">
-									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of people that voted yes" data-original-title="Yes:">8
+									<button type="button" id="linkbtnyes<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="Yes:">
+									{{ link<%= i %>going }}
 										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
-									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of people that voted no" data-original-title="No:">8
+									<button type="button" id="linkbtnno<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="No:">
+									{{ link<%= i %>notgoing }}
 										<span class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-sm">Select
@@ -48,14 +50,17 @@
 								<% (1..3).each do |i| %>
 								<h4 class="result-indiv">
 								<%= @events.attributes['date'+"%01d" % i ] %>
-								<div class="btn-float-right">
-									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of people that voted yes" data-original-title="Yes:">8
+								<div class="btn-float-right btn-dark-font">
+									<button type="button" id="datebtnyes<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="Yes:">
+									{{ date<%= i %>going }}
 										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
-									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of people that voted no" data-original-title="No:">8
+									<button type="button" id="datebtnno<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="No:">
+									{{ date<%= i %>notgoing }}
 										<span class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
-									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of unsure people" data-original-title="Not sure:">8
+									<button type="button" id="datebtnmaybe<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="Not sure:">
+									{{ date<%= i %>maybe }}
 										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-sm">Select
@@ -70,8 +75,11 @@
 				</article>
 			</section>
 			<div class="service  service-dark result">
-				<button type="button" class="btn btn-default btn-float-right btn-m">Confirm Event
-					<span id="ConfirmEvent" data-trigger="click" class="glyphicon glyphicon-check"></span>
+			{{ selectedRestaurant }}
+			{{ selectedRestaurantUrl }}
+			{{ SelectedDate }}
+				<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="test_resutl()">Confirm Event
+					<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
 				</button>
 			</div>
 			</main>
