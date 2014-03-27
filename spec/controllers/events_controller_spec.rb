@@ -47,14 +47,12 @@ describe EventsController do
     end
 
     it "sends null when event does not exist" do
-      DatabaseCleaner.start
       get :show, {:id => -1}
 
       # Check for 200 status code
       expect(response).to be_success
 
       response.body.should == "null"
-      DatabaseCleaner.clean
     end
 
     it "successfully creates a new event" do

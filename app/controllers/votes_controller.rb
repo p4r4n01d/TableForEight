@@ -75,7 +75,7 @@ class VotesController < ApplicationController
     def get_vote
       @vote = Vote.find_by_id(params[:id])
       if !@vote
-        vote_not_found(params[:vote_id])
+        vote_not_found(params[:id])
       end
     end
 
