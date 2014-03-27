@@ -78,7 +78,7 @@ class VotesController < ApplicationController
         vote_not_found(params[:vote_id])
       end
     end
-    
+
     def get_event_vote
       get_event
       @vote = @event.votes.find_by_id(params[:vote_id])
@@ -87,6 +87,7 @@ class VotesController < ApplicationController
       end
     end
 
+    # Message for when no vote exists with given id
     def vote_not_found(id)
       render json: "No vote was found with id: " << id,
           status: :unprocessable_entity
