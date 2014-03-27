@@ -29,10 +29,10 @@
 							<%= @events.attributes['name'+"%01d" % i ] %>
 
 							<div class="btn-group btn-float-left">
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'link', <%= i %>, 1)">
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'link<%= i %>', 1)">
 							  	Yes <span class="glyphicon glyphicon-thumbs-up"></span>
 							  </button>
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'link', <%= i %>, -1)">
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'link<%= i %>', -1)">
 							  	No <span class="glyphicon glyphicon-thumbs-down"></span>
 							  </button>
 							</div>
@@ -59,9 +59,9 @@
 						<div class="panel-heading">
 							{{ voteResult_when }}
 							<div class="btn-group" style="float: right">
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date', <%= i %>, 1)">Yes <span class="glyphicon glyphicon-thumbs-up"></span></button>
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date', <%= i %>, -1)">No <span class="glyphicon glyphicon-thumbs-down"></span></button>
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date', <%= i %>, 0)">Maybe</button>
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date<%= i %>', 1)">Yes <span class="glyphicon glyphicon-thumbs-up"></span></button>
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date<%= i %>', -1)">No <span class="glyphicon glyphicon-thumbs-down"></span></button>
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date<%= i %>', 0)">Maybe</button>
 							</div>
 
 							<div class="panel-footer">

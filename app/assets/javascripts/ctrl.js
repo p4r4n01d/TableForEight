@@ -24,15 +24,14 @@ function eventCtrl($scope, $http, $templateCache) {
 	
 	$scope.method = 'GET';
 	 
-	$scope.vote_process = function(event_id, vote_id, type, number, result) {
-		json_property=""+type+number+"";
+	$scope.vote_process = function(event_id, vote_id, type, result) {
 		VoteJSON = {
 		"vote": 
 		{ "id":vote_id,
-		 json_property:result }
+		 type:result }
 		};
 		//update votes controller to return JSONInterface format result.events.id
-		VoteJsonNew=JSONInterface("http://localhost:3000/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "created");
+		VoteJsonNew=JSONInterface("http://localhost:3000/api/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
 		alert("VoteID:" + VoteJsonNew);
 		tempVote_resutl="";
 		if(VoteJsonNew!=null) tempVote_resutl = "Thank You for Voting";
