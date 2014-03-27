@@ -4,28 +4,28 @@ class VotesController < ApplicationController
   before_filter :get_vote, :except => [:index, :destroy, :update, :create, :countvotes]
   before_filter :get_event_vote, :except => [:index, :show, :create, :countvotes]
     
-  # GET /events/:event_id/votes/:id .find(:all)
+  # GET /api/events/:event_id/votes
   def index
     respond_to do |format|
       format.json { render :json => {:events => @event, :votes => @event.votes}}
     end
   end
 
-  # GET /events/:event_id/votes
+  # GET /api/votes/:id
   def show
     respond_to do |format|
-      format.json { render json: @event.votes }
+      format.json { render json: @vote }
     end
   end
 
-  # GET /events/:event_id/countvotes
+  # GET /api/get/:event_id
   def countvotes
     respond_to do |format|
       format.json { render json: @event.votes.get_votes_sum(params[:event_id]) }
     end
   end
 
-  # POST /events/:event_id/votes
+  # POST /api/events/:event_id/votes
   def create
     @vote = @event.votes.create(vote_params)
     respond_to do |format|
@@ -40,7 +40,7 @@ class VotesController < ApplicationController
     end
   end
 
-  # DELETE /votes/:vote_id
+  # DELETE /api/votes/:vote_id
   def destroy
     respond_to do |format|
       if @vote.destroy
@@ -51,7 +51,7 @@ class VotesController < ApplicationController
     end
   end
 
-  # PUT /votes/:vote_id
+  # PUT /api/votes/:vote_id
   def update
     respond_to do |format|
       if !!@vote && @vote.update_attributes(vote_params)

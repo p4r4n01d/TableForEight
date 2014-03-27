@@ -14,6 +14,18 @@ describe VotesController do
       
       # Check for 422 status code
       assert_response(422)
+    end
+    
+    it "retreives and empty list of votes for a valid event" do
+      DatabaseCleaner.start
+      event = FactoryGirl.create(:event)
+      get :index, :event_id => event.id
+
+      # Check for 200 status code
+      expect(response).to be_success
+
+      # Check that we didn't receive any data back
+      expect(JSON.parse(response.body)[:votes]).to be_nil
       DatabaseCleaner.clean
     end
   end
