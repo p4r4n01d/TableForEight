@@ -23,6 +23,95 @@ function JSONInterface(url, jsObj, type, get_status) {
 function eventCtrl($scope, $http, $templateCache) {
 	
 	$scope.method = 'GET';
+	$scope.test_resutl = function() {
+		Result_json = {"voting":{"link1":{"going":{"count":[{"Counts":2,"id":null}],"emails":[{"email":"jeromerrodriguez@gmail.com","id":null},{"email":"justindennis2000@hotmail.com","id":null}]},"notgoing":{"count":[{"Counts":0,"id":null}],"emails":[]}},"link2":{"going":{"count":[{"Counts":0,"id":null}],"emails":[]},"notgoing":{"count":[{"Counts":2,"id":null}],"emails":[{"email":"jeromerrodriguez@gmail.com","id":null},{"email":"justindennis2000@hotmail.com","id":null}]}},"link3":{"going":{"count":[{"Counts":0,"id":null}],"emails":[]},"notgoing":{"count":[{"Counts":2,"id":null}],"emails":[{"email":"jeromerrodriguez@gmail.com","id":null},{"email":"justindennis2000@hotmail.com","id":null}]}},"link4":{"going":{"count":[{"Counts":0,"id":null}],"emails":[]},"notgoing":{"count":[{"Counts":2,"id":null}],"emails":[{"email":"jeromerrodriguez@gmail.com","id":null},{"email":"justindennis2000@hotmail.com","id":null}]}},"link5":{"going":{"count":[{"Counts":0,"id":null}],"emails":[]},"notgoing":{"count":[{"Counts":2,"id":null}],"emails":[{"email":"jeromerrodriguez@gmail.com","id":null},{"email":"justindennis2000@hotmail.com","id":null}]}},"date1":{"going":{"count":[{"Counts":0,"id":null}],"emails":[]},"notgoing":{"count":[{"Counts":2,"id":null}],"emails":[{"email":"jeromerrodriguez@gmail.com","id":null},{"email":"justindennis2000@hotmail.com","id":null}]},"maybe":{"count":[{"Counts":0,"id":null}],"emails":[]}},"date2":{"going":{"count":[{"Counts":0,"id":null}],"emails":[]},"notgoing":{"count":[{"Counts":2,"id":null}],"emails":[{"email":"jeromerrodriguez@gmail.com","id":null},{"email":"justindennis2000@hotmail.com","id":null}]},"maybe":{"count":[{"Counts":0,"id":null}],"emails":[]}},"date3":{"going":{"count":[{"Counts":0,"id":null}],"emails":[]},"notgoing":{"count":[{"Counts":2,"id":null}],"emails":[{"email":"jeromerrodriguez@gmail.com","id":null},{"email":"justindennis2000@hotmail.com","id":null}]},"maybe":{"count":[{"Counts":0,"id":null}],"emails":[]}}}};
+		alert("date3 Count (going: "+ JSON.stringify(Result_json.voting['link1'].going.count)+"::::::::: not goint: "+JSON.stringify(Result_json.voting['link1'].notgoing.count)+")");
+		for(link_count=1;link_count<6;link_count++)
+		{
+			link_title="link"+link_count;
+			for(b = 0; b < 2; b++)
+			{
+				tempObj=null;
+				tempObj1=null;
+				scopeCount="";
+				divPlace="";
+				switch(b){
+					case 0:
+					tempObj= Result_json.voting[link_title].going.count;
+					tempObj1= Result_json.voting[link_title].going.emails;
+					scopeCount=link_title+'going';
+					divPlace="#linkbtnyes"+link_count;
+					break;
+					case 1:
+					tempObj= Result_json.voting[link_title].notgoing.count;
+					tempObj1= Result_json.voting[link_title].notgoing.emails;
+					scopeCount=link_title+'notgoing';
+					divPlace="#linkbtnno"+link_count;
+					break;
+				}
+				for(i = 0; i < tempObj.length; i++)
+				{
+					objYes = tempObj[i];
+					$scope[scopeCount] = objYes.Counts;
+					if(objYes.Counts>0)
+					{
+						//alert("link count="+link_count+":::b="+b);
+						var tempDate="";
+						for(a=0; a<tempObj1.length;a++){
+							object4 = tempObj1[a];
+							tempDate+=object4.email+"<br />";
+						}
+						//$(divPlace).attr("data-content",tempDate).data('popover').setContent();
+					}
+				}
+			}
+		}
+		for(link_count=1;link_count<4;link_count++)
+		{
+			link_title="date"+link_count;
+			for(b = 0; b < 3; b++)
+			{
+				tempObj=null;
+				tempObj1=null;
+				scopeCount="";
+				divPlace="";
+				switch(b){
+					case 0:
+					tempObj= Result_json.voting[link_title].going.count;
+					tempObj1= Result_json.voting[link_title].going.emails;
+					scopeCount=link_title+'going';
+					divPlace="#datebtnyes"+link_count;
+					break;
+					case 1:
+					tempObj= Result_json.voting[link_title].notgoing.count;
+					tempObj1= Result_json.voting[link_title].notgoing.emails;
+					scopeCount=link_title+'notgoing';
+					divPlace="#datebtnno"+link_count;
+					break;
+					case 2:
+					tempObj= Result_json.voting[link_title].maybe.count;
+					tempObj1= Result_json.voting[link_title].maybe.emails;
+					scopeCount=link_title+'maybe';
+					divPlace="#datebtnmaybe"+link_count;
+					break;
+				}
+				for(i = 0; i < tempObj.length; i++)
+				{
+					objYes = tempObj[i];
+					$scope[scopeCount] = objYes.Counts;
+					if(objYes.Counts>0)
+					{
+						var tempDate="";
+						for(a=0; a<tempObj1.length;a++){
+							object4 = tempObj1[a];
+							tempDate+=object4.email+"<br />";
+						}
+						//$(divPlace).attr("data-content",tempDate).data('popover').setContent();
+					}
+				}
+			}
+		}
+	};
 	 
 	$scope.vote_process = function(event_id, vote_id, type, result) {
 		VoteJSON = {
