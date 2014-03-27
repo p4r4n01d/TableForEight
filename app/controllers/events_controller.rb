@@ -25,7 +25,7 @@ class EventsController < ApplicationController
 	  if !!@event && @event.save
 		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.id}}}
 	  else
-	    format.json { render json: db_op_failed(params[:event]),
+	    format.json { render json: db_op_failed(event_params),
 	        status: :unprocessable_entity }
 	  end
 	end
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
 	@event = Event.find_by_id(params[:id])
   end
   
-  def db_op_failed(id=event_params[:id])
+  def db_op_failed(id=params[:id])
   	!@event ? no_such_event(id) : @event.errors.full_messages
   end
 
