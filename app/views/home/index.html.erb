@@ -1,26 +1,59 @@
 
 <main class="container" ng-controller='eventCtrl'>
 	<div id="eventRefresh">
+
 		<section class="row" id="home">
 			<div class="img-background blur"></div>
 			<article class="col-md-4 headerimg">
 				<img class="img-responsive headerimg logo-padding" src="/assets/Table-For-Eight-logo.png">
 				<header>
-					<br>
 					<h1>Plan. Dine. Socialise.</h1>
 				</header>
 			</article>
 		</section>
-		<section class="row" id="people">
+
+<!--		<section class="row" id="people">
 			<article class="col-md-12">
 				<br /><br /><br /><br />
 			</article>
 		</section>
-		<section class="row lighter-background">
+-->
+
+
+
+		<section class="row offset" id="what">
+			<article class="subcontainer">
+				<article class="col-md-12">
+					<div class="service service-dark">
+						<i class="glyphicon glyphicon-info-sign service-icon"></i>
+						<div class="desc" id="dynamic-height">
+							<h2>What?</h2>
+
+							<p>
+							Table for 8 is an interactive app that helps you plan a night out. The app allows friends to get involved in the planning process by letting them vote when and where it will happen.
+							</p>
+							<p>
+							Plan a night out in 3 simple steps: 
+							1) List down up to five preferred restaurants and three preferred dates
+							2) Add your friends and have them vote which date and place they prefer
+							3) Send an invite of the chosen date and place.
+							</p>
+
+						</div>
+					</div>	
+				</article>
+			</article>
+		</section>
+
+
+
+
+
+		<section class="row offset lighter-background" id="who">
 			<article class="subcontainer">
 				<div class="col-md-12 service">
 					<i class="glyphicon glyphicon-list-alt service-icon"></i>
-					<div class="desc">
+					<div class="desc" id="dynamic-height">
 						<h2>Who?</h2>
 						<label class="control-label spacingAround letterSpacingFonts">Name</label>
 						<div class="input-group spacingAround">
@@ -40,12 +73,13 @@
 				</div>	
 			</article>
 		</section>
-		<section class="row" id="rest">
+
+		<section class="row offset" id="where">
 			<article class="subcontainer">
 				<article class="col-md-6">
 					<div class="service service-dark">
 						<i class="glyphicon glyphicon-cutlery service-icon"></i>
-						<div class="desc">
+						<div class="desc" id="dynamic-height">
 							<h2>Where?</h2>
 
 							<% (1..5).each do |i| %>
@@ -62,7 +96,7 @@
 				<article class="col-md-6">
 					<div class="service service-dark">
 						<i class="glyphicon glyphicon-calendar service-icon"></i>
-						<div class="desc">
+						<div class="desc" id="dynamic-height">
 							<h2>When?</h2>
 							<% (1..3).each do |i| %>
 								<div class="form-group">
@@ -88,13 +122,13 @@
 						</div>
 					</div>	
 				</article>
-				</article>
-			</section>
-		<section class="row lighter-background" id="invite">
+			</article>
+		</section>
+		<section class="row offset lighter-background" id="invite">
 			<article class="subcontainer">
 				<div class="service">
 					<i class="glyphicon glyphicon-envelope service-icon"></i>
-					<div class="desc">
+					<div class="desc" id="dynamic-height">
 						<h2>Invite!</h2>
 						<p>{{ inviteResult }}</p>
 						<div id="resultDivContainer"></div>
