@@ -28,8 +28,8 @@ describe EventsController do
       # Check for 200 status code
       expect(response).to be_success
 
-      # check that the message attributes are the same.
-      expect(JSON.parse(response.body).length).to eq(10) # check to make sure the right amount
+      # check to make sure the right amount
+      expect(JSON.parse(response.body).length).to eq(10)
       DatabaseCleaner.clean
     end
 
