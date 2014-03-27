@@ -74,11 +74,11 @@
 					</div>	
 				</article>
 			</section>
-			<div class="service  service-dark result">
+			<div class="service  service-dark result" ng-init="results('<%= @events.id %>')">
 			{{ selectedRestaurant }}
 			{{ selectedRestaurantUrl }}
 			{{ SelectedDate }}
-				<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="test_resutl()">Confirm Event
+				<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="results(4)">Confirm Event
 					<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
 				</button>
 			</div>
