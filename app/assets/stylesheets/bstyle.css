@@ -97,6 +97,23 @@ main{
 	float:right;
 }
 
+.result{
+	margin-top: 10px;
+	max-width: 650px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.result-group{
+	color: #D83C33;
+}
+
+.result-indiv{
+	padding: 10px 0px 10px;	
+	max-width: 500px;
+}
+
+
 /* @media Queries*/
 /* Mobile Menu alterations */
 @media only screen 
@@ -338,8 +355,9 @@ footer{
 }
 
 .logo-padding {
-	margin: 60px auto 30px auto;
-	padding: auto 50px auto 50px;
+	padding: auto;
+	margin-top: 60px;
+	margin-bottom: 30px;
 }
 
 .offset {
@@ -351,35 +369,13 @@ footer{
 }
 
 #dynamic-height {
-	min-height: 70vh;
+	height: 70vh;
 }
 
-.btn-dark-font {
+.popover{
 	color: #333;
 }
 
-#num-list {
-	counter-reset: list-count;
-	font-family: cusTitleFont;
-}
-#num-list dt {
-	position: relative;
-	padding-left: 40px;
+.dark-text{
 	color: #323232;
-	font-weight: bold;
-}
-#num-list dt:before {
-	content: counter(list-count);
-	counter-increment: list-count;
-	position: absolute;
-	left: 0;
-	top: 0;
-
-	font-size: 30px;
-	font-weight: bold;
-}
-#num-list dd {
-	padding-left: 40px;
-	font-family: cusBodyFont;
-	font-weight: normal;
 }

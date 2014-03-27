@@ -7,21 +7,21 @@
 						<h3>
 							Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
 						</h3>
-						<h6>Restaurant: {{ selectedRestaurant }}</h6>
-						<h6>Website: {{ selectedRestaurantUrl }}</h6>
-						<h6>Date: {{ selectedDate }}</h6>
+						<h4>Restaurant: {{ selectedRestaurant }}</h4>
+						<h4>Website: {{ selectedRestaurantUrl }}</h4>
+						<h4>Date: {{ selectedDate }}</h4>
 					</header>
 				</article>
 			</section>
-			<section class="row">
+			<section class="row lighter-background">
 				<article class="col-md-12">
-					<div class="service  service-dark result">
+					<div class="service result">
 						<i class="glyphicon glyphicon-cutlery service-icon"></i>
 						<div class="desc">
-							<h2 class="result-group">Restaurant</h2>
+							<h2 class="result-group dark-text">Restaurant</h2>
 							<div class="bs-callout bs-callout-warning">
 								<% (1..5).each do |i| %>
-								<h4 class="result-indiv">
+								<h4 class="result-group result-indiv">
 									<%= @events.attributes['name'+"%01d" % i ] %>
 								<div class="btn-float-right">
 									<button type="button" id="linkbtnyes<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="Yes:">
@@ -48,7 +48,7 @@
 					<div class="service service-dark result">
 						<i class="glyphicon glyphicon-calendar service-icon"></i>
 						<div class="desc">
-							<h2 class="result-group">Date and Time</h2>
+							<h2>Date and Time</h2>
 							<div class="bs-callout bs-callout-warning">
 								<% (1..3).each do |i| %>
 								<h4 class="result-indiv">
@@ -77,12 +77,16 @@
 					</div>	
 				</article>
 			</section>
-			<div class="service  service-dark result" ng-init="results('<%= @events.id %>')">
-			<h6>Restaurant: {{ selectedRestaurant }}</h6>
-			<h6>Website: {{ selectedRestaurantUrl }}</h6>
-			<h6>Date: {{ selectedDate }}</h6>
-				<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="confirmation(4)">Confirm Event
-					<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
-				</button>
-			</div>
+			<section class="row lighter-background">
+				<article class="col-md-12">
+					<div class="service result" ng-init="results('<%= @events.id %>')">
+						<h4 class="result-group">Restaurant: {{ selectedRestaurant }}</h4>
+						<h4 class="result-group">Website: {{ selectedRestaurantUrl }}</h4>
+						<h4 class="result-group">Date: {{ selectedDate }}</h4>
+							<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="confirmation(4)">Confirm Event
+								<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
+							</button>
+					</div>
+				</article>
+			</section>
 			</main>
