@@ -1,8 +1,8 @@
 class VotesController < ApplicationController
 
   before_filter :get_event, :except => [:destroy, :update, :show]
-  before_filter :get_vote, :except => [:index, :destroy, :update, :create, :countvotes]
-  before_filter :get_event_vote, :except => [:index, :show, :create, :countvotes]
+  before_filter :get_vote, :except => [:index, :update, :create, :countvotes]
+  before_filter :get_event_vote, :except => [:index, :show, :create, :countvotes, :destroy]
     
   # GET /api/events/:event_id/votes
   def index
@@ -32,7 +32,7 @@ class VotesController < ApplicationController
       if @vote.save
         UserMailer.welcome_email(@vote, @event).deliver
         format.json { render :json => {:status => 'created',
-          :events => {:id => @vote.id}}}
+          :events => {:id => @vote.id}}, status: :created}
       else
         format.json { render json: @vote.errors.full_message,
           status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       if !!@vote && @vote.update_attributes(vote_params)
         format.json { render :json => {:status => 'ok',
-          :events => {:id => @vote.id}}}
+          :events => {:id => @vote.id}}, status: :ok}
       else
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end

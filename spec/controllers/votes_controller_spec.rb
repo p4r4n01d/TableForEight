@@ -13,7 +13,7 @@ describe VotesController do
       get :index, :event_id => 100
       
       # Check for 422 status code
-      assert_response(422)
+      assert_response(:unprocessable_entity)
     end
     
     it "retreives an empty list of votes for a valid event" do
@@ -60,6 +60,48 @@ describe VotesController do
       get :show, :id => 100
 
       # Check for 200 status code
+      assert_response(:unprocessable_entity)
+    end
+    
+    it "updates an existing vote" do
+      DatabaseCleaner.start
+      votes_list = FactoryGirl.create(:event_with_votes, votes_count: 1,
+        "link1" => 1)
+      vote = votes_list.votes[0]
+
+      patch :update, {:event_id => votes_list.id, :vote_id => vote.id,
+        :vote => {"link1" => -1, "link2" => 1}}
+
+      expect(response).to be_success
+      DatabaseCleaner.clean
+    end
+    
+    it "does not update existing vote with invalid fields" do
+      DatabaseCleaner.start
+      votes_list = FactoryGirl.create(:event_with_votes, votes_count: 1)
+      vote = votes_list.votes[0]
+
+      patch :update, {:event_id => votes_list.id, :vote_id => vote.id,
+        :vote => {"email" => nil}}
+
+      # Check for 422 status code
+      assert_response(:unprocessable_entity)
+      DatabaseCleaner.clean
+    end
+    
+    it "destroys an existing vote" do
+      DatabaseCleaner.start
+      votes_list = FactoryGirl.create(:event_with_votes, votes_count: 1)
+      vote = votes_list.votes[0]
+
+      delete :destroy, {:id => vote.id}
+      expect(response).to be_success
+      DatabaseCleaner.clean
+    end
+
+    it "does not destroy a non-existant vote" do
+      delete :destroy, {:id => 100}
+      # Check for 422 status code
       assert_response(422)
     end
   end
