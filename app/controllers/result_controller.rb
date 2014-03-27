@@ -4,8 +4,11 @@ class ResultController < ApplicationController
   end
   def update
     @event = Event.find_by_id(params[:event_id])
-    @vote = @event.votes.find_by_id(params[:vote_id])
-    UserMailer.confirm_email(@vote, @event).deliver
+    @votes = @event.votes.find_by_id(params[:vote_id])
+    UserMailer.admin_email(@votes, @event).deliver
+    @votes.each do |vote|
+      UserMailer.confirm_email(@vote.email, @event).deliver
+    end
   end
 end
         
