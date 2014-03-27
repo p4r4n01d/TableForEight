@@ -7,6 +7,9 @@
 						<h3>
 							Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
 						</h3>
+						<h6>Restaurant: {{ selectedRestaurant }}</h6>
+						<h6>Website: {{ selectedRestaurantUrl }}</h6>
+						<h6>Date: {{ selectedDate }}</h6>
 					</header>
 				</article>
 			</section>
@@ -29,8 +32,8 @@
 									{{ link<%= i %>notgoing }}
 										<span class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-sm">Select
-										<span id="SelectPlace<%= i %>" data-original-title="Select this place:" data-trigger="click" class="glyphicon glyphicon-check"></span>
+									<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">Select
+										<span id="SelectPlace<%= i %>" data-original-title="Select this place:" class="glyphicon glyphicon-check"></span>
 									</button>
 								</div>
 								</h4>
@@ -63,8 +66,8 @@
 									{{ date<%= i %>maybe }}
 										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-sm">Select
-										<span id="SelectDate" data-original-title="Select this date:" data-trigger="click" class="glyphicon glyphicon-check"></span>
+									<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
+										<span id="SelectDate" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
 									</button>
 								</div>
 								</h4>
@@ -75,10 +78,10 @@
 				</article>
 			</section>
 			<div class="service  service-dark result" ng-init="results('<%= @events.id %>')">
-			{{ selectedRestaurant }}
-			{{ selectedRestaurantUrl }}
-			{{ SelectedDate }}
-				<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="results(4)">Confirm Event
+			<h6>Restaurant: {{ selectedRestaurant }}</h6>
+			<h6>Website: {{ selectedRestaurantUrl }}</h6>
+			<h6>Date: {{ selectedDate }}</h6>
+				<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="confirmation(4)">Confirm Event
 					<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
 				</button>
 			</div>

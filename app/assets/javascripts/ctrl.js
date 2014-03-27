@@ -50,7 +50,17 @@ function eventCtrl($scope, $http, $templateCache) {
 		}
 	};
 	 
-	$scope.selcetion = function(event_id, vote_id, type, result) {
+	$scope.selection = function(name, url, type) {
+		if(type=="date"){
+			$scope["selected"+type]= name;
+		}
+		else{
+			$scope["selected"+type]= name;
+			$scope["selected"+type+"Url"]= url;
+		}
+	};
+	 
+	$scope.confirmation = function(name, vote_id, type, result) {
 		VoteJSON = {
 		"vote": 
 		{ "id":vote_id }
@@ -75,6 +85,7 @@ function eventCtrl($scope, $http, $templateCache) {
 			break;
 		}
 	};
+	
 	$scope.results = function(event_id) {
 		Result_json = "";
 		$http.get('/api/get/'+event_id).
