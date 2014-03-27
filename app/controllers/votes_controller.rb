@@ -53,7 +53,7 @@ class VotesController < ApplicationController
   # PUT /votes/:vote_id
   def update
     respond_to do |format|
-      if @vote.update_attributes(params[:vote])
+      if !!@vote && @vote.update_attributes(vote_params)
         format.json { render :json=>{:status=>'ok',:events=>{:id=>@vote.id}}}
       else
         format.json { render json: @vote.errors, status: :unprocessable_entity }
@@ -76,7 +76,7 @@ class VotesController < ApplicationController
     end
 
     def vote_params
-      unless params[:event].blank?
+      unless params[:vote].blank?
        params.require(:vote).permit(:email, :link1, :link2, :link3, :link4, :link5, :date1, :date2, :date3, :confirmed)
       end
     end
