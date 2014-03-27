@@ -21,7 +21,7 @@ class VotesController < ApplicationController
   # GET /events/:event_id/countvotes
   def countvotes
     respond_to do |format|
-      format.json { render json: @event.votes.get_votes_sum }
+      format.json { render json: @event.votes.get_votes_sum(params[:event_id]) }
     end
   end
 
