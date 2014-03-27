@@ -248,19 +248,20 @@ function eventCtrl($scope, $http, $templateCache) {
 	 "organiser_email":$scope.organiser_email,
 	 "organiser_name":$scope.organiser_name }
 	 };
-	emailList = $scope.guest_list.replace("\n","").replace(" ","").split(";");
+	emailList = $scope.guest_list.split(";");
 	if(emailList.length>0)
 	{
-		
+		EventJsonNew="";
 		EventJsonNew=JSONInterface("http://localhost:3000/api/events", EventJSON, "POST", "created");
 		if(EventJsonNew!=null)
 		{
 			DataSaved=false;
 			for(i=0;i<emailList.length;i++)
 			{
+				alert("-"+emailList[i].replace("\n","").replace(" ","")+"-");
 				VoteJSON = {
 				"vote": 
-				{ "email":emailList[i],
+				{ "email":emailList[i].replace("\n","").replace(" ",""),
 				 "link1":"-1",
 				 "link2":"-1",
 				 "link3":"-1",
