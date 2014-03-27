@@ -7,7 +7,7 @@ class VotesController < ApplicationController
   # GET /events/:event_id/votes/:id .find(:all)
   def index
     respond_to do |format|
-      format.json { render :json=>{:events=>@event,:votes=>@event.votes}}
+      format.json { render :json => {:events => @event, :votes => @event.votes}}
     end
   end
 
@@ -31,9 +31,11 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
         UserMailer.welcome_email(@vote, @event).deliver
-        format.json { render :json=>{:status=>'created',:events=>{:id=>@vote.id}}}
+        format.json { render :json => {:status => 'created',
+          :events => {:id => @vote.id}}}
       else
-        format.json { render json: @vote.errors.full_message, status: :unprocessable_entity }
+        format.json { render json: @vote.errors.full_message,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -49,12 +51,12 @@ class VotesController < ApplicationController
     end
   end
 
-
   # PUT /votes/:vote_id
   def update
     respond_to do |format|
       if !!@vote && @vote.update_attributes(vote_params)
-        format.json { render :json=>{:status=>'ok',:events=>{:id=>@vote.id}}}
+        format.json { render :json => {:status => 'ok',
+          :events => {:id => @vote.id}}}
       else
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
@@ -72,11 +74,22 @@ class VotesController < ApplicationController
 
     def get_vote
       @vote = Vote.find_by_id(params[:id])
+      if !!@vote
+        vote_not_found(params[:vote_id])
+      end
     end
     
     def get_event_vote
       get_event
       @vote = @event.votes.find_by_id(params[:vote_id])
+      if !!@vote
+        vote_not_found(params[:vote_id])
+      end
+    end
+
+    def vote_not_found(id)
+      render json: "No vote was found with id: " << id,
+          status: :unprocessable_entity
     end
 
     def vote_params
