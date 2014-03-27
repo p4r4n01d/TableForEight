@@ -60,19 +60,19 @@ describe EventsController do
     it "successfully creates a new event" do
       DatabaseCleaner.start
       event = FactoryGirl.build(:event)
-      post :create, event
+      post :create, {:event => event.attributes}
 
       # Check for 201 status code
-      assert_response(201)
+      expect(response).to be_success
 
-      JSON.parse(response.body)["events"]["id"].should == event.id
+      JSON.parse(response.body)["events"][:id].should == event.id
       DatabaseCleaner.clean
     end
 
     it "does not create event with invalid fields" do
       DatabaseCleaner.start
       event = FactoryGirl.build(:event, "link1" => nil)
-      post :create, event
+      post :create, :event => event.attributes
 
       # Check for 422 status code
       assert_response(422)
@@ -93,7 +93,7 @@ describe EventsController do
       DatabaseCleaner.start
       event = FactoryGirl.create(:event)
 
-      patch :update, {"id" => event.id, "link1" => nil}
+      patch :update, {:id => event.id, :event => {:link1 => nil}}
 
       # Check for 422 status code
       assert_response(422)

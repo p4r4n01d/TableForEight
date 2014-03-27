@@ -25,7 +25,7 @@ class EventsController < ApplicationController
 	  if !!@event && @event.save
 		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.id}}}
 	  else
-	    format.json { render json: db_op_failed(params[:id]),
+	    format.json { render json: db_op_failed(params[:event]),
 	        status: :unprocessable_entity }
 	  end
 	end
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
 	  if !!@event && @event.update_attributes(event_params)
 		format.json { head :no_content, status: :ok }
 	  else
-	    format.json { render json: db_op_failed(params[:id]),
+	    format.json { render json: db_op_failed,
 	        status: :unprocessable_entity }
 	  end
 	end
@@ -49,7 +49,7 @@ class EventsController < ApplicationController
 	  if !!@event && @event.destroy
 		format.json { head :no_content, status: :ok }
 	  else
-	    format.json { render json: db_op_failed(params[:id]),
+	    format.json { render json: db_op_failed,
 	        status: :unprocessable_entity }
 	  end
 	end
@@ -60,12 +60,16 @@ class EventsController < ApplicationController
 	@event = Event.find_by_id(params[:id])
   end
   
-  def db_op_failed(id)
+  def db_op_failed(id=event_params[:id])
   	!@event ? no_such_event(id) : @event.errors.full_messages
   end
-  
+
   def no_such_event(id)
-    {"message" => "No event could be found with id: " << id}
+    if id.is_a? Hash
+      {"message" => "Could not process event", :event => id}
+    else
+      {"message" => "No event could be found with id: " << id}
+    end
   end
 
   def event_params
