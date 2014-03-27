@@ -76,6 +76,24 @@ describe VotesController do
       DatabaseCleaner.clean
     end
     
+    it "creates a new vote for an event" do
+      DatabaseCleaner.start
+      event = FactoryGirl.create(:event)
+      
+      post :create, {:event_id => event.id, :vote => {"email" => "voter11235@spamgoes.in"}}
+      expect(response).to be_success
+      DatabaseCleaner.clean
+    end
+    
+    it "does not create vote with invalid fields" do
+      DatabaseCleaner.start
+      event = FactoryGirl.create(:event)
+      
+      post :create, {:event_id => event.id, :vote => {"email" => "bob"}}
+      assert_response(:unprocessable_entity)
+      DatabaseCleaner.clean
+    end
+
     it "does not update existing vote with invalid fields" do
       DatabaseCleaner.start
       votes_list = FactoryGirl.create(:event_with_votes, votes_count: 1)

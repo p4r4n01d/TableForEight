@@ -34,7 +34,7 @@ class VotesController < ApplicationController
         format.json { render :json => {:status => 'created',
           :events => {:id => @vote.id}}, status: :created}
       else
-        format.json { render json: @vote.errors.full_message,
+        format.json { render json: @vote.errors.full_messages,
           status: :unprocessable_entity }
       end
     end
@@ -46,7 +46,8 @@ class VotesController < ApplicationController
       if @vote.destroy
         format.json { head :no_content, status: :ok }
       else
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
+        format.json { render json: @vote.errors.full_messages,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -58,7 +59,8 @@ class VotesController < ApplicationController
         format.json { render :json => {:status => 'ok',
           :events => {:id => @vote.id}}}
       else
-        format.json { render json: @vote.errors, status: :unprocessable_entity }
+        format.json { render json: @vote.errors.full_messages,
+          status: :unprocessable_entity }
       end
     end
   end

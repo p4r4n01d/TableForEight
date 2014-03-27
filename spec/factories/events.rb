@@ -20,7 +20,7 @@ FactoryGirl.define do
       # evaluator, which stores all values from the factory, including ignored
       # attributes; `create_list`'s second argument is the number of records
       # to create and we make sure the vote is associated properly to the event
-      after(:create) do |event, evaluator|
+      after :create  do |event, evaluator|
         create_list(:vote, evaluator.votes_count, event: event)
       end
     end
