@@ -31,7 +31,7 @@ function eventCtrl($scope, $http, $templateCache) {
 		};
 		VoteJSON.vote[type]=result;
 		VoteJsonNew = null;
-		VoteJsonNew=JSONInterface("http://localhost:3000/api/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
+		VoteJsonNew=JSONInterface("/api/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
 		alert("VoteID:" + VoteJsonNew);
 		tempVote_resutl="";
 		if(VoteJsonNew!=null) tempVote_resutl = "Thank You for Voting";
@@ -61,13 +61,34 @@ function eventCtrl($scope, $http, $templateCache) {
 	};
 	 
 	$scope.confirmation = function(name, vote_id, type, result) {
+		EventJSON = {
+		"event": 
+		{ "date":$scope.date1,
+		 "cutoff_at":$scope.date4,
+		 "link1":$scope.restUrl1,
+		 "name1":$scope.name1,
+		 "link2":$scope.restUrl2,
+		 "name2":$scope.name2,
+		 "link3":$scope.restUrl3,
+		 "name3":$scope.name3,
+		 "link4":$scope.restUrl4,
+		 "name4":$scope.name4,
+		 "link5":$scope.restUrl5,
+		 "name5":$scope.name5,
+		 "date1":$scope.date1,
+		 "date2":$scope.date2,
+		 "date3":$scope.date3,
+		 "hash":$scope.organiser_email+datetime,
+		 "organiser_email":$scope.organiser_email,
+		 "organiser_name":$scope.organiser_name }
+		 };
 		VoteJSON = {
 		"vote": 
 		{ "id":vote_id }
 		};
 		VoteJSON.vote[type]=result;
 		VoteJsonNew = null;
-		VoteJsonNew=JSONInterface("http://localhost:3000/api/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
+		VoteJsonNew=JSONInterface("/api/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
 		alert("VoteID:" + VoteJsonNew);
 		tempVote_resutl="";
 		if(VoteJsonNew!=null) tempVote_resutl = "Thank You for Voting";
