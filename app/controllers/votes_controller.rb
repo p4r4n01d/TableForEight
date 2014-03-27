@@ -64,6 +64,10 @@ class VotesController < ApplicationController
   private
     def get_event
       @event = Event.find_by_id(params[:event_id])
+      if !!@event
+        render json: "No event was found with id: " << params[:event_id],
+          status: :unprocessable_entity
+      end
     end
 
     def get_vote
@@ -71,7 +75,7 @@ class VotesController < ApplicationController
     end
     
     def get_event_vote
-      @event = Event.find_by_id(params[:event_id])
+      get_event
       @vote = @event.votes.find_by_id(params[:vote_id])
     end
 
