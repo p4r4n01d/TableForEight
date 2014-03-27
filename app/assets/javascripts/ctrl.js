@@ -24,6 +24,33 @@ function eventCtrl($scope, $http, $templateCache) {
 	
 	$scope.method = 'GET';
 	 
+	$scope.vote_process = function(event_id, vote_id, type, number, result) {
+		json_property=""+type+number+"";
+		VoteJSON = {
+		"vote": 
+		{ "id":vote_id,
+		 json_property:result }
+		};
+		//update votes controller to return JSONInterface format result.events.id
+		VoteJsonNew=JSONInterface("http://localhost:3000/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "created");
+		alert("VoteID:" + VoteJsonNew);
+		tempVote_resutl="";
+		if(VoteJsonNew!=null) tempVote_resutl = "Thank You for Voting";
+		else tempVote_resutl = "Vote Not Set";
+		
+		switch(type){
+			case "link":
+				$scope.voteResult_where = tempVote_resutl;
+			break;
+			case "date":
+				$scope.voteResult_when = tempVote_resutl;
+			break;
+			case "confirmed":
+				$scope.voteResult_confirm = tempVote_resutl;
+			break;
+		}
+	};
+	 
 	$scope.fetch = function(titleURL, restaurantTitle) {
 	$scope.code = null;
 	$scope.response = null;
@@ -135,13 +162,26 @@ function eventCtrl($scope, $http, $templateCache) {
 	};
 }
 
-$('#popoverRestoYes').popover();
-$('#popoverRestoNo').popover();
-$('#popoverDateYes').popover();
-$('#popoverDateNo').popover();
-$('#popoverDateMaybe').popover();
+$('#popoverRestoYes1').popover();
+$('#popoverRestoNo1').popover();
+$('#popoverDateYes1').popover();
+$('#popoverDateNo1').popover();
+$('#popoverDateMaybe1').popover();
+$('#popoverRestoYes2').popover();
+$('#popoverRestoNo2').popover();
+$('#popoverDateYes2').popover();
+$('#popoverDateNo2').popover();
+$('#popoverDateMaybe2').popover();
+$('#popoverRestoYes3').popover();
+$('#popoverRestoNo3').popover();
+$('#popoverDateYes3').popover();
+$('#popoverDateNo3').popover();
+$('#popoverDateMaybe3').popover();
+$('#popoverRestoYes4').popover();
+$('#popoverRestoNo4').popover();
+$('#popoverRestoYes5').popover();
+$('#popoverRestoNo5').popover();
 $('#popoverOption').popover({ trigger: "hover" });
-
 
 
 

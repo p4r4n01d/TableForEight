@@ -2,9 +2,8 @@
 			<main class="container" ng-controller='eventCtrl'>
 			<div id="eventRefresh">
 			<section class="row" id="home">
-				<article class="subcontainer ">
+				<article class="subcontainer result ">
 					<header>
-						<br>
 						<h3>
 							Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
 						</h3>
@@ -13,68 +12,67 @@
 			</section>
 			<section class="row">
 				<article class="col-md-12">
-					<div class="service  service-dark">
+					<div class="service  service-dark result">
 						<i class="glyphicon glyphicon-cutlery service-icon"></i>
 						<div class="desc">
-							<h2>Restaurant</h2>
+							<h2 class="result-group">Restaurant</h2>
 							<div class="bs-callout bs-callout-warning">
-							<% (1..5).each do |i| %>
-								<h4>
+								<% (1..5).each do |i| %>
+								<h4 class="result-indiv">
 									<%= @events.attributes['name'+"%01d" % i ] %>
-									<button type="button" class="btn btn-default btn-m">10
+								<div class="btn-float-right">
+									<button type="button" class="btn btn-default btn-sm">10
 										<span id="popoverRestoYes<%= i %>" data-content="List of people that voted yes" rel="popover" data-placement="bottom" data-original-title="Yes:" data-trigger="hover" class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-m">5
+									<button type="button" class="btn btn-default btn-sm">5
 										<span id="popoverRestoNo<%= i %>" data-content="List of people voting no" rel="popover" data-placement="bottom" data-original-title="No:" data-trigger="hover" class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-m">Select
-										<span id="SelectPlace" data-original-title="Select this place:" data-trigger="click" class="glyphicon glyphicon-check"></span>
+									<button type="button" class="btn btn-default btn-sm">Select
+										<span id="SelectPlace<%= i %>" data-original-title="Select this place:" data-trigger="click" class="glyphicon glyphicon-check"></span>
 									</button>
+								</div>
 								</h4>
-							<% end %>
-						    </div>
+								<% end %>
+							</div>
 						</div>
 					</div>	
 				</article>
 			</section>
 			<section class="row">
 				<article class="col-md-12">
-					<div class="service  service-dark">
+					<div class="service service-dark result">
 						<i class="glyphicon glyphicon-calendar service-icon"></i>
 						<div class="desc">
-							<h2>Date and Time</h2>
-							<% (1..3).each do |i| %>
+							<h2 class="result-group">Date and Time</h2>
 							<div class="bs-callout bs-callout-warning">
-								<h4>
+								<% (1..3).each do |i| %>
+								<h4 class="result-indiv">
 								<%= @events.attributes['date'+"%01d" % i ] %>
-									<button type="button" class="btn btn-default btn-m">8
+								<div class="btn-float-right">
+									<button type="button" class="btn btn-default btn-sm">8
 										<span id="popoverDateYes<%= i %>" data-content="List of people that voted yes" rel="popover" data-placement="bottom" data-original-title="Yes:" data-trigger="hover" class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-m">3
+									<button type="button" class="btn btn-default btn-sm">3
 										<span id="popoverDateNo<%= i %>" data-content="List of people voting no" rel="popover" data-placement="bottom" data-original-title="No:" data-trigger="hover" class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-m">1
+									<button type="button" class="btn btn-default btn-sm">1
 										<span id="popoverDateMaybe<%= i %>" data-content="List of unsure people" rel="popover" data-placement="bottom" data-original-title="Not sure:" data-trigger="hover" class="glyphicon glyphicon glyphicon-question-sign"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-m">Select
-										<span id="SelectPlace" data-original-title="Select this place:" data-trigger="click" class="glyphicon glyphicon-check"></span>
+									<button type="button" class="btn btn-default btn-sm">Select
+										<span id="SelectDate" data-original-title="Select this date:" data-trigger="click" class="glyphicon glyphicon-check"></span>
 									</button>
+								</div>
 								</h4>
-						    </div>
-							<% end %>
+								<% end %>
+							</div>
 						</div>
 					</div>	
 				</article>
 			</section>
-			<section class="row" id="home">
-				<article class="subcontainer ">
-					<header>
-						<h3>
-								{{ Result_confirm }}
-							<button type="button" class="btn btn-default btn-lrg btn-float-right" ng-click=""><span class="glyphicon glyphicon-thumbs-up"></span> Confirm Event</button>
-						</h3>
-					</header>
-				</article>
-			
+			<div class="service  service-dark result">
+				<button type="button" class="btn btn-default btn-float-right btn-m">Confirm Event
+					<span id="ConfirmEvent" data-trigger="click" class="glyphicon glyphicon-check"></span>
+				</button>
+
 			</div>
 			</main>

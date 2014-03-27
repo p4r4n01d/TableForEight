@@ -90,6 +90,18 @@ main{
 	float:right;
 }
 
+.result{
+	max-width: 600px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.result-indiv{
+	padding: 10px 0px 10px;	
+	max-width: 450px;
+}
+
+
 /* @media Queries*/
 /* Mobile Menu alterations */
 @media only screen 
