@@ -30,8 +30,9 @@ function eventCtrl($scope, $http, $templateCache) {
 		{ "id":vote_id,
 		 type:result }
 		};
+		VoteJsonNew = null;
 		//update votes controller to return JSONInterface format result.events.id
-		VoteJsonNew=JSONInterface("http://localhost:3000/api/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
+		//VoteJsonNew=JSONInterface("http://localhost:3000/api/events/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
 		alert("VoteID:" + VoteJsonNew);
 		tempVote_resutl="";
 		if(VoteJsonNew!=null) tempVote_resutl = "Thank You for Voting";
