@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+	<h1>Hello, <%= @user.email %></h1>
+	Event Organiser: <%= @event.organiser_name %>(<%= @event.organiser_name %>)
+	<p>
+	  Voting is done! Now lets party.<br/>
+	</p>
+	<p>
+	  Restaurant: <%= @event.name1 %>(<%= @event.link1 %>).
+	</p>
+	<p>
+	  Date: <%= @event.date %>.
+	</p>
+	<p>
+	  Guests: 
+	  <% @user.each do |vote| %>
+		<%= vote.email %><br />
+	  <% end %>
+	</p>
+	<p>Thanks for joining and have a great day!</p>
+	<p><%= @event.organiser_name %></p>
+  </body>
+</html>
