@@ -70,20 +70,9 @@ function eventCtrl($scope, $http, $templateCache) {
 		Event_JsonNew=JSONInterface("/api/events/"+event_id+"", EventJSON, "PUT", "ok");
 		Event_JsonNew=JSONInterface("/email/"+event_id+"", EventJSON, "POST", "ok");
 		tempVote_resutl="";
-		if(VoteJsonNew!=null) tempVote_resutl = "Thank You for Voting";
+		if(Event_JsonNew!=null) tempVote_resutl = "Thank You for Voting";
 		else tempVote_resutl = "Vote Not Set";
-		
-		switch(type){
-			case "link":
-				$scope.voteResult_where = tempVote_resutl;
-			break;
-			case "date":
-				$scope.voteResult_when = tempVote_resutl;
-			break;
-			case "confirmed":
-				$scope.voteResult_confirm = tempVote_resutl;
-			break;
-		}
+		$scope.email_status = tempVote_resutl;
 	};
 	
 	$scope.results = function(event_id) {

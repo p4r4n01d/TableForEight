@@ -9,6 +9,7 @@ class ResultController < ApplicationController
     @votes.each do |vote|
       UserMailer.confirm_email(@vote.email, @event).deliver
     end
+    format.json { render :json=>{:status=>'created',:events=>{:id=>@event.id}}}
   end
 end
         
