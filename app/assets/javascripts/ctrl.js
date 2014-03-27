@@ -69,7 +69,6 @@ function eventCtrl($scope, $http, $templateCache) {
 		 };
 		Event_JsonNew=JSONInterface("/api/events/"+event_id+"", EventJSON, "PUT", "ok");
 		Event_JsonNew=JSONInterface("/email/"+event_id+"", EventJSON, "POST", "ok");
-		tempVote_resutl="";
 		if(Event_JsonNew!=null) tempVote_resutl = "Thank You for Voting";
 		else tempVote_resutl = "Vote Not Set";
 		$scope.email_status = tempVote_resutl;

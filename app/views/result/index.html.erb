@@ -83,7 +83,8 @@
 						<h4 class="result-group">Restaurant: {{ selectedRestaurant }}</h4>
 						<h4 class="result-group">Website: {{ selectedRestaurantUrl }}</h4>
 						<h4 class="result-group">Date: {{ selectedDate }}</h4>
-							<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="confirmation(4)">Confirm Event
+						<h4 class="result-group">{{ email_status }}</h4>
+							<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="confirmation('<%= @events.id %>')">Confirm Event
 								<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
 							</button>
 					</div>
