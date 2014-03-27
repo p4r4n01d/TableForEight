@@ -1,14 +1,14 @@
 class VotesController < ApplicationController
 
-  before_filter :get_event, :except => [:index, :destroy, :update, :show, :countvotes]
-  before_filter :get_vote, :except => [:index, :destroy, :update, :create]
-  before_filter :get_event_vote, :except => [:show, :create, :countvotes]
+  before_filter :get_event, :except => [:destroy, :update, :show]
+  before_filter :get_vote, :except => [:index, :destroy, :update, :create, :countvotes]
+  before_filter :get_event_vote, :except => [:index, :show, :create, :countvotes]
     
   # GET /events/:event_id/votes/:id .find(:all)
   def index
-  respond_to do |format|
-    format.json { render :json=>{:events=>@event,:votes=>@votes}}
-  end
+    respond_to do |format|
+      format.json { render :json=>{:events=>@event,:votes=>@event.votes}}
+    end
   end
 
   # GET /events/:event_id/votes
@@ -20,7 +20,9 @@ class VotesController < ApplicationController
 
   # GET /events/:event_id/countvotes
   def countvotes
-    render json: @event.Vote.count_votes
+    respond_to do |format|
+      format.json { render json: @event.votes.get_votes_sum }
+    end
   end
 
   # POST /events/:event_id/votes
@@ -53,6 +55,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.update_attributes(params[:vote])
         format.json { head :no_content, status: :ok }
+        format.json { render :json=>{:status=>'ok',:events=>{:id=>@vote.id}}}
       else
         format.json { render json: @vote.errors, status: :unprocessable_entity }
       end
@@ -70,7 +73,7 @@ class VotesController < ApplicationController
     
     def get_event_vote
       @event = Event.find_by_id(params[:event_id])
-      @vote = @event.votes.find_by_id(params[:id])
+      @vote = @event.votes.find_by_id(params[:vote_id])
     end
 
     def vote_params

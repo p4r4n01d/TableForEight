@@ -5,6 +5,8 @@ TableForEight::Application.routes.draw do
   get '/voting/:event_id/:vote_id', to: 'voting#index'
   get '/result/:event_id', to: 'result#index'
   post '/events/:event_id/:vote_id', to: 'votes#update', :defaults => { :format => 'json' } 
+  post '/email/:event_id', to: 'result#update', :defaults => { :format => 'json' } 
+  get '/api/get/:event_id', to: 'votes#countvotes', :defaults => { :format => 'json' } 
   
  
  scope :api do

@@ -1,3 +1,19 @@
+
+<main class="container" ng-controller='eventCtrl'>
+	<div id="eventRefresh">
+		<section class="row" id="home">
+			<article class="subcontainer ">
+				<header>
+					<br>
+					<h3>
+						Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
+						Guest Email: <%= @votes.email %><br /><br />
+							{{ voteResult_confirm }}
+						<button type="button" class="btn btn-default btn-lrg" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'confirmed', '', true)"><span class="glyphicon glyphicon-thumbs-up"></span> Yes I am going?</button>
+					</h3>
+				</header>
+			</article>
+		</section>
 <section class="row" id="rest">
 	<article class="subcontainer">
 		<article class="col-md-6">
@@ -5,28 +21,24 @@
 				<i class="glyphicon glyphicon-cutlery service-icon"></i>
 				<div class="desc">
 					<h2>Where?</h2>
-
 					<% (1..5).each do |i| %>
 						
-						id:<%= @events.id %><br />
-						organiser:<%= @events.organiser_email %><br />
-						vote id:<%= @votes.id %><br />
-						guest:<%= @votes.email %><br />
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							Restaurant Title
+							{{ voteResult_where }}
+							<%= @events.attributes['name'+"%01d" % i ] %>
 
-							<div class="btn-group" style="float: right">
-							  <button type="button" class="btn btn-default" >
+							<div class="btn-group btn-float-left">
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'link', <%= i %>, 1)">
 							  	Yes <span class="glyphicon glyphicon-thumbs-up"></span>
 							  </button>
-							  <button type="button" class="btn btn-default">
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'link', <%= i %>, -1)">
 							  	No <span class="glyphicon glyphicon-thumbs-down"></span>
 							  </button>
 							</div>
 
 							<div class="panel-footer">
-								<a href="#">Restaurant URL</a>
+								<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
 							</div>
 
 						</div>
@@ -45,15 +57,15 @@
 					<% (1..3).each do |i| %>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-
+							{{ voteResult_when }}
 							<div class="btn-group" style="float: right">
-							  <button type="button" class="btn btn-default">Yes <span class="glyphicon glyphicon-thumbs-up"></span></button>
-							  <button type="button" class="btn btn-default">No <span class="glyphicon glyphicon-thumbs-down"></span></button>
-							  <button type="button" class="btn btn-default">Maybe</button>
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date', <%= i %>, 1)">Yes <span class="glyphicon glyphicon-thumbs-up"></span></button>
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date', <%= i %>, -1)">No <span class="glyphicon glyphicon-thumbs-down"></span></button>
+							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date', <%= i %>, 0)">Maybe</button>
 							</div>
 
 							<div class="panel-footer">
-								Date and Time
+								<%= @events.attributes['date'+"%01d" % i ] %>
 							</div>
 
 						</div>
@@ -61,7 +73,10 @@
 					<% end %>
 					<input type="hidden" id="dtp_input4" value="" />
 				</div>
+				
 			</div>	
 		</article>
 	</article>
 </section>
+</div>
+</main>

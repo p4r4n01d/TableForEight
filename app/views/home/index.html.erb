@@ -1,56 +1,60 @@
 
-			<main class="container" ng-controller='eventCtrl'>
-			<div id="eventRefresh">
-			<section class="row" id="home">
-				<article class="col-md-4 headerimg">
-					<header>
-						<h1>Plan. Dine. Socialise.</h1>
-					</header>
-					<img class="img-responsive headerimg" src="/assets/Table-For-Eight-logo.png">
-				</article>
-			</section>
-			<section class="row" id="people">
-				<article class="col-md-12"><br /><br /><br /><br />
-				</article>
-			</section>
-			<section class="row lighter-background">
-				<article class="subcontainer">
-					<div class="col-md-12 service">
-						<i class="glyphicon glyphicon-list-alt service-icon"></i>
-						<div class="desc">
-							<h2>Who?</h2>
-							<label class="control-label spacingAround letterSpacingFonts">Who is this?</label>
-							<div class="input-group spacingAround">
-							  <span class="input-group-addon glyphicon glyphicon-user"></span>
-							  <input type="text" class="form-control letterSpacingFonts" placeholder="Who is this?" ng-model="organiser_name" />
-							</div>
-							<label class="control-label spacingAround letterSpacingFonts">Your email</label>
-							<div class="input-group spacingAround">
-							  <span class="input-group-addon glyphicon glyphicon-envelope"></span>
-							  <input type="text" class="form-control letterSpacingFonts" placeholder="Whats your email?" ng-model="organiser_email" />
-							</div>
-							<label class="control-label spacingAround letterSpacingFonts" >Guest List</label>
-							<div class="input-group spacingAround">
-							<textarea class="form-control letterSpacingFonts" id="textarea" rows="6" placeholder="Enter the guest emails" ng-model="guest_list" cols="50"></textarea>
-							</div>
+<main class="container" ng-controller='eventCtrl'>
+	<div id="eventRefresh">
+		<section class="row" id="home">
+			<article class="col-md-4 headerimg">
+				<img class="img-responsive headerimg" src="/assets/Table-For-Eight-logo.png">
+				<header>
+					<br>
+					<h1>Plan. Dine. Socialise.</h1>
+				</header>
+			</article>
+		</section>
+		<section class="row" id="people">
+			<article class="col-md-12">
+				<br /><br /><br /><br />
+			</article>
+		</section>
+		<section class="row lighter-background">
+			<article class="subcontainer">
+				<div class="col-md-12 service">
+					<i class="glyphicon glyphicon-list-alt service-icon"></i>
+					<div class="desc">
+						<h2>Who?</h2>
+						<label class="control-label spacingAround letterSpacingFonts">Name</label>
+						<div class="input-group spacingAround">
+							<span class="input-group-addon glyphicon glyphicon-user"></span>
+							<input type="text" class="form-control letterSpacingFonts" placeholder="What's your name?" ng-model="organiser_name" />
 						</div>
-					</div>	
-				</article>
-			</section>
-			<section class="row" id="rest">
-				<article class="subcontainer">
+						<label class="control-label spacingAround letterSpacingFonts">Email</label>
+						<div class="input-group spacingAround">
+							<span class="input-group-addon glyphicon glyphicon-envelope"></span>
+							<input type="text" class="form-control letterSpacingFonts" placeholder="What's your email?" ng-model="organiser_email" />
+						</div>
+						<label class="control-label spacingAround letterSpacingFonts" >Guest List</label>
+						<div class="input-group spacingAround">
+							<textarea class="form-control letterSpacingFonts" id="textarea" rows="6" placeholder="Enter your guest's emails" ng-model="guest_list" cols="50"></textarea>
+						</div>
+					</div>
+				</div>	
+			</article>
+		</section>
+		<section class="row" id="rest">
+			<article class="subcontainer">
 				<article class="col-md-6">
 					<div class="service service-dark">
 						<i class="glyphicon glyphicon-cutlery service-icon"></i>
 						<div class="desc">
 							<h2>Where?</h2>
-						<% (1..5).each do |i| %>
-							<label class="control-label spacingAround">{{ name<%= i %> }}</label>
-							<div class="input-group spacingAround">
-							  <span class="input-group-addon glyphicon glyphicon-globe"></span>
-							  <input type="text" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl<%= i %>" ng-change="fetch(restUrl<%= i %>, <%= i %>)"/>
-							</div>
-						<% end %>
+
+							<% (1..5).each do |i| %>
+
+								<label class="control-label spacingAround">{{ name<%= i %> }}</label>
+								<div class="input-group spacingAround">
+									<span class="input-group-addon glyphicon glyphicon-globe"></span>
+							  		<input type="text" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl<%= i %>" ng-change="fetch(restUrl<%= i %>, <%= i %>)"/>
+								</div>
+							<% end %>
 						</div>
 					</div>	
 				</article>
@@ -58,24 +62,26 @@
 					<div class="service service-dark">
 						<i class="glyphicon glyphicon-calendar service-icon"></i>
 						<div class="desc">
-						<h2>When?</h2>
-						<% (1..3).each do |i| %>
-						<div class="form-group">
-							<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
-							<div class="input-group date form_datetime" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-								<input class="form-control" size="16" type="text" value="" readonly ng-model="date<%= i %>">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-							</div>
-							<input type="hidden" id="dtp_input<%= i %>" value="" />
-						</div>
-						<% end %>
-						<div class="form-group"><br /><br />
-							<label for="dtp_input4" class="control-label">Due Date</label>
-							<div class="input-group date form_datetime cusorhand" data-date="2014-01-01T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
-								<input class="form-control" size="16" type="text" value="" readonly ng-model="date4">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<h2>When?</h2>
+							<% (1..3).each do |i| %>
+								<div class="form-group">
+									<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
+									<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
+										<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+										<input class="form-control" size="16" type="text" value="" ng-model="date<%= i %>">
+										<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+									</div>
+									<input type="hidden" id="dtp_input<%= i %>" value="" />
+								</div>
+							<% end %>
+							<div class="form-group"><br /><br />
+								<label for="dtp_input4" class="control-label">Due Date</label>
+								<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
+									<input class="form-control" size="16" type="text" value="" ng-model="date4">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+								</div>
+								<input type="hidden" id="dtp_input4" value="" />
 							</div>
 							<input type="hidden" id="dtp_input4" value="" />
 						</div>
@@ -83,20 +89,20 @@
 				</article>
 				</article>
 			</section>
-			<section class="row lighter-background" id="invite">
-				<article class="subcontainer">
-					<div class="service service">
-						<i class="glyphicon glyphicon-envelope service-icon"></i>
-						<div class="desc">
-							<h2>Invite?</h2>
-							<div id="resultDivContainer"></div>
-							<p> {{ inviteResult }}</p>
-							<button type="button" class="btn btn-default btn-float-left" ng-click="sendInvite()">
-							  <span class="glyphicon glyphicon-envelope"></span> Invite
-							</button>
-						</div>
+		<section class="row lighter-background" id="invite">
+			<article class="subcontainer">
+				<div class="service">
+					<i class="glyphicon glyphicon-envelope service-icon"></i>
+					<div class="desc">
+						<h2>Invite!</h2>
+						<p>{{ inviteResult }}</p>
+						<button type="button" class="btn btn-default btn-float-right" ng-click="sendInvite()">
+							<span class="glyphicon glyphicon-envelope"></span> Invite
+						</button>
+						<div id="resultDivContainer"></div>
 					</div>
-				</article>
-			</section>
-			</div>
-			</main>
+				</div>
+			</article>
+		</section>
+	</div>
+</main>

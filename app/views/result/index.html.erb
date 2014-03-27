@@ -1,6 +1,16 @@
 
 			<main class="container" ng-controller='eventCtrl'>
 			<div id="eventRefresh">
+			<section class="row" id="home">
+				<article class="subcontainer ">
+					<header>
+						<br>
+						<h3>
+							Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
+						</h3>
+					</header>
+				</article>
+			</section>
 			<section class="row">
 				<article class="col-md-12">
 					<div class="service  service-dark">
@@ -8,13 +18,14 @@
 						<div class="desc">
 							<h2>Restaurant</h2>
 							<div class="bs-callout bs-callout-warning">
-							<% (1..3).each do |i| %>
-								<h4>Restaurant <%= i %>
+							<% (1..5).each do |i| %>
+								<h4>
+									<%= @events.attributes['name'+"%01d" % i ] %>
 									<button type="button" class="btn btn-default btn-m">10
-										<span id="popoverRestoYes" data-content="List of people that voted yes" rel="popover" data-placement="bottom" data-original-title="Yes:" data-trigger="hover" class="glyphicon glyphicon-thumbs-up"></span>
+										<span id="popoverRestoYes<%= i %>" data-content="List of people that voted yes" rel="popover" data-placement="bottom" data-original-title="Yes:" data-trigger="hover" class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-m">5
-										<span id="popoverRestoNo" data-content="List of people voting no" rel="popover" data-placement="bottom" data-original-title="No:" data-trigger="hover" class="glyphicon glyphicon-thumbs-down"></span>
+										<span id="popoverRestoNo<%= i %>" data-content="List of people voting no" rel="popover" data-placement="bottom" data-original-title="No:" data-trigger="hover" class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-m">Select
 										<span id="SelectPlace" data-original-title="Select this place:" data-trigger="click" class="glyphicon glyphicon-check"></span>
@@ -32,26 +43,38 @@
 						<i class="glyphicon glyphicon-calendar service-icon"></i>
 						<div class="desc">
 							<h2>Date and Time</h2>
+							<% (1..3).each do |i| %>
 							<div class="bs-callout bs-callout-warning">
-								<h4>Date and Time 1
+								<h4>
+								<%= @events.attributes['date'+"%01d" % i ] %>
 									<button type="button" class="btn btn-default btn-m">8
-										<span id="popoverDateYes" data-content="List of people that voted yes" rel="popover" data-placement="bottom" data-original-title="Yes:" data-trigger="hover" class="glyphicon glyphicon-thumbs-up"></span>
+										<span id="popoverDateYes<%= i %>" data-content="List of people that voted yes" rel="popover" data-placement="bottom" data-original-title="Yes:" data-trigger="hover" class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-m">3
-										<span id="popoverDateNo" data-content="List of people voting no" rel="popover" data-placement="bottom" data-original-title="No:" data-trigger="hover" class="glyphicon glyphicon-thumbs-down"></span>
+										<span id="popoverDateNo<%= i %>" data-content="List of people voting no" rel="popover" data-placement="bottom" data-original-title="No:" data-trigger="hover" class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-m">1
-										<span id="popoverDateMaybe" data-content="List of unsure people" rel="popover" data-placement="bottom" data-original-title="Not sure:" data-trigger="hover" class="glyphicon glyphicon glyphicon-question-sign"></span>
+										<span id="popoverDateMaybe<%= i %>" data-content="List of unsure people" rel="popover" data-placement="bottom" data-original-title="Not sure:" data-trigger="hover" class="glyphicon glyphicon glyphicon-question-sign"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-m">Select
 										<span id="SelectPlace" data-original-title="Select this place:" data-trigger="click" class="glyphicon glyphicon-check"></span>
 									</button>
 								</h4>
 						    </div>
+							<% end %>
 						</div>
 					</div>	
 				</article>
 			</section>
+			<section class="row" id="home">
+				<article class="subcontainer ">
+					<header>
+						<h3>
+								{{ Result_confirm }}
+							<button type="button" class="btn btn-default btn-lrg btn-float-right" ng-click=""><span class="glyphicon glyphicon-thumbs-up"></span> Confirm Event</button>
+						</h3>
+					</header>
+				</article>
 			
 			</div>
 			</main>
