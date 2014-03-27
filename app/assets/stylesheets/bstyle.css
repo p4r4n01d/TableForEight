@@ -86,12 +86,9 @@ main{
     margin-right: auto;
 	text-align:center;
 }
-.btn-float-left{
+.btn-float-right{
 	float:right;
 }
-/* NAVIGATION*/
-
-/* END NAVIGATION*/
 
 /* @media Queries*/
 /* Mobile Menu alterations */
