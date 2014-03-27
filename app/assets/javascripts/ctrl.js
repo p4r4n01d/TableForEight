@@ -161,26 +161,7 @@ function eventCtrl($scope, $http, $templateCache) {
 	};
 }
 
-$('#popoverRestoYes1').popover();
-$('#popoverRestoNo1').popover();
-$('#popoverDateYes1').popover();
-$('#popoverDateNo1').popover();
-$('#popoverDateMaybe1').popover();
-$('#popoverRestoYes2').popover();
-$('#popoverRestoNo2').popover();
-$('#popoverDateYes2').popover();
-$('#popoverDateNo2').popover();
-$('#popoverDateMaybe2').popover();
-$('#popoverRestoYes3').popover();
-$('#popoverRestoNo3').popover();
-$('#popoverDateYes3').popover();
-$('#popoverDateNo3').popover();
-$('#popoverDateMaybe3').popover();
-$('#popoverRestoYes4').popover();
-$('#popoverRestoNo4').popover();
-$('#popoverRestoYes5').popover();
-$('#popoverRestoNo5').popover();
-$('#popoverOption').popover({ trigger: "hover" });
+$('.btn').popover();
 
 
 

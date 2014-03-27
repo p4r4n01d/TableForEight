@@ -21,11 +21,11 @@
 								<h4 class="result-indiv">
 									<%= @events.attributes['name'+"%01d" % i ] %>
 								<div class="btn-float-right">
-									<button type="button" class="btn btn-default btn-sm">10
-										<span id="popoverRestoYes<%= i %>" data-content="List of people that voted yes" rel="popover" data-placement="bottom" data-original-title="Yes:" data-trigger="hover" class="glyphicon glyphicon-thumbs-up"></span>
+									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of people that voted yes" data-original-title="Yes:">8
+										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-sm">5
-										<span id="popoverRestoNo<%= i %>" data-content="List of people voting no" rel="popover" data-placement="bottom" data-original-title="No:" data-trigger="hover" class="glyphicon glyphicon-thumbs-down"></span>
+									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of people that voted no" data-original-title="No:">8
+										<span class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-sm">Select
 										<span id="SelectPlace<%= i %>" data-original-title="Select this place:" data-trigger="click" class="glyphicon glyphicon-check"></span>
@@ -49,14 +49,14 @@
 								<h4 class="result-indiv">
 								<%= @events.attributes['date'+"%01d" % i ] %>
 								<div class="btn-float-right">
-									<button type="button" class="btn btn-default btn-sm">8
-										<span id="popoverDateYes<%= i %>" data-content="List of people that voted yes" rel="popover" data-placement="bottom" data-original-title="Yes:" data-trigger="hover" class="glyphicon glyphicon-thumbs-up"></span>
+									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of people that voted yes" data-original-title="Yes:">8
+										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-sm">3
-										<span id="popoverDateNo<%= i %>" data-content="List of people voting no" rel="popover" data-placement="bottom" data-original-title="No:" data-trigger="hover" class="glyphicon glyphicon-thumbs-down"></span>
+									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of people that voted no" data-original-title="No:">8
+										<span class="glyphicon glyphicon-thumbs-down"></span>
 									</button>
-									<button type="button" class="btn btn-default btn-sm">1
-										<span id="popoverDateMaybe<%= i %>" data-content="List of unsure people" rel="popover" data-placement="bottom" data-original-title="Not sure:" data-trigger="hover" class="glyphicon glyphicon glyphicon-question-sign"></span>
+									<button type="button" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="List of unsure people" data-original-title="Not sure:">8
+										<span class="glyphicon glyphicon-thumbs-up"></span>
 									</button>
 									<button type="button" class="btn btn-default btn-sm">Select
 										<span id="SelectDate" data-original-title="Select this date:" data-trigger="click" class="glyphicon glyphicon-check"></span>
@@ -69,16 +69,9 @@
 					</div>	
 				</article>
 			</section>
-
-		<section class="row" id="home">
-			<article class="subcontainer ">
-			<div id="resultDivContainer"></div>
 			<div class="service  service-dark result">
 				<button type="button" class="btn btn-default btn-float-right btn-m">Confirm Event
 					<span id="ConfirmEvent" data-trigger="click" class="glyphicon glyphicon-check"></span>
 				</button>
-			</div>
-			</article>
-		</section>
 			</div>
 			</main>
