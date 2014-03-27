@@ -11,6 +11,9 @@
 	<p>
 	  To vote goto the site, just follow this link: http://localhost:3000/voting/<%= @event.id %>/<%= @user.id %>.
 	</p>
-	<p>Thanks for joining and have a great day!</p>
+	<p>
+	  Please do your voting before <%= @event.cutoff_at %>.
+	</p>
+	<p>Thanks for joining in and have a great day!</p>
   </body>
 </html>
