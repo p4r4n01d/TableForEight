@@ -56,6 +56,16 @@ TableForEight::Application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.action_controller.asset_host = "http://tableforeight.herokuapp.com"
 
+config.action_mailer.default_url_options = { :host => 'www.myapp.com' }
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+    :address => "smtp.mandrillapp.com",
+    :port => 587,
+    :domain => "gmail.com",
+    :user_name => "app23461406@heroku.com",
+    :password => "KfbzKJXZtNtYG0OsxePHNg"
+}
+
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w(*.js *.css *.eot, *.svg, *.ttf *.woff)
@@ -78,4 +88,6 @@ TableForEight::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   gem 'therubyracer'
+  
+  
 end
