@@ -355,9 +355,8 @@ footer{
 }
 
 .logo-padding {
-	padding: auto;
-	margin-top: 60px;
-	margin-bottom: 30px;
+	margin: 60px auto 30px auto;
+	padding: auto 50px auto 50px;
 }
 
 .offset {
@@ -369,13 +368,40 @@ footer{
 }
 
 #dynamic-height {
-	height: 70vh;
+	min-height: 70vh;
 }
 
 .popover{
 	color: #333;
 }
-
 .dark-text{
 	color: #323232;
+}
+
+
+
+#num-list {
+	counter-reset: list-count;
+	font-family: cusTitleFont;
+}
+#num-list dt {
+	position: relative;
+	padding-left: 40px;
+	font-weight: bold;
+	color: #323232;
+}
+#num-list dt:before {
+	content: counter(list-count);
+	counter-increment: list-count;
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	font-size: 30px;
+	font-weight: bold;
+}
+#num-list dd {
+	padding-left: 40px;
+	font-family: cusBodyFont;
+	font-weight: normal;
 }
