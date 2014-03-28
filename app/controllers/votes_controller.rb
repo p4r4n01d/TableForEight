@@ -31,7 +31,6 @@ class VotesController < ApplicationController
     respond_to do |format|
       if @vote.save
         UserMailer.welcome_email(@vote, @event).deliver
-        UserMailer. admin_welcome_email(@event).deliver
         format.json { render :json => {:status => 'created',
           :events => {:id => @vote.id}}, status: :created}
       else

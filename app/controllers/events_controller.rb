@@ -23,6 +23,7 @@ class EventsController < ApplicationController
 	respond_to do |format|
 	  # Have to make sure event is non-null first
 	  if !!@event && @event.save
+		UserMailer. admin_welcome_email(@event).deliver
 		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.id}}}
 	  else
 	    format.json { render json: db_op_failed(event_params),
