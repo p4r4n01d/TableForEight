@@ -56,5 +56,6 @@ gem 'database_cleaner'
 gem 'factory_girl'
 gem 'factory_girl_rails'
 
+gem 'sqlite3'
 
 gem "letter_opener", :group => :development
