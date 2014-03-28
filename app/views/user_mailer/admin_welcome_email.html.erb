@@ -4,12 +4,9 @@
 	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-	<h1>Hello, <%= @user.email %></h1>
+	<h1>Hello, <%= @event.organiser_name %></h1>
 	<p>
-	  I <%= @event.organiser_name %> planning a dinner out and I've listed down the possible restaurants and dates below. Do vote whichever you want best?<br/>
-	</p>
-	<p>
-	  To view voting Resutls goto the site, just follow this link: http://localhost:3000/result/<%= @event.id %>.
+	  To view voting Resutls &amp; stats goto the site, just follow this link: http://localhost:3000/result/<%= @event.id %>.
 	</p>
 	<p>
 	  Please do your voting before <%= @event.cutoff_at %>.

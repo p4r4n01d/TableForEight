@@ -6,10 +6,10 @@
   <body>
 	<h1>Hello, <%= @user.email %></h1>
 	<p>
-	  I <%= @event.organiser_name %> planning a dinner out and I've listed down the possible restaurants and dates below. Do vote whichever you want best?<br/>
+	  <%= @event.organiser_name %> is planning a dinner out and I've listed down the possible restaurants and dates below. Do vote whichever you want best?<br/>
 	</p>
 	<p>
-	  To vote goto the site, just follow this link: http://localhost:3000/voting/<%= @event.id %>/<%= @user.id %>.
+	  To view restaurant and date goto the site, just follow this link: http://localhost:3000/voting/<%= @event.id %>/<%= @user.id %>.
 	</p>
 	<p>
 	  Please do your voting before <%= @event.cutoff_at %>.
