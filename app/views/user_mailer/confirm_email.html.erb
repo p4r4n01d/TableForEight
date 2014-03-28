@@ -5,17 +5,18 @@
   </head>
   <body>
 	<h1>Hello, <%= @user.email %></h1>
-	Event Organiser: <%= @event.organiser_name %>(<%= @event.organiser_name %>)
+	Event Organiser: <%= @event.organiser_name %>(<%= @event.organiser_name %>)<br/>
 	<p>
-	  Voting is done! Now lets party.<br/>
+	  Voting is done. Now let's party!<br/>
 	</p>
 	<p>
-	  Restaurant: <%= @event.name1 %>(<%= @event.link1 %>).
+	  Where: <%= @event.name1 %>(<%= @event.link1 %>).<br/>
 	</p>
 	<p>
-	  Date: <%= @event.date %>.
+	  When: <%= @event.date %>.<br/><br />
 	</p>
-	<p>Thanks for joining and have a great day!</p>
-	<p><%= @event.organiser_name %></p>
+	<p>Have a crazy, fun night out<br /><br /></p>
+	<p>The Table For Eight Team<br/></p>
+	<p>Plan. Dine. Socialise.</p>
   </body>
 </html>

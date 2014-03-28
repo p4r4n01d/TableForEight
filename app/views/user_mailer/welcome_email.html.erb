@@ -6,14 +6,16 @@
   <body>
 	<h1>Hello, <%= @user.email %></h1>
 	<p>
-	  <%= @event.organiser_name %> is planning a dinner out and I've listed down the possible restaurants and dates below. Do vote whichever you want best?<br/>
+	  Your friend <%= @event.organiser_name %> is planning a hangout. Help 'em decide when and where! Following this link to vote:<br />
 	</p>
 	<p>
-	  To view restaurant and date goto the site, just follow this link: <a href="http://localhost:3000/voting/<%= @event.id %>/<%= @user.id %>">http://localhost:3000/voting/<%= @event.id %>/<%= @user.id %></a>.
+	  <a href="http://localhost:3000/voting/<%= @event.id %>/<%= @user.id %>">http://localhost:3000/voting/<%= @event.id %>/<%= @user.id %></a>.
 	</p>
 	<p>
-	  Please do your voting before <%= @event.cutoff_at %>.
+	  Voting ends on <%= @event.cutoff_at %>.
 	</p>
-	<p>Thanks for joining in and have a great day!</p>
+	<p>
+	  The Table For Eight Team<br />
+	  Plan. Dine. Socialise.<br />
   </body>
 </html>

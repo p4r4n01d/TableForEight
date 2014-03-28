@@ -2,14 +2,14 @@
 			<main class="container" ng-controller='eventCtrl'>
 			<div id="eventRefresh">
 			<section class="row" id="home">
-				<article class="subcontainer result ">
+				<article class="subcontainer result service service-dark">
 					<header>
-						<h3>
+						<h3 class="light-text">
 							Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
 						</h3>
-						<h4>Restaurant: {{ selectedRestaurant }}</h4>
-						<h4>Website: {{ selectedRestaurantUrl }}</h4>
-						<h4>Date: {{ selectedDate }}</h4>
+						<h3 class="light-text">Restaurant: {{ selectedRestaurant }}</h3>
+						<h3 class="light-text">Website: {{ selectedRestaurantUrl }}</h3>
+						<h3 class="light-text">Date: {{ selectedDate }}</h3>
 					</header>
 				</article>
 			</section>
@@ -18,7 +18,7 @@
 					<div class="service result">
 						<i class="glyphicon glyphicon-cutlery service-icon"></i>
 						<div class="desc">
-							<h2 class="result-group dark-text">Restaurant</h2>
+							<h2 class="result-group">Restaurant</h2>
 							<div class="bs-callout bs-callout-warning">
 								<% (1..5).each do |i| %>
 								<h4 class="result-group result-indiv">
@@ -79,15 +79,19 @@
 			</section>
 			<section class="row lighter-background">
 				<article class="col-md-12">
-					<div class="service result" ng-init="results('<%= @events.id %>')">
-						<h4 class="result-group">Restaurant: {{ selectedRestaurant }}</h4>
-						<h4 class="result-group">Website: {{ selectedRestaurantUrl }}</h4>
-						<h4 class="result-group">Date: {{ selectedDate }}</h4>
-						<h4 class="result-group">{{ email_status }}</h4>
-							<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="confirmation('<%= @events.id %>')">Confirm Event
-								<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
-							</button>
-					</div>
+						<div class="service result" ng-init="results('<%= @events.id %>')">
+							<i class="glyphicon glyphicon-ok service-icon"></i>
+							<div class="desc">
+							<h2>Event Summary</h2>
+							<h3 class="result-group">Restaurant: {{ selectedRestaurant }}</h3>
+							<h3 class="result-group">Website: {{ selectedRestaurantUrl }}</h3>
+							<h3 class="result-group">Date: {{ selectedDate }}</h3>
+							<h3 class="result-group">{{ email_status }}</h3>
+								<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="confirmation('<%= @events.id %>')">Confirm Event
+									<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
+								</button>
+							</div>
+						</div>
 				</article>
 			</section>
 			</main>
