@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   
   def admin_email(user, event)
     @event = event
-    @user = user
+    @users = user
     mail(to: @event.organiser_email,
          subject: "Event Date and Time Confirmed")
   end

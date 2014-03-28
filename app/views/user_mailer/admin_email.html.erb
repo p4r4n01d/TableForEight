@@ -17,8 +17,8 @@
 	</p>
 	<p>
 	  Guests: 
-	  <% @user.each do |vote| %>
-		<%= vote.email %><br />
+	  <% @users.each do |user| %>
+		<%= user.email %><br />
 	  <% end %>
 	</p>
 	<p>Thanks for joining and have a great day!</p>
