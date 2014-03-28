@@ -4,13 +4,13 @@ class Vote < ActiveRecord::Base
   validates :email, presence: true
   
   def self.get_votes_count(event_id, db_column, count_value)
-    Vote.find_by_sql("SELECT Count("+db_column+") AS Counts FROM votes
-     WHERE event_id="+event_id+" AND "+db_column+"="+count_value.to_s+" AND confirmed=true")
+    Vote.find_by_sql("SELECT Count("+db_column+") AS Counts, confirmed FROM votes
+     WHERE event_id="+event_id+" AND "+db_column+"="+count_value.to_s+" AND confirmed=1")
   end
 
   def self.get_emails(event_id, db_column, count_value)
     Vote.select(:email)
-      .where("event_id = "+ event_id +" AND "+db_column+" = "+ count_value.to_s+" AND confirmed=true")
+      .where("event_id = "+ event_id +" AND "+db_column+" = "+ count_value.to_s+" AND confirmed=1")
       .order(:email)
   end
 

@@ -10,7 +10,7 @@
 							Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
 							Guest Email: <%= @votes.email %><br /><br />
 								{{ voteResult_confirm }}
-							<button type="button" class="btn btn-default btn-lrg" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'confirmed', '', true)"><span class="glyphicon glyphicon-thumbs-up"></span> Yes I am going?</button>
+							<button type="button" class="btn btn-default btn-lrg" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'confirmed', '', '1')"><span class="glyphicon glyphicon-thumbs-up"></span> Yes I am going?</button>
 						</h3>
 					</header>
 				</article>
