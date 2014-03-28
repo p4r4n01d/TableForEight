@@ -1,7 +1,11 @@
 module VotesHelper
 
-  def dateButton(value, i)
-    str = "<button type=\"button\" class=\"btn btn-default\" ng-click=\"vote_process(#{@events.id}, #{@votes.id}, 'date#{i}', #{value})\">"
+  # Button to vote for a restaurant or time
+  # value: The numeric value associated with this button
+  # i: The number of this button in sequence
+  # type: What this button is for 
+  def voteButton(value, i, type)
+    str = "<button type=\"button\" class=\"btn btn-default\" ng-click=\"vote_process(#{@events.id}, #{@votes.id}, '#{type}#{i}', #{value})\">"
     spanClass = nil
 
     case value
@@ -20,5 +24,4 @@ module VotesHelper
     end
     raw(str + "</button>")
   end
-
 end

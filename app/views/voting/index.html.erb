@@ -32,12 +32,8 @@
 							<%= @events.attributes['name'+"%01d" % i ] %>
 
 							<div class="btn-group btn-float-left">
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'link<%= i %>', 1)">
-							  	Yes <span class="glyphicon glyphicon-thumbs-up"></span>
-							  </button>
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'link<%= i %>', -1)">
-							  	No <span class="glyphicon glyphicon-thumbs-down"></span>
-							  </button>
+							  <%= voteButton(-1, i, "link") %>
+							  <%= voteButton(1, i, "link") %>
 							</div>
 
 							<div class="panel-footer">
@@ -66,9 +62,9 @@
 						<div class="panel-heading">
 							{{ voteResult_when }}
 							<div class="btn-group" style="float: right">
-							  <%= dateButton(-1, i) %>
-							  <%= dateButton(0, i) %>
-							  <%= dateButton(1, i) %>
+							  <%= voteButton(-1, i, "date") %>
+							  <%= voteButton(0, i, "date") %>
+							  <%= voteButton(1, i, "date") %>
 							</div>
 
 							<div class="panel-footer">
