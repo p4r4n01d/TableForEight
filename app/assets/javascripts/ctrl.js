@@ -18,9 +18,8 @@ function JSONInterface(url, jsObj, type, get_status) {
     });
 	return NewjsonObject;
 }
-var app = angular.module('tableforeight', []);
 
-app.controller('eventCtrl', function($scope, $http, $templateCache) {
+tableforeight.controller('eventCtrl', function ($scope, $http, $templateCache) {
 	
 	$scope.method = 'GET';
 	 
