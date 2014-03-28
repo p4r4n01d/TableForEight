@@ -1,25 +1,28 @@
 
 <main class="container" ng-controller='eventCtrl'>
 	<div id="eventRefresh">
-		<section class="row" id="home">
+
+		<section class="row offset" id="home">
 			<article class="subcontainer ">
-				<header>
-					<br>
-					<h3>
-						Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
-						Guest Email: <%= @votes.email %><br /><br />
-							{{ voteResult_confirm }}
-						<button type="button" class="btn btn-default btn-lrg" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'confirmed', '', true)"><span class="glyphicon glyphicon-thumbs-up"></span> Yes I am going?</button>
-					</h3>
-				</header>
+				<article class="center-section">
+					<header>
+						<h3>
+							Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
+							Guest Email: <%= @votes.email %><br /><br />
+								{{ voteResult_confirm }}
+							<button type="button" class="btn btn-default btn-lrg" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'confirmed', '', true)"><span class="glyphicon glyphicon-thumbs-up"></span> Yes I am going?</button>
+						</h3>
+					</header>
+				</article>
 			</article>
 		</section>
-<section class="row" id="rest">
+
+<section class="row offset lighter-background" id="where">
 	<article class="subcontainer">
-		<article class="col-md-6">
-			<div class="service service-dark">
+		<article class="center-section">
+			<div class="service">
 				<i class="glyphicon glyphicon-cutlery service-icon"></i>
-				<div class="desc">
+				<div class="desc dynamic-height">
 					<h2>Where?</h2>
 					<% (1..5).each do |i| %>
 						
@@ -40,19 +43,23 @@
 							<div class="panel-footer">
 								<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
 							</div>
-
 						</div>
 					</div>
 
 					<% end %>
-
 				</div>
 			</div>	
 		</article>
-		<article class="col-md-6">
+	</article>
+</section>
+
+
+<section class="row offset" id="when">
+	<article class="subcontainer">
+		<article class="center-section">
 			<div class="service service-dark">
-				<i class="glyphicon glyphicon-calendar service-icon"></i>
-				<div class="desc">
+				<i class="glyphicon glyphicon-cutlery service-icon"></i>
+				<div class="desc dynamic-height">
 					<h2>When?</h2>
 					<% (1..3).each do |i| %>
 					<div class="panel panel-default">
@@ -67,20 +74,19 @@
 							<div class="panel-footer">
 								<%= @events.attributes['date'+"%01d" % i ] %>
 							</div>
-
 						</div>
 					</div>
 					<% end %>
 					<input type="hidden" id="dtp_input4" value="" />
 				</div>
-				
 			</div>	
 		</article>
 	</article>
 </section>
-		<section class="row" id="home">
+
+		<section class="row" id="invite">
 			<article class="subcontainer ">
-						<div id="resultDivContainer"></div>
+				<div id="resultDivContainer"></div>
 			</article>
 		</section>
 </div>
