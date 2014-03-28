@@ -59,6 +59,6 @@ gem 'pg'
 
 gem "letter_opener", :group => :development
 
-gem 'rails_12factor' , :group => :production
-
 gem 'rails_serve_static_assets', :group => :production
+
+gem 'rails_on_heroku'
