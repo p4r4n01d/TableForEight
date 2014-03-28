@@ -200,7 +200,7 @@ function eventCtrl($scope, $http, $templateCache) {
 	}
 	}).
 	error(function(data, status) {
-	var tempdata = data || "Request failed";
+	var tempdata = "Request failed";
 	switch(restaurantTitle)
 	{
 		case 1:
