@@ -18,9 +18,9 @@ function JSONInterface(url, jsObj, type, get_status) {
     });
 	return NewjsonObject;
 }
+var app = angular.module('tableforeight', []);
 
-
-function eventCtrl($scope, $http, $templateCache) {
+app.controller('eventCtrl', function($scope, $http, $templateCache) {
 	
 	$scope.method = 'GET';
 	 
@@ -251,7 +251,7 @@ function eventCtrl($scope, $http, $templateCache) {
 	if(emailList.length>0)
 	{
 		EventJsonNew="";
-		EventJsonNew=JSONInterface("http://localhost:3000/api/events", EventJSON, "POST", "created");
+		EventJsonNew=JSONInterface("/api/events", EventJSON, "POST", "created");
 		if(EventJsonNew!=null)
 		{
 			DataSaved=false;
@@ -271,7 +271,7 @@ function eventCtrl($scope, $http, $templateCache) {
 				 "confirmed":false }
 				};
 				//alter votes controller to give out the same format in creating votes
-				VoteJsonNew=JSONInterface("http://localhost:3000/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
+				VoteJsonNew=JSONInterface("/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
 				if(VoteJsonNew!=null) DataSaved=true;
 				else DataSaved=false;
 			}
@@ -280,7 +280,7 @@ function eventCtrl($scope, $http, $templateCache) {
 		}
 	}
 	};
-}
+});
 
 $('.btn').popover();
 
