@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require bs/bootstrap
-//= require angular
 //= require turbolinks
 //= require datePicker/bootstrap-datetimepicker.min
 //= require datePicker/bootstrap-datetimepicker.fr
@@ -21,4 +20,5 @@
 //= require scrollto/jquery.cycle2.min
 //= require scrollto/jquery.scrollto
 //= require ctrl
+//= require angular
 //= require_tree .
