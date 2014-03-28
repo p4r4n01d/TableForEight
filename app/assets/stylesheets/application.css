@@ -11,5 +11,6 @@
  *= require_self
  *= require bs/bootstrap
  *= require datePicker/datetimepicker.min
+ *= require bstyle
  *= require_tree .
  */
