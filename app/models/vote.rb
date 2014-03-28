@@ -9,8 +9,9 @@ class Vote < ActiveRecord::Base
   end
 
   def self.get_emails(event_id, db_column, count_value)
-    Vote.all(:conditions => "event_id = "+ event_id +" AND "+db_column+" = "+ count_value.to_s,
-               :select => "email", :order => 'email')
+    Vote.select(:email)
+      .where("event_id = "+ event_id +" AND "+db_column+" = "+ count_value.to_s)
+      .order(:email)
   end
 
   def self.get_count_details(event_id)
