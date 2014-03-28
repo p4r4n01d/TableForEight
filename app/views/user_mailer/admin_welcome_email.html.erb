@@ -6,7 +6,7 @@
   <body>
 	<h1>Hello, <%= @event.organiser_name %></h1>
 	<p>
-	  To view voting Resutls &amp; stats goto the site, just follow this link: http://localhost:3000/result/<%= @event.id %>.
+	  To view voting Resutls &amp; stats goto the site, just follow this link: <a href="http://localhost:3000/result/<%= @event.id %>">http://localhost:3000/result/<%= @event.id %></a>.
 	</p>
 	<p>
 	  Please do your voting before <%= @event.cutoff_at %>.

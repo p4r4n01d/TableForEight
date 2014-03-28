@@ -57,4 +57,4 @@ gem 'factory_girl'
 gem 'factory_girl_rails'
 
 
-gem "letter_opener", :group => :test
+gem "letter_opener", :group => :development
