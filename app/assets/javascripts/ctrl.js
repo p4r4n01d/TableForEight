@@ -257,7 +257,6 @@ function eventCtrl($scope, $http, $templateCache) {
 			DataSaved=false;
 			for(i=0;i<emailList.length;i++)
 			{
-				alert("-"+emailList[i].replace("\n","").replace(" ","")+"-");
 				VoteJSON = {
 				"vote": 
 				{ "email":emailList[i].replace("\n","").replace(" ",""),

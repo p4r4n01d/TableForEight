@@ -24,7 +24,6 @@ class UserMailer < ActionMailer::Base
   def confirm_email(user, event)
     @event = event
     @user = user
-    admin_welcome_email(@event)
     mail(to: @user.email,
          subject: "Event Date and Time Confirmed")
   end
