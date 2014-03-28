@@ -59,3 +59,5 @@ gem 'factory_girl_rails'
 gem 'sqlite3'
 
 gem "letter_opener", :group => :development
+
+gem 'rails_12factor' , :group => :production
