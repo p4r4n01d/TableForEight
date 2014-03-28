@@ -1,12 +1,10 @@
-@font-face
-{
-font-family: cusBodyFont;
-src: url(font/muli_regular.ttf);
+@font-face {
+	font-family: cusBodyFont;
+	src: url(font/muli_regular.ttf);
 }
-@font-face
-{
-font-family: cusTitleFont;
-src: url(font/timeburner_regular.ttf);
+@font-face {
+	font-family: cusTitleFont;
+	src: url(font/timeburner_regular.ttf);
 }
 
 body{
@@ -334,6 +332,33 @@ footer{
 }
 
 
+#num-list {
+	counter-reset: list-count;
+	font-family: cusTitleFont;
+}
+#num-list dt {
+	position: relative;
+	padding-left: 40px;
+	font-weight: bold;
+	color: #323232;
+}
+#num-list dt:before {
+	content: counter(list-count);
+	counter-increment: list-count;
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	font-size: 30px;
+	font-weight: bold;
+}
+#num-list dd {
+	padding-left: 40px;
+	font-family: cusBodyFont;
+	font-weight: normal;
+}
+
+
 .blur {
 	-webkit-filter: blur(5px);
 	-moz-filter: blur(5px);
@@ -360,7 +385,7 @@ footer{
 }
 
 .offset {
-	padding-top: 90px;
+	padding-top: 100px;
 }
 
 .desc {
@@ -368,7 +393,13 @@ footer{
 }
 
 #dynamic-height {
-	min-height: 70vh;
+	min-height: 65vh;
+}
+
+.center-section {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 600px;
 }
 
 .popover{
@@ -378,30 +409,3 @@ footer{
 	color: #323232;
 }
 
-
-
-#num-list {
-	counter-reset: list-count;
-	font-family: cusTitleFont;
-}
-#num-list dt {
-	position: relative;
-	padding-left: 40px;
-	font-weight: bold;
-	color: #323232;
-}
-#num-list dt:before {
-	content: counter(list-count);
-	counter-increment: list-count;
-	position: absolute;
-	left: 0;
-	top: 0;
-
-	font-size: 30px;
-	font-weight: bold;
-}
-#num-list dd {
-	padding-left: 40px;
-	font-family: cusBodyFont;
-	font-weight: normal;
-}
