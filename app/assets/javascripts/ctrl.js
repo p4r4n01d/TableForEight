@@ -200,7 +200,7 @@ function eventCtrl($scope, $http, $templateCache) {
 	}
 	}).
 	error(function(data, status) {
-	var tempdata = $(data).filter("title").text()+"(Request Error)";
+	var tempdata = $(data).filter("title").text() || "(Temp Title)";
 	switch(restaurantTitle)
 	{
 		case 1:
