@@ -66,9 +66,7 @@
 						<div class="panel-heading">
 							{{ voteResult_when }}
 							<div class="btn-group" style="float: right">
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date<%= i %>', 1)">Yes <span class="glyphicon glyphicon-thumbs-up"></span></button>
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date<%= i %>', -1)">No <span class="glyphicon glyphicon-thumbs-down"></span></button>
-							  <button type="button" class="btn btn-default" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'date<%= i %>', 0)">Maybe</button>
+							  <%= for (-1..1).each do |value| dateButton(value) %>
 							</div>
 
 							<div class="panel-footer">
