@@ -109,11 +109,11 @@ function eventCtrl($scope, $http, $templateCache) {
 							$scope[scopeCount] = objYes.Counts;
 							if(objYes.Counts>0)
 							{
-								var tempDate="None";
+								var tempDate="";
 								divDetails=$(divPlace);
 								for(a=0; a<tempObj1.length;a++){
 									object4 = tempObj1[a];
-									tempDate+=object4.email+"<br />";
+									tempDate+=object4.email+" ";
 								}
 								divDetails.attr("data-content",tempDate);
 							}
@@ -155,11 +155,11 @@ function eventCtrl($scope, $http, $templateCache) {
 							$scope[scopeCount] = objYes.Counts;
 							if(objYes.Counts>0)
 							{
-								var tempDate="None";
+								var tempDate="";
 								divDetails=$(divPlace);
 								for(a=0; a<tempObj1.length;a++){
 									object4 = tempObj1[a];
-									tempDate+=object4.email+"<br />";
+									tempDate+=object4.email+" ";
 								}
 								divDetails.attr("data-content",tempDate);
 							}
