@@ -55,3 +55,6 @@ gem 'rspec-rails'
 gem 'database_cleaner'
 gem 'factory_girl'
 gem 'factory_girl_rails'
+
+
+gem "letter_opener", :group => :test
