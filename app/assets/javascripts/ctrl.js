@@ -1,4 +1,4 @@
-function JSONInterface(url, jsObj, type, get_status) {
+var JSONInterface = ['url', 'jsObj', 'type', 'get_status', function(url, jsObj, type, get_status) {
 	NewjsonObject = null;
     divResult = $("#resultDivContainer");
     $.ajax({
@@ -9,17 +9,17 @@ function JSONInterface(url, jsObj, type, get_status) {
         dataType: "json",
         async: false,
         contentType: "application/json; charset=utf-8",        
-		success: function (result, status) {
+		success: function(result, status) {
 			if(status=="success" && result.status==get_status) NewjsonObject=result.events.id;
         },
-        error: function (xhr, ajaxOptions, thrownError) {
+        error:function(xhr, ajaxOptions, thrownError) {
         	divResult.html(xhr.status + "<br />" + thrownError);
         }
     });
 	return NewjsonObject;
-}
+}];
 
-tableforeight.controller('eventCtrl', function ($scope, $http, $templateCache) {
+tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', function ($scope, $http, $templateCache) {
 	
 	$scope.method = 'GET';
 	 
@@ -279,7 +279,7 @@ tableforeight.controller('eventCtrl', function ($scope, $http, $templateCache) {
 		}
 	}
 	};
-});
+}]);
 
 $('.btn').popover();
 
