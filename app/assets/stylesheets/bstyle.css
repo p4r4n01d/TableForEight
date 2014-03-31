@@ -389,7 +389,8 @@ footer{
 }
 
 .dynamic-height {
-	min-height: 75vh;
+/*	min-height: 75vh;*/
+	min-height: 200px;
 }
 
 .center-section {
@@ -438,7 +439,7 @@ footer{
 		float: left;
 	}
 	.navbar-toggle{
-		background: url('/assets/Table-For-Eight-logo.png') center center;
+		background: url('Table-For-Eight-logo.png') center center;
 		background-size: 75px;
 		float: none;
 		display: block;
