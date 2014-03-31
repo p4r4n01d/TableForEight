@@ -409,6 +409,7 @@ footer{
 	.container {
 		width: 100%;
 	}
+}
 
 @media (min-width: 992px) {
 	.container {
