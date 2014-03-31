@@ -180,7 +180,7 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	}
 	}).
 	error(function(data, status) {
-	var tempdata = $(data).filter("title").text() || "(Temp Title)";
+	var tempdata = "(Temp Title)";
 	switch(restaurantTitle)
 	{
 		case 1:
