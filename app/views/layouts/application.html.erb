@@ -90,28 +90,16 @@
                 maxView: 1,
                 forceParse: 0
             });
-        </script>
-        <script>
             $('#slider').cycle({
                 fx : 'scrollVert',
                 timeout: 3000,
                 speed: 200,
                 slides: '.slide'
             });
-            $('.navbar').waypoint('sticky');
             $('.navbar a, a.scrollto, a#arrow_down').click(function(e){
                 $('html,body').scrollTo(this.hash, this.hash);
                 e.preventDefault();
             });
-            $(function() {
-                Grid.init();
-            });
         </script>
-
-        <!-- Dynamic Height -->
-        <script type='text/javascript'>
-            // not implemented
-        </script>
-
     </body>
 </html>
