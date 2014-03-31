@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require angular
+//= require javascript
 //= require jquery
 //= require bs/bootstrap
 //= require turbolinks

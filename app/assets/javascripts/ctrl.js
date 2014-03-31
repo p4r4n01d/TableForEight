@@ -1,23 +1,4 @@
-var JSONInterface = ['url', 'jsObj', 'type', 'get_status', function(url, jsObj, type, get_status) {
-	NewjsonObject = null;
-    divResult = $("#resultDivContainer");
-    $.ajax({
-		headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-        url: url,
-        type: type,
-        data: JSON.stringify(jsObj),
-        dataType: "json",
-        async: false,
-        contentType: "application/json; charset=utf-8",        
-		success: function(result, status) {
-			if(status=="success" && result.status==get_status) NewjsonObject=result.events.id;
-        },
-        error:function(xhr, ajaxOptions, thrownError) {
-        	divResult.html(xhr.status + "<br />" + thrownError);
-        }
-    });
-	return NewjsonObject;
-}];
+
 
 tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', function ($scope, $http, $templateCache) {
 	
@@ -246,6 +227,7 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	 "organiser_email":$scope.organiser_email,
 	 "organiser_name":$scope.organiser_name }
 	 };
+	 alert(JSON.stringify(jsObj));
 	emailList = $scope.guest_list.split(";");
 	if(emailList.length>0)
 	{
