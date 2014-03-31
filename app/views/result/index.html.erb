@@ -24,14 +24,8 @@
 								<h4 class="result-group result-indiv">
 									<%= @events.attributes['name'+"%01d" % i ] %>
 								<div class="btn-float-right">
-									<button type="button" id="linkbtnyes<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="Yes:">
-									{{ link<%= i %>going }}
-										<span class="glyphicon glyphicon-thumbs-up"></span>
-									</button>
-									<button type="button" id="linkbtnno<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="No:">
-									{{ link<%= i %>notgoing }}
-										<span class="glyphicon glyphicon-thumbs-down"></span>
-									</button>
+									<%= results_voteButton( 1, i, "link") %>
+								   <%= results_voteButton(-1, i, "link") %>
 									<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">Select
 										<span id="SelectPlace<%= i %>" data-original-title="Select this place:" class="glyphicon glyphicon-check"></span>
 									</button>
@@ -54,18 +48,9 @@
 								<h4 class="result-indiv">
 								<%= @events.attributes['date'+"%01d" % i ] %>
 								<div class="btn-float-right btn-dark-font">
-									<button type="button" id="datebtnyes<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="Yes:">
-									{{ date<%= i %>going }}
-										<span class="glyphicon glyphicon-thumbs-up"></span>
-									</button>
-									<button type="button" id="datebtnno<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="No:">
-									{{ date<%= i %>notgoing }}
-										<span class="glyphicon glyphicon-thumbs-down"></span>
-									</button>
-									<button type="button" id="datebtnmaybe<%= i %>" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="bottom" class="btn btn-default btn-sm" data-content="None" data-original-title="Not sure:">
-									{{ date<%= i %>maybe }}
-										<span class="glyphicon glyphicon-thumbs-up"></span>
-									</button>
+								   <%= results_voteButton( 1, i, "date") %>
+								   <%= results_voteButton(-1, i, "date") %>
+								   <%= results_voteButton( 0, i, "date") %>
 									<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
 										<span id="SelectDate" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
 									</button>
