@@ -1,5 +1,3 @@
-
-
 tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', function ($scope, $http, $templateCache) {
 	
 	$scope.method = 'GET';
@@ -204,8 +202,16 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	
 	// SENDING INVITATION
 	$scope.sendInvite = function() {
-	newDate = new Date();
-	datetime = "" + newDate.today + " " + newDate.timeNow;
+	var d = new Date();
+	var month = d.getMonth()+1;
+	var day = d.getDate();
+	var newDate = d.getFullYear() + '/' +
+		(month<10 ? '0' : '') + month + '/' +
+		(day<10 ? '0' : '') + day;
+	 alert(datetime);
+	 alert($scope.date1);
+	 alert($scope.date2);
+	 alert($scope.date3);
 	EventJSON = {
 	"event": 
 	{ "date":$scope.date1,
@@ -227,7 +233,6 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	 "organiser_email":$scope.organiser_email,
 	 "organiser_name":$scope.organiser_name }
 	 };
-	 alert(JSON.stringify(jsObj));
 	emailList = $scope.guest_list.split(";");
 	if(emailList.length>0)
 	{
