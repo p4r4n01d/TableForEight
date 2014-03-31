@@ -75,28 +75,26 @@
 			<article class="center-section dynamic-height">
 				<div class="service">
 					<i class="glyphicon glyphicon-calendar service-icon"></i>
-					<div class="desc dynamic-height">
-						<h2>When?</h2>
-						<% (1..3).each do |i| %>
-							<div class="form-group">
-								<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
-								<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
-									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-									<input class="form-control" size="16" type="text" value="" ng-model="date<%= i %>">
-									<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-								</div>
-								<input type="hidden" id="dtp_input<%= i %>" value="" />
-							</div>
-						<% end %>
-						<div class="form-group"><br /><br />
-							<label for="dtp_input4" class="control-label">Due Date</label>
-							<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
-								<input class="form-control" size="16" type="text" value="" ng-model="date4">
+					<h2>When?</h2>
+					<% (1..3).each do |i| %>
+						<div class="form-group">
+							<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
+							<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								<input class="form-control" size="16" type="text" value="" ng-model="date<%= i %>">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
-							<input type="hidden" id="dtp_input4" value="" />
+							<input type="hidden" id="dtp_input<%= i %>" value="" />
 						</div>
+					<% end %>
+					<div class="form-group"><br /><br />
+						<label for="dtp_input4" class="control-label">Due Date</label>
+						<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
+							<input class="form-control" size="16" type="text" value="" ng-model="date4">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+						</div>
+						<input type="hidden" id="dtp_input4" value="" />
 					</div>
 				</div>
 			</article>
