@@ -12,6 +12,5 @@
  *= require bs/bootstrap
  *= require datePicker/datetimepicker.min
  *= require bstyle
- *= require nav
  *= require_tree .
  */
