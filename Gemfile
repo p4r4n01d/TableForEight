@@ -65,7 +65,3 @@ gem 'rails_serve_static_assets', :group => :production
 gem 'rails_on_heroku'
 
 gem 'angularjs-rails'
-
-gem 'twitter-bootstrap-rails'
-
-gem 'sqlite3'
