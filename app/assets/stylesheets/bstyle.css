@@ -70,7 +70,7 @@ div.navbar-header{
 	float: left;
 	position: relative;
 	bottom: 10px;
-	left: 25px;
+	left: 10px;
 	padding: 15px;
 	background-color: #323232;
   	z-index: 1035;
@@ -192,11 +192,15 @@ and (max-device-width: 767px) {
 	font-size: 43px;
 }
 
+.service-icon {
+	margin-top: 10px;
+}
+
 .service-dark {
 	color: #FFF;
 }
 .service-dark:hover i {
-	color: #F99;
+	color: #FBEAEA;
 }
 .service-dark:hover {
 	background:transparent;
@@ -372,7 +376,7 @@ footer{
 }
 
 .logo-padding {
-	margin: 60px auto 30px auto;
+	margin: 130px auto 30px auto;
 	padding: auto 50px auto 50px;
 }
 
@@ -385,7 +389,7 @@ footer{
 }
 
 .dynamic-height {
-	min-height: 65vh;
+	min-height: 75vh;
 }
 
 .center-section {
@@ -409,6 +413,7 @@ footer{
 	.container {
 		width: 100%;
 	}
+}
 
 @media (min-width: 992px) {
 	.container {
@@ -439,7 +444,5 @@ footer{
 
 
 .test {
-	position: fixed;
-	left: 0;
-	border: 10px solid;
+	border: 10px solid gray;
 }
