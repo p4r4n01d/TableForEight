@@ -47,22 +47,11 @@
 			<article class="center-section dynamic-height">
 				<div class="service">
 					<i class="glyphicon glyphicon-list-alt service-icon"></i>
-					<h2>Who?</h2>
-					<label class="control-label spacingAround letterSpacingFonts">Name</label>
-					<div class="input-group spacingAround">
-						<span class="input-group-addon glyphicon glyphicon-user"></span>
-						<input type="text" class="form-control letterSpacingFonts" placeholder="What's your name?" ng-model="organiser_name" />
-					</div>
-					<label class="control-label spacingAround letterSpacingFonts">Email</label>
-					<div class="input-group spacingAround">
-						<span class="input-group-addon glyphicon glyphicon-envelope"></span>
-						<input type="text" class="form-control letterSpacingFonts" placeholder="What's your email?" ng-model="organiser_email" />
-					</div>
-					<label class="control-label spacingAround letterSpacingFonts" >Guest List</label>
-					<div class="input-group spacingAround">
-						<textarea class="form-control letterSpacingFonts" id="textarea" rows="6" placeholder="Enter your guest's emails" ng-model="guest_list" cols="50"></textarea>
-					</div>
-				</div>	
+						<h2>Who?</h2>
+						<%= who_helper("Name", "user", "What's your name?", "organiser_name") %>
+						<%= who_helper("Email", "envelope", "What's your email?", "organiser_email") %>
+						<%= who_helper("Guest List", nil, "Enter your guest's emails", "guest_list") %>
+				</div>
 			</article>
 		</section>
 

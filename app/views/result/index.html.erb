@@ -24,8 +24,9 @@
 								<h4 class="result-group result-indiv">
 									<%= @events.attributes['name'+"%01d" % i ] %>
 								<div class="btn-float-right">
-									<%= results_voteButton( 1, i, "link") %>
-								   <%= results_voteButton(-1, i, "link") %>
+								   <% [1, -1].each do |value| %>
+								     <%= results_voteButton(value, i, "link") %>
+								   <% end %>
 									<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">Select
 										<span id="SelectPlace<%= i %>" data-original-title="Select this place:" class="glyphicon glyphicon-check"></span>
 									</button>
@@ -48,11 +49,11 @@
 								<h4 class="result-indiv">
 								<%= @events.attributes['date'+"%01d" % i ] %>
 								<div class="btn-float-right btn-dark-font">
-								   <%= results_voteButton( 1, i, "date") %>
-								   <%= results_voteButton(-1, i, "date") %>
-								   <%= results_voteButton( 0, i, "date") %>
+								   <% [1, -1, 0].each do |value| %>
+								     <%= results_voteButton(value, i, "date") %>
+								   <% end %>
 									<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
-										<span id="SelectDate" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
+										<span id="SelectDate<%= i %>" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
 									</button>
 								</div>
 								</h4>
@@ -79,4 +80,5 @@
 						</div>
 				</article>
 			</section>
+			</div>
 			</main>

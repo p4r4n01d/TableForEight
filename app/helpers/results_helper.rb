@@ -39,7 +39,3 @@ module ResultsHelper
     raw(str + "</button>")
   end
 end
-
-									
-									
-
