@@ -32,8 +32,8 @@
 							<%= @events.attributes['name'+"%01d" % i ] %>
 
 							<div class="btn-group btn-float-left">
-							  <%= voteButton(-1, i, "link") %>
 							  <%= voteButton(1, i, "link") %>
+							  <%= voteButton(-1, i, "link") %>
 							</div>
 
 							<div class="panel-footer">
@@ -62,9 +62,9 @@
 						<div class="panel-heading">
 							{{ voteResult_when }}
 							<div class="btn-group" style="float: right">
-							  <%= voteButton(-1, i, "date") %>
-							  <%= voteButton(0, i, "date") %>
 							  <%= voteButton(1, i, "date") %>
+							  <%= voteButton(0, i, "date") %>
+							  <%= voteButton(-1, i, "date") %>
 							</div>
 
 							<div class="panel-footer">

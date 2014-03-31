@@ -10,8 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular
-//= require javascript
 //= require jquery
 //= require bs/bootstrap
 //= require turbolinks
@@ -21,5 +19,7 @@
 //= require scrollto/waypoints-sticky
 //= require scrollto/jquery.cycle2.min
 //= require scrollto/jquery.scrollto
+//= require angular
+//= require javascript
 //= require ctrl
 //= require_tree .
