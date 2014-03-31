@@ -137,15 +137,15 @@ and (max-device-width: 767px) {
 }
 .lighter-background{
 	color: #D83C33;
-	background-color: #FFF;	
-	opacity:0.90;
-	filter:Alpha(opacity=90);
+	background-color: white;	
+	opacity:0.95;
+	filter:Alpha(opacity=95);
 }
 .darker-background{
-	color: #D83C33;
-	background-color: #940603;	
-	opacity:0.90;
-	filter:Alpha(opacity=90);
+	color: #FBEAEA;
+	background-color: #D83C33;	
+	opacity:0.95;
+	filter:Alpha(opacity=95);
 }
 
 
