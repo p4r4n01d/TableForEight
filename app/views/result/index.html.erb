@@ -1,103 +1,123 @@
 
-	<main class="container">
-		<div id="eventRefresh">
+<main class="container">
+	<div id="eventRefresh">
 	
-			<section class="row offset darker-background" id="what">
-				<article class="center-section offset-bot">
-					<div class="service service-dark">
-						<i class="glyphicon glyphicon-info-sign service-icon"></i>
-						<h2>Result</h2>
+		<section class="row offset darker-background" id="what">
+			<article class="center-section offset-bot">
+				<div class="service service-dark">
+					<i class="glyphicon glyphicon-info-sign service-icon"></i>
+					<h2>Result</h2>
 
-						<h3>Select the date and place!</h3>
-						<p>
-							Your friends have voted which restaurant they want to go to and when they want to go.
-						</p>
-						<p>
-							Now it's up to you to set the date and place. 
-							Sounds good? Cool. Check these <span class="title-font">3</span> simple steps:
-							<dl id="num-list">
-								<dt>Who?</dt>
-								<dd>These are the friends who have already voted for the event. Follow up on those who haven't responded yet.</dd>
-
+					<h3>Select the date and place!</h3>
+					<p>
+						Your friends have voted which restaurant they want to go to and when they want to go.
+					</p>
+					<p>
+						Now it's up to you to set the date and place. 
+						Sounds good? Cool. Check these <span class="title-font">3</span> simple steps:
+						<dl id="num-list">
+							<dt>Who?</dt>
+							<dd>These are the friends who have already voted for the event. Follow up on those who haven't responded yet.</dd>
 								<dt>Where?</dt>
-								<dd>Select among the restaurants your friends voted on. They voted, but you still have the last say.</dd>
-
+							<dd>Select among the restaurants your friends voted on. They voted, but you still have the last say.</dd>
 								<dt>When?</dt>
-								<dd>Pick the date for the event</dd>
-							</dl>
-						</p>
-						<p>
-							Ok then, time to choose!
-						</p>
-					</div>	
-				</article>
-			</section>
+							<dd>Pick the date for the event</dd>
+						</dl>
+					</p>
+					<p>
+						Ok then, time to choose!
+					</p>
+				</div>	
+			</article>
+		</section>
 
-			<section class="row offset lighter-background" id="who">
-				<article class="center-section offset-bot">
-					<div class="service">
-						<i class="glyphicon glyphicon-list-alt service-icon"></i>
-						<h2>Who?</h2>
-						<h3>
-							Guests: <br />
-							<% @votes.each do |user| %>
-							  <%= user.email %><br />
-							<% end %>
-						</h3>
-						
-					</div>
-				</article>
-			</section>
+		<section class="row offset lighter-background" id="who">
+			<article class="center-section offset-bot">
+				<div class="service">
+					<i class="glyphicon glyphicon-list-alt service-icon"></i>
+					<h2>Who?</h2>
+					<h3>
+						Guests: <br />
+						<% @votes.each do |user| %>
+						  <%= user.email %><br />
+						<% end %>
+					</h3>
+					
+				</div>
+			</article>
+		</section>
 
-			<section class="row offset darker-background" id="where">
-				<article class="center-section offset-bot">
-					<div class="service service-dark">
+		<section class="row offset darker-background" id="where">
+			<article class="center-section offset-bot">
+				<div class="service service-dark">
 					<i class="glyphicon glyphicon-cutlery service-icon"></i>
+
 					<h2>Where?</h2>
-						<div class="bs-callout bs-callout-warning">
-							<% (1..5).each do |i| %>
-								<% if !@events.attributes["link#{i}"].blank? %>
-									<h4 class="result-indiv">
-										<%= @events.attributes['name'+"%01d" % i ] %>
-										<div class="btn-float-right">
-										   <% [1, -1].each do |value| %>
-										     <%= results_voteButton(value, i, "link") %>
-										   <% end %>
-											<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">Select
+					<% (1..5).each do |i| %>
+						<% if !@events.attributes["link#{i}"].blank? %>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									{{ voteResult_where }}
+									<%= @events.attributes['name'+"%01d" % i ] %>
+									<div class="btn-toolbar btn-float-right" role="toolbar">
+
+										<div class="btn-group">
+											<% [1, -1].each do |value| %>
+								    			<%= results_voteButton(value, i, "link") %>
+											<% end %>
+										</div>
+										<div class="btn-group">
+											<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">	Select
 												<span id="SelectPlace<%= i %>" data-original-title="Select this place:" class="glyphicon glyphicon-check"></span>
 											</button>
 										</div>
-									</h4>
-								<% end %>
-							<% end %>
-						</div>
-					</div>
-				</article>	
-			</section>
+									</div>
+									<div class="panel-footer">
+										<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
+									</div>
+								</div>
+							</div>
+						<% end %>
+					<% end %>
+				</div>
+			</article>	
+		</section>
 
-			<section class="row offset lighter-background" id="when">
-				<article class="center-section offset-bot">
-					<div class="service">
+		<section class="row offset lighter-background" id="when">
+			<article class="center-section offset-bot">
+				<div class="service">
 					<i class="glyphicon glyphicon-calendar service-icon"></i>
 					<h2>When?</h2>
-						<% (1..3).each do |i| %>
-							<% if !@events.attributes["date#{i}"].blank? %>
-								<h4 class="result-indiv">
-									<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
-									<div class="btn-float-right btn-dark-font">
-									   <% [1, -1, 0].each do |value| %>
-									     <%= results_voteButton(value, i, "date") %>
-									   <% end %>
-										<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
+					<% (1..3).each do |i| %>
+						<% if !@events.attributes["date#{i}"].blank? %>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<div class="btn-toolbar btn-float-right" role="toolbar">
+
+										<div class="btn-group">
+											<% [1, -1, 0].each do |value| %>
+									    		<%= results_voteButton(value, i, "date") %>
+											<% end %>
+										</div>
+										<div class="btn-group">
+											<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
 											<span id="SelectDate<%= i %>" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
 										</button>
+										</div>
 									</div>
-								</h4>
-							<% end %>
+									<div class="panel-footer">
+										<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
+									</div>
+								</div>
+							</div>
 						<% end %>
-					</div>
-				</article>	
-			</section>
+					<% end %>					
+					<input type="hidden" id="dtp_input4" value="" />
+				</div>	
+			</article>
+		</section>
+
 
 			<section class="row offset darker-background" id="invite">
 					<article class="center-section offset-bot">
@@ -115,5 +135,5 @@
 						</div>
 				</article>
 			</section>
-		</div>
-	</main>
+	</div>
+</main>
