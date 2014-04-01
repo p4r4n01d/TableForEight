@@ -47,10 +47,10 @@
 			<article class="center-section dynamic-height">
 				<div class="service">
 					<i class="glyphicon glyphicon-list-alt service-icon"></i>
-						<h2>Who?</h2>
-						<%= who_helper("Name", "user", "What's your name?", "organiser_name") %>
-						<%= who_helper("Email", "envelope", "What's your email?", "organiser_email") %>
-						<%= who_helper("Guest List", nil, "Enter your guest's emails", "guest_list") %>
+					<h2>Who?</h2>
+					<%= who_helper("Name", "user", "What's your name?", "organiser_name") %>
+					<%= who_helper("Email", "envelope", "What's your email?", "organiser_email") %>
+					<%= who_helper("Guest List", nil, "Enter your guest's emails", "guest_list") %>
 				</div>
 			</article>
 		</section>
@@ -101,17 +101,15 @@
 		</section>
 
 		<section class="row offset darker-background" id="invite">
-			<article class="center-section dynamic-height">
+			<article class="center-section offset-bot">
 				<div class="service service-dark">
 					<i class="glyphicon glyphicon-envelope service-icon"></i>
-					<div class="desc dynamic-height">
-						<h2>Invite!</h2>
-						<p>{{ inviteResult }}</p>
-						<div id="resultDivContainer"></div>
-						<div class="btn-group">
-							<button type="button" class="btn btn-default btn-lg" ng-click="sendInvite()">
-							<span class="glyphicon glyphicon-envelope"></span> Send!</button>
-						</div>
+					<h2>Invite!</h2>
+					<p>{{ inviteResult }}</p>
+					<div id="resultDivContainer"></div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default btn-lg" ng-click="sendInvite()">
+						<span class="glyphicon glyphicon-envelope"></span> Send!</button>
 					</div>
 				</div>
 			</article>

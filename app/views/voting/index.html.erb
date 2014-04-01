@@ -2,52 +2,83 @@
 <main class="container">
 	<div id="eventRefresh">
 
-		<section class="row" id="home">
-			<article class="subcontainer offset-bot">
-				<article class="center-section">
-					<header>
-						<h3 class="light-text">Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)</h3>
-						<h3 class="light-text">Guest: <%= @votes.email %></h3>
-					</header>
-				</article>
+		<section class="row offset darker-background" id="what">
+			<article class="center-section offset-bot">
+				<div class="service service-dark">
+					<i class="glyphicon glyphicon-info-sign service-icon"></i>
+					<h2>Voting</h2>
+
+					<h3>You have been invited!</h3>
+					<p>
+						So your buddy <%= @events.organiser_name %> <span class="colorDark">(<%= @events.organiser_email %>)</span> has invited you out! Aren't you a popular one!
+					</p>
+					<p>
+						Help with the planning by letting <%= @events.organiser_name %> know your preferrences!
+						We'll tally up the votes later.
+						Sounds good? Cool. Just follow these <span class="title-font">3</span> simple steps:
+						<dl id="num-list">
+							<dt>Who?</dt>
+							<dd>Check that you know this person. Or not. Blind dates are also cool, I guess.</dd>
+
+							<dt>Where?</dt>
+							<dd>Something tickles your fancy? Give the places a thumbs up! Or thumbs down, whatever floats your boat.</dd>
+
+							<dt>When?</dt>
+							<dd>Are you free at the listed times?</dd>
+						</dl>
+					</p>
+					<p>
+						Alrighty! Voting time!
+					</p>
+				</div>	
 			</article>
 		</section>
 
-		<section class="row offset lighter-background" id="where">
-			<article class="subcontainer">
-				<article class="center-section">
-					<div class="service dynamic-height">
-						<i class="glyphicon glyphicon-cutlery service-icon"></i>
-						<h2>Where?</h2>
-						<% (1..5).each do |i| %>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									{{ voteResult_where }}
-									<%= @events.attributes['name'+"%01d" % i ] %>
 
-									<div class="btn-group btn-float-right">
-									  <%= voteButton(1, i, "link") %>
-									  <%= voteButton(-1, i, "link") %>
-									</div>
+		<section class="row offset lighter-background" id="who">
+			<article class="center-section offset-bot">
+				<div class="service">
+					<i class="glyphicon glyphicon-list-alt service-icon"></i>
+					<h2>Who?</h2>
+					<h3>Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)</h3>
+					<h3>Guest: <%= @votes.email %></h3>
+				</div>
+			</article>
+		</section>					
 
-									<div class="panel-footer">
-										<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
-									</div>
+		<section class="row offset darker-background" id="where">
+			<article class="center-section offset-bot">
+				<div class="service service-dark">
+					<i class="glyphicon glyphicon-cutlery service-icon"></i>
+					<h2>Where?</h2>
+					<% (1..5).each do |i| %>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								{{ voteResult_where }}
+								<%= @events.attributes['name'+"%01d" % i ] %>
+
+								<div class="btn-group btn-float-right">
+								  <%= voteButton(1, i, "link") %>
+								  <%= voteButton(-1, i, "link") %>
+								</div>
+
+								<div class="panel-footer">
+									<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
 								</div>
 							</div>
-						<% end %>
-					</div>	
-				</article>
+						</div>
+					<% end %>
+				</div>	
 			</article>
 		</section>
 
-		<section class="row offset" id="when">
-			<article class="subcontainer">
-				<article class="center-section">
-					<div class="service service-dark dynamic-height">
-						<i class="glyphicon glyphicon-calendar service-icon"></i>
-						<h2>When?</h2>
-						<% (1..3).each do |i| %>
+
+		<section class="row offset lighter-background" id="when">
+			<article class="center-section offset-bot">
+				<div class="service">
+					<i class="glyphicon glyphicon-calendar service-icon"></i>
+					<h2>When?</h2>
+					<% (1..3).each do |i| %>
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								{{ voteResult_when }}
@@ -62,24 +93,27 @@
 								</div>
 							</div>
 						</div>
-						<% end %>
-						<input type="hidden" id="dtp_input4" value="" />
-					</div>	
-				</article>
+					<% end %>
+					<input type="hidden" id="dtp_input4" value="" />
+				</div>	
 			</article>
 		</section>
 
-		<section class="row offset lighter-background dark-text dynamic-height" id="invite">
-			<article class="subcontainer bot-offset">
-				<article class="center-section">
-						<h3>Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br /></h3>
-						<h3>Guest: <%= @votes.email %><br /></h3>
-						<h3>{{ voteResult_confirm }}<br /></h3>
-							<button type="button" class="btn btn-default btn-lrg btn-float-right" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'confirmed', '', '1')"><span class="glyphicon glyphicon-thumbs-up"></span> Yes I'm going!</button><br /><br />
-						</h3>
-				</article>
+
+
+		<section class="row offset darker-background" id="invite">
+			<article class="center-section offset-bot">
+				<div class="service service-dark">
+					<i class="glyphicon glyphicon-envelope service-icon"></i>
+					<h2>Alright!</h2>
+					<p>
+						So, what do you say?
+					</p>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default btn-lg" ng-click="vote_process(<%= @events.id %>,<%= @votes.id %>, 'confirmed', '', '1')"><span class="glyphicon glyphicon-thumbs-up"></span> Yes I'm going!</button><br /><br />
+					</div>
+					<h3>{{ voteResult_confirm }}<br /></h3>
 			</article>
 		</section>
-
 	</div>
 </main>
