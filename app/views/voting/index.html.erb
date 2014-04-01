@@ -52,21 +52,23 @@
 					<i class="glyphicon glyphicon-cutlery service-icon"></i>
 					<h2>Where?</h2>
 					<% (1..5).each do |i| %>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								{{ voteResult_where }}
-								<%= @events.attributes['name'+"%01d" % i ] %>
+						<% if !@events.attributes["link#{i}"].blank? %>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									{{ voteResult_where }}
+									<%= @events.attributes['name'+"%01d" % i ] %>
 
-								<div class="btn-group btn-float-right">
-								  <%= voteButton(1, i, "link") %>
-								  <%= voteButton(-1, i, "link") %>
-								</div>
+									<div class="btn-group btn-float-right">
+									  <%= voteButton(1, i, "link") %>
+									  <%= voteButton(-1, i, "link") %>
+									</div>
 
-								<div class="panel-footer">
-									<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
+									<div class="panel-footer">
+										<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
+									</div>
 								</div>
 							</div>
-						</div>
+						<% end %>
 					<% end %>
 				</div>	
 			</article>
@@ -79,21 +81,23 @@
 					<i class="glyphicon glyphicon-calendar service-icon"></i>
 					<h2>When?</h2>
 					<% (1..3).each do |i| %>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								{{ voteResult_when }}
-								<div class="btn-group" style="float: right">
-								  <%= voteButton(1, i, "date") %>
-								  <%= voteButton(0, i, "date") %>
-								  <%= voteButton(-1, i, "date") %>
-								</div>
+						<% if !@events.attributes["date#{i}"].blank? %>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									{{ voteResult_when }}
+									<div class="btn-group" style="float: right">
+									  <%= voteButton(1, i, "date") %>
+									  <%= voteButton(0, i, "date") %>
+									  <%= voteButton(-1, i, "date") %>
+									</div>
 
-								<div class="panel-footer">
-									<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
+									<div class="panel-footer">
+										<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
+									</div>
 								</div>
 							</div>
-						</div>
-					<% end %>
+						<% end %>
+					<% end %>					
 					<input type="hidden" id="dtp_input4" value="" />
 				</div>	
 			</article>

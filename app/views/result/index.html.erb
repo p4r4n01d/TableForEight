@@ -25,17 +25,19 @@
 						<h2 class="result-group">Restaurant</h2>
 							<div class="bs-callout bs-callout-warning">
 								<% (1..5).each do |i| %>
-								<h4 class="dark-text result-indiv">
-									<%= @events.attributes['name'+"%01d" % i ] %>
-								<div class="btn-float-right">
-								   <% [1, -1].each do |value| %>
-								     <%= results_voteButton(value, i, "link") %>
-								   <% end %>
-									<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">Select
-										<span id="SelectPlace<%= i %>" data-original-title="Select this place:" class="glyphicon glyphicon-check"></span>
-									</button>
-								</div>
-								</h4>
+									<% if !@events.attributes["link#{i}"].blank? %>
+									<h4 class="dark-text result-indiv">
+										<%= @events.attributes['name'+"%01d" % i ] %>
+									<div class="btn-float-right">
+									   <% [1, -1].each do |value| %>
+									     <%= results_voteButton(value, i, "link") %>
+									   <% end %>
+										<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">Select
+											<span id="SelectPlace<%= i %>" data-original-title="Select this place:" class="glyphicon glyphicon-check"></span>
+										</button>
+									</div>
+									</h4>
+									<% end %>
 								<% end %>
 							</div>
 						</div>
@@ -51,17 +53,19 @@
 						<h2>Date and Time</h2>
 							<div class="bs-callout bs-callout-warning">
 								<% (1..3).each do |i| %>
-								<h4 class="result-indiv">
-								<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
-								<div class="btn-float-right btn-dark-font">
-								   <% [1, -1, 0].each do |value| %>
-								     <%= results_voteButton(value, i, "date") %>
-								   <% end %>
-									<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
-										<span id="SelectDate<%= i %>" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
-									</button>
-								</div>
-								</h4>
+									<% if !@events.attributes["date#{i}"].blank? %>
+									<h4 class="result-indiv">
+									<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
+									<div class="btn-float-right btn-dark-font">
+									   <% [1, -1, 0].each do |value| %>
+									     <%= results_voteButton(value, i, "date") %>
+									   <% end %>
+										<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
+											<span id="SelectDate<%= i %>" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
+										</button>
+									</div>
+									</h4>
+									<% end %>
 								<% end %>
 							</div>
 						</div>
