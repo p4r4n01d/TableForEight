@@ -204,70 +204,73 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	
 	// SENDING INVITATION
 	$scope.sendInvite = function() {
-	var d = new Date();
-	var month = d.getMonth()+1;
-	var day = d.getDate();
-	var datetime = d.getFullYear() + '/' +
-		(month<10 ? '0' : '') + month + '/' +
-		(day<10 ? '0' : '') + day;
-	EventJSON = {
-	"event": 
-	{ "date":$scope.date1,
-	 "cutoff_at":$scope.date4,
-	 "link1":$scope.restUrl1,
-	 "name1":$scope.name1,
-	 "link2":$scope.restUrl2,
-	 "name2":$scope.name2,
-	 "link3":$scope.restUrl3,
-	 "name3":$scope.name3,
-	 "link4":$scope.restUrl4,
-	 "name4":$scope.name4,
-	 "link5":$scope.restUrl5,
-	 "name5":$scope.name5,
-	 "date1":$scope.date1,
-	 "date2":$scope.date2,
-	 "date3":$scope.date3,
-	 "organiser_email":$scope.organiser_email,
-	 "organiser_name":$scope.organiser_name }
-	 };
-	emailList = $scope.guest_list.split(";");
-	if($scope.guest_list.split("\n").length>1){
-		emailList = $scope.guest_list.split("\n");
-	}
-	if($scope.guest_list.split(" ").length>1){
-		emailList = $scope.guest_list.split(" ");
-	}
-	if(emailList.length>1)
-	{
-		EventJsonNew="";
-		EventJsonNew=JSONInterface("/api/events", EventJSON, "POST", "created");
-		if(EventJsonNew!=null)
-		{
-			DataSaved=false;
-			for(i=0;i<emailList.length;i++)
-			{
-				VoteJSON = {
-				"vote": 
-				{ "email":emailList[i].replace(";","").replace("\n","").replace(" ","").replace("<","").replace(">",""),
-				 "link1":"-1",
-				 "link2":"-1",
-				 "link3":"-1",
-				 "link4":"-1",
-				 "link5":"-1",
-				 "date1":"-1",
-				 "date2":"-1",
-				 "date3":"-1",
-				 "confirmed":false }
-				};
-				VoteJsonNew="";
-				VoteJsonNew=JSONInterface("/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
-				if(VoteJsonNew!=null) DataSaved=true;
-				else DataSaved=false;
+		var d = new Date();
+		var month = d.getMonth()+1;
+		var day = d.getDate();
+		var datetime = d.getFullYear() + '/' +
+			(month<10 ? '0' : '') + month + '/' +
+			(day<10 ? '0' : '') + day;
+		var ErrorString="";
+		if(ErrorString==""){
+			EventJSON = {
+			"event": 
+			{ "date":$scope.date1,
+			 "cutoff_at":$scope.date4,
+			 "link1":$scope.restUrl1,
+			 "name1":$scope.name1,
+			 "link2":$scope.restUrl2,
+			 "name2":$scope.name2,
+			 "link3":$scope.restUrl3,
+			 "name3":$scope.name3,
+			 "link4":$scope.restUrl4,
+			 "name4":$scope.name4,
+			 "link5":$scope.restUrl5,
+			 "name5":$scope.name5,
+			 "date1":$scope.date1,
+			 "date2":$scope.date2,
+			 "date3":$scope.date3,
+			 "organiser_email":$scope.organiser_email,
+			 "organiser_name":$scope.organiser_name }
+			 };
+			emailList = $scope.guest_list.split(";");
+			if($scope.guest_list.split("\n").length>1){
+				emailList = $scope.guest_list.split("\n");
 			}
-			if(DataSaved) $scope.inviteResult = "Email Sent";
-			else $scope.inviteResult = "Email Not Sent";
+			if($scope.guest_list.split(" ").length>1){
+				emailList = $scope.guest_list.split(" ");
+			}
+			if(emailList.length>1)
+			{
+				EventJsonNew="";
+				EventJsonNew=JSONInterface("/api/events", EventJSON, "POST", "created");
+				if(EventJsonNew!=null)
+				{
+					DataSaved=false;
+					for(i=0;i<emailList.length;i++)
+					{
+						VoteJSON = {
+						"vote": 
+						{ "email":emailList[i].replace(";","").replace("\n","").replace(" ","").replace("<","").replace(">",""),
+						 "link1":"-1",
+						 "link2":"-1",
+						 "link3":"-1",
+						 "link4":"-1",
+						 "link5":"-1",
+						 "date1":"-1",
+						 "date2":"-1",
+						 "date3":"-1",
+						 "confirmed":false }
+						};
+						VoteJsonNew="";
+						VoteJsonNew=JSONInterface("/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
+						if(VoteJsonNew!=null) DataSaved=true;
+						else DataSaved=false;
+					}
+					if(DataSaved) $scope.inviteResult = "Email Sent";
+					else $scope.inviteResult = "Email Not Sent";
+				}
+			}
 		}
-	}
 	};
 }]);
 
