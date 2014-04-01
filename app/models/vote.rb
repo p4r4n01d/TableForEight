@@ -108,5 +108,12 @@ class Vote < ActiveRecord::Base
        }
      }}}
   end
+  before_create :assign_unique_token
+
+  private
+
+  def assign_unique_token
+    self.unique_id = SecureRandom.hex(50)
+  end
 
 end

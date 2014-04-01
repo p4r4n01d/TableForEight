@@ -58,7 +58,7 @@ class EventsController < ApplicationController
 
   private
   def fetch_event
-	@event = Event.find_by_id(params[:id])
+	@event = Event.where('unique_id' => params[:id]).first
   end
   
   def db_op_failed(id=params[:id])

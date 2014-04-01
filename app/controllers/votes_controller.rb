@@ -75,7 +75,7 @@ class VotesController < ApplicationController
     end
 
     def get_vote
-      @vote = Vote.find_by_id(params[:id])
+      @vote = Vote.where('unique_id' => params[:id]).first
       if !@vote
         vote_not_found(params[:id])
       end
@@ -83,7 +83,7 @@ class VotesController < ApplicationController
 
     def get_event_vote
       get_event
-      @vote = @event.votes.find_by_id(params[:vote_id])
+      @vote = @event.votes.where('unique_id' => params[:vote_id]).first
       if !@vote
         vote_not_found(params[:vote_id])
       end

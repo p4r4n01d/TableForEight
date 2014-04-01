@@ -1,9 +1,9 @@
 class ResultController < ApplicationController
   def index
-   @events = Event.find_by_id(params[:event_id])
+   @events = Event.where('unique_id' => params[:event_id]).first
   end
   def update
-    @event = Event.find_by_id(params[:event_id])
+    @event = Event.where('unique_id' => params[:event_id]).first
     @votes = @event.votes
     UserMailer.admin_email(@votes, @event).deliver
     @votes.each do |vote|

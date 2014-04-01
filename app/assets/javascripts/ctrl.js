@@ -227,11 +227,13 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	 "date1":$scope.date1,
 	 "date2":$scope.date2,
 	 "date3":$scope.date3,
-	 "hash":$scope.organiser_email+datetime,
 	 "organiser_email":$scope.organiser_email,
 	 "organiser_name":$scope.organiser_name }
 	 };
 	emailList = $scope.guest_list.split(";");
+	if(emailList.length<=0)emailList = $scope.guest_list.split("\n");
+	if(emailList.length<=0)emailList = $scope.guest_list.split(";");
+	if(emailList.length<=0)emailList = $scope.guest_list.split(" ");
 	if(emailList.length>0)
 	{
 		EventJsonNew="";
@@ -241,9 +243,10 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 			DataSaved=false;
 			for(i=0;i<emailList.length;i++)
 			{
+				alert("Email: "+emailList[i].replace(";","").replace("\n","").replace(" ","").replace("<","").replace(">",""));
 				VoteJSON = {
 				"vote": 
-				{ "email":emailList[i].replace("\n","").replace(" ",""),
+				{ "email":emailList[i].replace(";","").replace("\n","").replace(" ","").replace("<","").replace(">",""),
 				 "link1":"-1",
 				 "link2":"-1",
 				 "link3":"-1",
@@ -254,7 +257,6 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 				 "date3":"-1",
 				 "confirmed":false }
 				};
-				//alter votes controller to give out the same format in creating votes
 				VoteJsonNew=JSONInterface("/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
 				if(VoteJsonNew!=null) DataSaved=true;
 				else DataSaved=false;
