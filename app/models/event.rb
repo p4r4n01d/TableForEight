@@ -8,6 +8,6 @@ class Event < ActiveRecord::Base
   private
 
   def assign_unique_token
-    self.unique_id = SecureRandom.hex(50)
+    self.unique_id = SecureRandom.hex(24)
   end
 end
