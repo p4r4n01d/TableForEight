@@ -1,7 +1,7 @@
 class ResultController < ApplicationController
   def index
    @events = Event.where('unique_id' => params[:event_id]).first
-    @votes = @event.votes
+    @votes = @events.votes
   end
   def update
     @event = Event.where('unique_id' => params[:event_id]).first

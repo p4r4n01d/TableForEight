@@ -21,7 +21,7 @@ class VotesController < ApplicationController
   # GET /api/get/:event_id
   def countvotes
     respond_to do |format|
-      format.json { render json: @event.votes.get_count_details(params[:event_id]) }
+      format.json { render json: @event.votes.get_count_details(@event.id.to_s) }
     end
   end
 
@@ -67,7 +67,7 @@ class VotesController < ApplicationController
 
   private
     def get_event
-      @event = Event.find_by_id(params[:event_id])
+      @event = Event.where('unique_id' => params[:event_id]).first
       if !@event
         render json: "No event was found with id: " << params[:event_id],
           status: :unprocessable_entity

@@ -5,7 +5,7 @@ module VotesHelper
   # i: The number of this button in sequence
   # type: What this button is for 
   def voteButton(value, i, type)
-    str = "<button type=\"button\" class=\"btn btn-default\" ng-click=\"vote_process(#{@events.unique_id}, #{@votes.unique_id}, '#{type}#{i}', #{value})\">"
+    str = "<button type=\"button\" class=\"btn btn-default\" ng-click=\"vote_process('#{@events.unique_id}', '#{@votes.unique_id}', '#{type}#{i}', #{value})\">"
     spanClass = nil
 
     case value
