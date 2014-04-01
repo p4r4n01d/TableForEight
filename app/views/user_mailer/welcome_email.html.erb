@@ -35,7 +35,7 @@
 	  Your friend <%= @event.organiser_name %> is planning a hangout. Help 'em decide when and where! Following this link to vote:<br />
 	</p>
 	<p>
-	  <a href="http://tableforeight.herokuapp.com/voting/<%= @event.id %>/<%= @user.id %>">http://tableforeight.herokuapp.com/voting/<%= @event.id %>/<%= @user.id %></a>.
+	  <a href="http://tableforeight.herokuapp.com/voting/<%= @event.unique_id %>/<%= @user.unique_id %>">http://tableforeight.herokuapp.com/voting/<%= @event.unique_id %>/<%= @user.unique_id %></a>.
 	</p>
 	<p>
 	  Voting ends on <%= @event.cutoff_at %>.

@@ -32,7 +32,7 @@
 		<td bgcolor="#FFFFFF" style="padding: 20px;">
 		<h1>Hello, <%= @event.organiser_name %></h1>
 			<p>
-			  To view voting Resutls &amp; stats goto the site, just follow this link: <a href="http://tableforeight.herokuapp.com/result/<%= @event.id %>">http://tableforeight.herokuapp.com/result/<%= @event.id %></a>.
+			  To view voting Resutls &amp; stats goto the site, just follow this link: <a href="http://tableforeight.herokuapp.com/result/<%= @event.unique_id %>">http://tableforeight.herokuapp.com/result/<%= @event.unique_id %></a>.
 			</p>
 			<p>
 			  Please do your voting before <%= @event.cutoff_at %>.
