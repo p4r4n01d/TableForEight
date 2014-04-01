@@ -27,7 +27,7 @@
 							<dd>Are you free at the listed times? Check your schedule. Choose your available times.</dd>
 	
 							<dt>Confirm!</dt>
-							<dd>Final answer? Lock it in!</dd>
+							<dd>Is that your final answer? Lock it in!</dd>
 
 						</dl>
 					</p>
@@ -112,7 +112,7 @@
 						So, what do you say?
 					</p>
 					<div class="btn-group">
-						<button type="button" class="btn btn-default btn-lg" ng-click="vote_process('<%= @events.unique_id %>','<%= @votes.unique_id %>', 'confirmed', '', '1')"><span class="glyphicon glyphicon-thumbs-up"></span> Yes I'm going!</button><br /><br />
+						<button type="button" class="btn btn-default btn-lg" ng-click="vote_process('<%= @events.unique_id %>','<%= @votes.unique_id %>', 'confirmed', '', '1')"><span class="glyphicon glyphicon-thumbs-up"></span> Yes, I'm going!</button><br /><br />
 					</div>
 					<h3>{{ voteResult_confirm }}<br /></h3>
 			</article>

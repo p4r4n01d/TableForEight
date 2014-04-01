@@ -21,7 +21,7 @@ h1{
 	text-align: center;
 }
 h3{
-	color: #323232;
+	color: #C8C8C8;
 }
 
 /**/
@@ -136,15 +136,11 @@ and (max-device-width: 767px) {
 }
 .lighter-background{
 	color: #D83C33;
-	background-color: white;	
-	opacity:0.95;
-	filter:Alpha(opacity=95);
+	background-color: white;
 }
 .darker-background{
 	color: #FBEAEA;
-	background-color: #D83C33;	
-	opacity:0.95;
-	filter:Alpha(opacity=95);
+	background-color: #D83C33;
 }
 
 
@@ -343,7 +339,7 @@ footer{
 	position: relative;
 	padding-left: 40px;
 	font-weight: bold;
-	color: #323232;
+	color: #B4B4B4;
 }
 #num-list dt:before {
 	content: counter(list-count);

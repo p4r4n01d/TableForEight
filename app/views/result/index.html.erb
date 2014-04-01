@@ -118,22 +118,24 @@
 			</article>
 		</section>
 
-
-			<section class="row offset darker-background" id="invite">
-					<article class="center-section offset-bot">
-						<div class="service service-dark" ng-init="results('<%= @events.unique_id %>')">
-							<i class="glyphicon glyphicon-ok service-icon"></i>
-							<div>
-							<h2>Event Summary</h2>
-							<h3 class="dark-text">Restaurant: {{ selectedRestaurant }}<br />
+		<section class="row offset darker-background" id="invite">
+			<article class="center-section offset-bot">
+				<div class="service service-dark" ng-init="results('<%= @events.unique_id %>')">
+					<i class="glyphicon glyphicon-ok service-icon"></i>
+					<div>
+						<h2>Event Summary</h2>
+						<h3 class="dark-text">
+							Restaurant: {{ selectedRestaurant }}<br />
 							Website: {{ selectedRestaurantUrl }}<br />
-							Date: {{ selectedDate }}</h3>
-								<button type="button" class="btn btn-default btn-float-right btn-m" ng-click="confirmation('<%= @events.unique_id %>')">Confirm Event
-									<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
-								</button>
-							</div>
-						</div>
-				</article>
-			</section>
+							Date: {{ selectedDate }}
+						</h3>
+						<button type="button" class="btn btn-default btn-lg" ng-click="confirmation('<%= @events.unique_id %>')">Confirm Event
+							<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
+						</button>
+					</div>
+				</div>
+			</article>
+		</section>
+
 	</div>
 </main>
