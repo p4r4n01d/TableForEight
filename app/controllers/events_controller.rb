@@ -24,7 +24,7 @@ class EventsController < ApplicationController
 	  # Have to make sure event is non-null first
 	  if !!@event && @event.save
 		UserMailer. admin_welcome_email(@event).deliver
-		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.id}}}
+		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.unique_id}}}
 	  else
 	    format.json { render json: db_op_failed(event_params),
 	        status: :unprocessable_entity }
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
   def update
 	respond_to do |format|
 	  if !!@event && @event.update_attributes(event_params)
-		format.json { render :json=>{:status=>'ok',:events=>{:id=>@event.id}}}
+		format.json { render :json=>{:status=>'ok',:events=>{:id=>@event.unique_id}}}
 	  else
 	    format.json { render json: db_op_failed,
 	        status: :unprocessable_entity }

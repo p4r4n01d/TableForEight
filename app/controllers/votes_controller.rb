@@ -32,7 +32,7 @@ class VotesController < ApplicationController
       if @vote.save
         UserMailer.welcome_email(@vote, @event).deliver
         format.json { render :json => {:status => 'created',
-          :events => {:id => @vote.id}}, status: :created}
+          :events => {:id => @vote.unique_id}}, status: :created}
       else
         format.json { render json: @vote.errors.full_messages,
           status: :unprocessable_entity }
