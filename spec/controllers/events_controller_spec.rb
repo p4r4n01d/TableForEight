@@ -36,7 +36,7 @@ describe EventsController do
     it "sends a single event" do
       DatabaseCleaner.start
       event = FactoryGirl.create(:event)
-      get :show, {:id => event.id}
+      get :show, {:id => event.unique_id}
 
       # Check for 200 status code
       assert_response(200)
@@ -87,7 +87,7 @@ describe EventsController do
       DatabaseCleaner.start
       event = FactoryGirl.create(:event)
 
-      patch :update, {:id => event.id, "organiser_name" => "John"}
+      patch :update, {:id => event.unique_id, "organiser_name" => "John"}
 
       expect(response).to be_success
       DatabaseCleaner.clean
@@ -97,7 +97,7 @@ describe EventsController do
       DatabaseCleaner.start
       event = FactoryGirl.create(:event)
 
-      patch :update, {:id => event.id, :event => {:link1 => nil}}
+      patch :update, {:id => event.unique_id, :event => {:link1 => nil}}
 
       # Check for 422 status code
       assert_response(422)
@@ -107,7 +107,7 @@ describe EventsController do
     it "destroys an existing event" do
       DatabaseCleaner.start
       event = FactoryGirl.create(:event)
-      delete :destroy, {:id => event.id}
+      delete :destroy, {:id => event.unique_id}
       expect(response).to be_success
       DatabaseCleaner.clean
     end

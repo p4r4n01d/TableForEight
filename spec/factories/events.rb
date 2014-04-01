@@ -7,7 +7,7 @@ FactoryGirl.define do
     link1 "http://www.superawsomerestraunt.com.au"
     date1 "2014-05-05 12:00:00"
     organiser_email
-    
+
     factory :event_with_votes do
       # Number of votes for this event. It is is declared as an ignored
       # attribute and available in attributes on the factory, as well as the

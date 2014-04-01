@@ -46,7 +46,7 @@ describe VotesController do
       DatabaseCleaner.start
       votes_list = FactoryGirl.create(:event_with_votes, votes_count: 1)
       vote = votes_list.votes[0]
-      get :show, :id => vote.id
+      get :show, :id => vote.unique_id
       
       # Check for 200 status code
       expect(response).to be_success
@@ -69,7 +69,7 @@ describe VotesController do
         "link1" => 1)
       vote = votes_list.votes[0]
 
-      patch :update, {:event_id => votes_list.id, :vote_id => vote.id,
+      patch :update, {:event_id => votes_list.id, :vote_id => vote.unique_id,
         :vote => {"link1" => -1, "link2" => 1}}
 
       expect(response).to be_success
@@ -112,7 +112,7 @@ describe VotesController do
       votes_list = FactoryGirl.create(:event_with_votes, votes_count: 1)
       vote = votes_list.votes[0]
 
-      delete :destroy, {:id => vote.id}
+      delete :destroy, {:id => vote.unique_id}
       expect(response).to be_success
       DatabaseCleaner.clean
     end
