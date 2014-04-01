@@ -48,6 +48,10 @@
 				<div class="service">
 					<i class="glyphicon glyphicon-list-alt service-icon"></i>
 					<h2>Who?</h2>
+					<button onclick="hello('facebook').login(function(){
+    alert("You are signed in to Facebook");
+})">facebook</button>
+
 					<%= who_helper("Name", "user", "What's your name?", "organiser_name") %>
 					<%= who_helper("Email", "envelope", "What's your email?", "organiser_email") %>
 					<%= who_helper("Guest List", nil, "Enter your guest's emails", "guest_list") %>

@@ -25,4 +25,5 @@
 //= require angular
 //= require javascript
 //= require ctrl
+//= require hello.all.js
 //= require_tree .
