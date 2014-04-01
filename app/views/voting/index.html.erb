@@ -89,7 +89,7 @@
 								</div>
 
 								<div class="panel-footer">
-									<%= @events.attributes['date'+"%01d" % i ] %>
+									<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
 								</div>
 							</div>
 						</div>

@@ -42,7 +42,13 @@ describe EventsController do
       assert_response(200)
 
       # check that the message attributes are the same.
-      expect(JSON.parse(response.body)['id']).to eq(event.id)
+      json = JSON.parse(response.body)
+
+      fields = ['id', 'link1', 'organiser_email']
+      fields.each do |field|
+        expect(json[field]).to eq(event[field])
+      end
+
       DatabaseCleaner.clean
     end
 

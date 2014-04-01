@@ -38,4 +38,8 @@ module ResultsHelper
     end
     raw(str + "</button>")
   end
+  
+  def prettyPrintDate(date)
+    date.strftime("%a, %d %b %Y %I:%M %p")
+  end
 end

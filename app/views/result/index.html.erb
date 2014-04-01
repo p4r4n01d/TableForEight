@@ -52,7 +52,7 @@
 							<div class="bs-callout bs-callout-warning">
 								<% (1..3).each do |i| %>
 								<h4 class="result-indiv">
-								<%= @events.attributes['date'+"%01d" % i ] %>
+								<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
 								<div class="btn-float-right btn-dark-font">
 								   <% [1, -1, 0].each do |value| %>
 								     <%= results_voteButton(value, i, "date") %>

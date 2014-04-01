@@ -55,14 +55,14 @@ describe VotesController do
       expect(json['id']).to eq(vote.id)
       DatabaseCleaner.clean
     end
-    
+
     it "sends null when vote does not exist" do
       get :show, :id => 100
 
       # Check for 200 status code
       assert_response(:unprocessable_entity)
     end
-    
+
     it "updates an existing vote" do
       DatabaseCleaner.start
       votes_list = FactoryGirl.create(:event_with_votes, votes_count: 1,
@@ -75,20 +75,20 @@ describe VotesController do
       expect(response).to be_success
       DatabaseCleaner.clean
     end
-    
+
     it "creates a new vote for an event" do
       DatabaseCleaner.start
       event = FactoryGirl.create(:event)
-      
+
       post :create, {:event_id => event.id, :vote => {"email" => "voter11235@spamgoes.in"}}
-      expect(response).to be_success
+      assert_response(:created)
       DatabaseCleaner.clean
     end
-    
+
     it "does not create vote with invalid fields" do
       DatabaseCleaner.start
       event = FactoryGirl.create(:event)
-      
+
       post :create, {:event_id => event.id, :vote => {"email" => "bob"}}
       assert_response(:unprocessable_entity)
       DatabaseCleaner.clean

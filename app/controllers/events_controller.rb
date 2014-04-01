@@ -55,7 +55,7 @@ class EventsController < ApplicationController
 	  end
 	end
   end
-  
+
   private
   def fetch_event
 	@event = Event.find_by_id(params[:id])
