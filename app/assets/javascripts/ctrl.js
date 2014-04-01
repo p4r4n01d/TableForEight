@@ -231,10 +231,13 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	 "organiser_name":$scope.organiser_name }
 	 };
 	emailList = $scope.guest_list.split(";");
-	if(emailList.length<=0)emailList = $scope.guest_list.split("\n");
-	if(emailList.length<=0)emailList = $scope.guest_list.split(";");
-	if(emailList.length<=0)emailList = $scope.guest_list.split(" ");
-	if(emailList.length>0)
+	if($scope.guest_list.split("\n").length>1){
+		emailList = $scope.guest_list.split("\n");
+	}
+	if($scope.guest_list.split(" ").length>1){
+		emailList = $scope.guest_list.split(" ");
+	}
+	if(emailList.length>1)
 	{
 		EventJsonNew="";
 		EventJsonNew=JSONInterface("/api/events", EventJSON, "POST", "created");
@@ -243,7 +246,6 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 			DataSaved=false;
 			for(i=0;i<emailList.length;i++)
 			{
-				alert("Email: "+emailList[i].replace(";","").replace("\n","").replace(" ","").replace("<","").replace(">",""));
 				VoteJSON = {
 				"vote": 
 				{ "email":emailList[i].replace(";","").replace("\n","").replace(" ","").replace("<","").replace(">",""),
@@ -257,6 +259,7 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 				 "date3":"-1",
 				 "confirmed":false }
 				};
+				VoteJsonNew="";
 				VoteJsonNew=JSONInterface("/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
 				if(VoteJsonNew!=null) DataSaved=true;
 				else DataSaved=false;
