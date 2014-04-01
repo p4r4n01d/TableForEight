@@ -40,6 +40,6 @@ module ResultsHelper
   end
   
   def prettyPrintDate(date)
-    date.strftime("%a, %d %b %Y %I:%M %p")
+    date.strftime("%I:%M %p on %a, %d %b %Y")
   end
 end

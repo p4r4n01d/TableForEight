@@ -10,21 +10,25 @@
 
 					<h3>You have been invited!</h3>
 					<p>
-						So your buddy <%= @events.organiser_name %> <span class="colorDark">(<%= @events.organiser_email %>)</span> has invited you out! Aren't you a popular one!
+						So your buddy <%= @events.organiser_name %> <span class="colorDark">(<%= @events.organiser_email %>)</span> has invited you out!
 					</p>
 					<p>
-						Help with the planning by letting <%= @events.organiser_name %> know your preferrences!
+						Help <%= @events.organiser_name %> with the planning by voting for your preferrences!
 						We'll tally up the votes later.
 						Sounds good? Cool. Just follow these <span class="title-font">3</span> simple steps:
 						<dl id="num-list">
-							<dt>Who?</dt>
-							<dd>Check that you know this person. Or not. Blind dates are also cool, I guess.</dd>
+					<!--		<dt>Who?</dt>
+							<dd>Check that you know this person. Or not. Blind dates are cool too, I guess.</dd>	-->
 
 							<dt>Where?</dt>
-							<dd>Something tickles your fancy? Give the places a thumbs up! Or thumbs down, whatever floats your boat.</dd>
+							<dd>See something that tickles your fancy? Give it a thumbs up! Or thumbs down, whatever floats your boat.</dd>
 
 							<dt>When?</dt>
 							<dd>Are you free at the listed times?</dd>
+	
+							<dt>Confirm!</dt>
+							<dd>Final answer? Lock it in!</dd>
+
 						</dl>
 					</p>
 					<p>
@@ -33,7 +37,6 @@
 				</div>	
 			</article>
 		</section>
-
 
 		<section class="row offset lighter-background" id="who">
 			<article class="center-section offset-bot">
@@ -57,12 +60,10 @@
 								<div class="panel-heading">
 									{{ voteResult_where }}
 									<%= @events.attributes['name'+"%01d" % i ] %>
-
 									<div class="btn-group btn-float-right">
 									  <%= voteButton(1, i, "link") %>
 									  <%= voteButton(-1, i, "link") %>
 									</div>
-
 									<div class="panel-footer">
 										<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
 									</div>
@@ -73,7 +74,6 @@
 				</div>	
 			</article>
 		</section>
-
 
 		<section class="row offset lighter-background" id="when">
 			<article class="center-section offset-bot">
@@ -102,8 +102,6 @@
 				</div>	
 			</article>
 		</section>
-
-
 
 		<section class="row offset darker-background" id="invite">
 			<article class="center-section offset-bot">
