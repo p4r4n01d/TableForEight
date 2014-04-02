@@ -13,8 +13,8 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 		VoteJsonNew = null;
 		VoteJsonNew=JSONInterface("/api/event/"+event_id+"/"+vote_id+"", VoteJSON, "POST", "ok");
 		tempVote_resutl="";
-		if(VoteJsonNew!=null) tempVote_resutl = "Thank You for Voting";
-		else tempVote_resutl = "Vote Not Set";
+		if(VoteJsonNew!=null) tempVote_resutl = "Thank you for voting";
+		else tempVote_resutl = "Vote not set";
 		
 		switch(type){
 			case "link":
@@ -49,8 +49,8 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 		 };
 		Event_JsonNew=JSONInterface("/api/events/"+event_id+"", EventJSON, "PUT", "ok");
 		Event_JsonNew=JSONInterface("/email/"+event_id+"", EventJSON, "POST", "ok");
-		if(Event_JsonNew!=null) tempVote_resutl = "Thank You for Voting";
-		else tempVote_resutl = "Vote Not Set";
+		tempVote_resutl = "Event not confirmed";
+		if(Event_JsonNew!=null) tempVote_resutl = "Event confirmation sent";
 		$scope.email_status = tempVote_resutl;
 	};
 	
@@ -202,16 +202,38 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	});
 	};
 	
+	 
+	$scope.get_restaurants = function(type) {
+	$scope.code = null;
+	$scope.response = null;
+	 
+	$http({method: 'GET', url: '/api/places/'+type, cache: $templateCache}).
+	success(function(data, status) {
+			alert(JSON.stringify(data));
+	}).
+	error(function(data, status) {
+			alert(JSON.stringify(data));
+	});
+	};
+	
 	// SENDING INVITATION
 	$scope.sendInvite = function() {
 		var d = new Date();
+		var sent_email="NO";
 		var month = d.getMonth()+1;
 		var day = d.getDate();
 		var datetime = d.getFullYear() + '/' +
 			(month<10 ? '0' : '') + month + '/' +
 			(day<10 ? '0' : '') + day;
+		var who_error="";
+		var restaurant_error="";
+		var date_error="";
 		var ErrorString="";
-		if(ErrorString==""){
+		for(i=1;i<=5;i++)
+		{
+			if($scope['date'+i]=="undefined");
+		}
+		if(ErrorString=="" && sent_email=="NO"){
 			EventJSON = {
 			"event": 
 			{ "date":$scope.date1,
@@ -234,6 +256,9 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 			 };
 			emailList = $scope.guest_list.split(";");
 			if($scope.guest_list.split("\n").length>1){
+				emailList = $scope.guest_list.split("\n");
+			}
+			if($scope.guest_list.split(",").length>1){
 				emailList = $scope.guest_list.split("\n");
 			}
 			if($scope.guest_list.split(" ").length>1){
@@ -266,11 +291,16 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 						if(VoteJsonNew!=null) DataSaved=true;
 						else DataSaved=false;
 					}
-					if(DataSaved) $scope.inviteResult = "Email Sent";
-					else $scope.inviteResult = "Email Not Sent";
+					if(DataSaved) 
+					{
+						sent_email="YES";
+						$scope.inviteResult = "Email sent";
+					}
+					else $scope.inviteResult = "Email not sent";
 				}
 			}
 		}
+		else $scope.inviteResult = "Email sent";
 	};
 }]);
 
