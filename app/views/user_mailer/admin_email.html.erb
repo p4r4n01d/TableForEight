@@ -1,74 +1,24 @@
-<!DOCTYPE html>
-<html>
-
-	<head>
-	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-		<style>
-			@font-face
-			{font-family:Calibri;
-			panose-1:2 15 5 2 2 2 4 3 2 4;}
-			@font-face
-			{font-family:Tahoma;
-			panose-1:2 11 6 4 3 5 4 4 2 4;}
-		</style>
-	</head>
-
-	<body>
-		<table width="1024px" border="0" cellpadding="0" cellspacing="0" align="center" style="font-family:Calibri;">
-			<tr>
-				<td colspan="3" bgcolor="#000000" align="left" valign="middle" style="padding:20px;">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3" align="center" valign="middle" style="background:url(http://tableforeight.herokuapp.com/assets/restaurant-img.jpg) transparent center center; font-family:Calibri;">
-					<a href="http://tableforeight.herokuapp.com" title="Table For Eight"><img src="http://tableforeight.herokuapp.com/assets/Table-For-Eight-logo.png" width="200" border="0" alt="Table For Eight" /></a><br />
-					<font style="font-family: Calibri; color: #FFFFFF; font-size: 30px;">Plan. Dine. Socialise.</font>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3" align="center" valign="middle" bgcolor="#D83C33" style="font-family:cusTitleFont;">&nbsp;
-				</td>
-			</tr>
-			<tr bgcolor="#D83C33">
-				<td width="5%">&nbsp;</td>
-				<td bgcolor="#FFFFFF" style="padding: 20px;">
-					<h1>Hello, <%= @event.organiser_name %></h1>
-					<p>
-						Voting is done. Now lets party! <br/>
-						Below are the details of the event: <br/>
-					</p>
-					<p>
-						Where: <%= @event.name1 %>(<%= @event.link1 %>).<br/>
-						When: <%= @event.date %>.<br/>
-						Guests: 
-						<% @users.each do |user| %>
-							<%= user.email %><br />
-						<% end %>
-					</p>
-					<p>Have a crazy, fun night out!</p>
-					<p>
-						The Table For Eight Team<br/>
-						Plan. Dine. Socialise.
-					</p>
-				</td>
-				<td width="5%">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="3" align="center" valign="middle" bgcolor="#D83C33" style="font-family:cusTitleFont;">&nbsp;
-				</td>
-			</tr>
-			<tr>
-				<td width="5%" bgcolor="#D83C33">&nbsp;</td>
-				<td style="font-family:Calibri;padding: 20px;">Visit our website: <a href="http://tableforeight.herokuapp.com" title="Table For Eight">tableforeight.herokuapp.com</a></td>
-				<td width="5%" bgcolor="#D83C33">&nbsp;</td>
-			</tr>
-			<tr>
-				<td colspan="3" bgcolor="#000000" align="center" valign="middle" style="font-family:Calibri;padding: 10px;">
-					<img src="http://tableforeight.herokuapp.com/assets/Table-For-Eight-logo.png" width="50" border="0" alt="Table For Eight Logo" />
-					<br /><font style="color: #FFFFFF; font-size: 15px;">Table For Eight &copy; Copyright 2014.</font>
-				</td>
-			</tr>
-		</table>
-	</body>
-
-</html>
+<tr bgcolor="#D83C33">
+	<td width="5%">&nbsp;</td>
+	<td bgcolor="#FFFFFF" style="padding: 20px;">
+		<h1>Hello, <%= @event.organiser_name %></h1>
+		<p>
+			Voting is done. Now lets party! <br/>
+			Below are the details of the event: <br/>
+		</p>
+		<p>
+			Where: <%= @event.name1 %>(<%= @event.link1 %>).<br/>
+			When: <%= @event.date %>.<br/>
+			Guests: 
+			<% @users.each do |user| %>
+				<%= user.email %><br />
+			<% end %>
+		</p>
+		<p>Have a crazy, fun night out!</p>
+		<p>
+			The Table For Eight Team<br/>
+			Plan. Dine. Socialise.
+		</p>
+	</td>
+	<td width="5%">&nbsp;</td>
+</tr>
