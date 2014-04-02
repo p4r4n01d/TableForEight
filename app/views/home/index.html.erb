@@ -15,106 +15,100 @@
 	
 		<section class="row offset darker-background" id="what">
 			<article class="center-section dynamic-height">
-				<div class="service service-dark">
-					<i class="glyphicon glyphicon-info-sign service-icon"></i>
-					<h2>What?</h2>
+				<h2>
+					<i class="glyphicon glyphicon-info-sign service-icon"></i> What?
+				</h2>
 
-					<h3>What is <span class="title-font">Table For Eight?</span></h3>
-					<p>
-						Table For Eight is an interactive app that takes the hassle and stress out of planning a dining experience with your mates.
-						Invite your friends, and they'll help you plan this out by voting their preferences later.
-					</p>
-					<br />
-					<p>
-						Sounds good? So how do I start? Just follow these <span class="title-font">3</span> simple steps:
-						<dl id="num-list">
-							<dt>Who?</dt>
-							<dd>Friends! Who do you want to come? Add 'em to the guest list.
-							Oh, and don't forget to tell them who you are!</dd>
-
-							<dt>Where?</dt>
-							<dd>Let's choose where to eat! List down up to five preferred restaurants.</dd>
-
-							<dt>When?</dt>
-							<dd>Sunday brunch, weekday lunch, or Friday dinner? Select up to three dates and time.</dd>
-						</dl>
-					</p>
-				</div>	
+				<h3>What is <span class="title-font">Table For Eight?</span></h3>
+				<p>
+					Table For Eight is an interactive app that takes the hassle and stress out of planning a dining experience with your mates.
+					Invite your friends, and they'll help you plan this out by voting their preferences later.
+				</p>
+				<br />
+				<p>
+					Sounds good? So how do I start? Just follow these <span class="title-font">3</span> simple steps:
+					<dl id="num-list">
+						<dt>Who?</dt>
+						<dd>Friends! Who do you want to come? Add 'em to the guest list.
+						Oh, and don't forget to tell them who you are!</dd>
+						<dt>Where?</dt>
+						<dd>Let's choose where to eat! List down up to five preferred restaurants.</dd>
+						<dt>When?</dt>
+						<dd>Sunday brunch, weekday lunch, or Friday dinner? Select up to three dates and time.</dd>
+					</dl>
+				</p>
 			</article>
 		</section>
 
 		<section class="row offset lighter-background" id="who">
 			<article class="center-section dynamic-height">
-				<div class="service">
-					<i class="glyphicon glyphicon-list-alt service-icon"></i>
-					<h2>Who?</h2>
-					<button onclick="hello('facebook').login(function(){
-    alert("You are signed in to Facebook");
-})">facebook</button>
+				<h2>
+					<i class="glyphicon glyphicon-list-alt service-icon"></i> Who?
+				</h2>
+				<button onclick="hello('facebook').login(function(){
+					alert("You are signed in to Facebook");
+				})">facebook</button>
 
-					<%= who_helper("Name", "user", "What's your name?", "organiser_name") %>
-					<%= who_helper("Email", "envelope", "What's your email?", "organiser_email") %>
-					<%= who_helper("Guest List", nil, "Enter your guest's emails", "guest_list") %>
-				</div>
+				<%= who_helper("Name", "user", "What's your name?", "organiser_name") %>
+				<%= who_helper("Email", "envelope", "What's your email?", "organiser_email") %>
+				<%= who_helper("Guest List", nil, "Enter your guest's emails", "guest_list") %>
 			</article>
 		</section>
 
 		<section class="row offset darker-background" id="where">
 			<article class="center-section dynamic-height">
-				<div class="service service-dark">
-					<i class="glyphicon glyphicon-cutlery service-icon"></i>
-					<h2>Where?</h2>
-					<% (1..5).each do |i| %>
-						<label class="control-label spacingAround">{{ name<%= i %> }}</label>
-						<div class="input-group spacingAround">
-							<span class="input-group-addon glyphicon glyphicon-globe"></span>
-					  		<input type="url" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl<%= i %>" ng-change="fetch(restUrl<%= i %>, <%= i %>)"/>
-						</div>
-					<% end %>
-				</div>
+				<h2>
+					<i class="glyphicon glyphicon-cutlery service-icon"></i> Where?
+				</h2>
+				<% (1..5).each do |i| %>
+					<label class="control-label spacingAround">{{ name<%= i %> }}</label>
+					<div class="input-group spacingAround">
+						<span class="input-group-addon glyphicon glyphicon-globe"></span>
+				  		<input type="url" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl<%= i %>" ng-change="fetch(restUrl<%= i %>, <%= i %>)"/>
+					</div>
+				<% end %>
 			</article>
 		</section>
 
 		<section class="row offset lighter-background" id="when">
 			<article class="center-section dynamic-height">
-				<div class="service">
-					<i class="glyphicon glyphicon-calendar service-icon"></i>
-					<h2>When?</h2>
-					<% (1..3).each do |i| %>
-						<div class="form-group">
-							<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
-							<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-								<input class="form-control" size="16" type="text" value="" ng-model="date<%= i %>">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-							</div>
-							<input type="hidden" id="dtp_input<%= i %>" value="" />
-						</div>
-					<% end %>
-					<div class="form-group"><br /><br />
-						<label for="dtp_input4" class="control-label">Vote before</label>
-						<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
-							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
-							<input class="form-control" size="16" type="text" value="" ng-model="date4">
+				<h2>
+					<i class="glyphicon glyphicon-calendar service-icon"></i> When?
+				</h2>
+				<% (1..3).each do |i| %>
+					<div class="form-group">
+						<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
+						<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							<input class="form-control" size="16" type="text" value="" ng-model="date<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						</div>
-						<input type="hidden" id="dtp_input4" value="" />
+						<input type="hidden" id="dtp_input<%= i %>" value="" />
 					</div>
+				<% end %>
+				<div class="form-group"><br /><br />
+					<label for="dtp_input4" class="control-label">Vote before</label>
+					<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
+						<input class="form-control" size="16" type="text" value="" ng-model="date4">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					</div>
+					<input type="hidden" id="dtp_input4" value="" />
 				</div>
 			</article>
 		</section>
 
 		<section class="row offset darker-background" id="invite">
 			<article class="center-section offset-bot">
-				<div class="service service-dark">
-					<i class="glyphicon glyphicon-envelope service-icon"></i>
-					<h2>Invite!</h2>
-					<p>{{ inviteResult }}</p>
-					<div id="resultDivContainer"></div>
-					<div class="btn-group">
-						<button type="button" class="btn btn-default btn-lg" ng-click="sendInvite()">
-						<span class="glyphicon glyphicon-envelope"></span> Send!</button>
-					</div>
+				
+				<h2>
+					<i class="glyphicon glyphicon-envelope service-icon"></i> Invite!
+				</h2>
+				<p>{{ inviteResult }}</p>
+				<div id="resultDivContainer"></div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-default btn-lg" ng-click="sendInvite()">
+					<span class="glyphicon glyphicon-envelope"></span> Send!</button>
 				</div>
 			</article>
 		</section>
