@@ -25,24 +25,20 @@ class EventsController < ApplicationController
 
   # PATCH /api/events/:id (.:format)
   def update
-	respond_to do |format|
-	  if @event.present? && @event.update_attributes(event_params)
-	    format.json { render json: @event, status: :ok }
-	  else
-	    format.json { render json: db_op_failed,
-	        status: :unprocessable_entity }
-	  end
-	end
+	if @event.present? && @event.update_attributes(event_params)
+      render json: { @event, status: :ok }
+	else
+	  render json: { db_op_failed, status: :unprocessable_entity }
+    end
   end
 
-  # PUT /api/events/:id (.:format)
+  # DELETE /api/events/:id (.:format)
   def destroy
 	respond_to do |format|
 	  if @event.present? && @event.destroy
-		format.json { head :no_content, status: :ok }
+		render json: { head :no_content, status: :ok }
 	  else
-	    format.json { render json: db_op_failed,
-	        status: :unprocessable_entity }
+	    render json: { db_op_failed, status: :unprocessable_entity }
 	  end
 	end
   end
