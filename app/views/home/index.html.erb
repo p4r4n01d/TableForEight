@@ -32,9 +32,9 @@
 						<dd>Friends! Who do you want to come? Add 'em to the guest list.
 						Oh, and don't forget to tell them who you are!</dd>
 						<dt>Where?</dt>
-						<dd>Let's choose where to eat! List down up to five preferred restaurants.</dd>
+						<dd>Let's choose where to eat! List up to five restaurants.</dd>
 						<dt>When?</dt>
-						<dd>Sunday brunch, weekday lunch, or Friday dinner? Select up to three dates and time.</dd>
+						<dd>Sunday brunch, weekday lunch, or Friday dinner? Select up to three dates.</dd>
 					</dl>
 				</p>
 			</article>
@@ -51,7 +51,7 @@
 
 				<%= who_helper("Name", "user", "What's your name?", "organiser_name") %>
 				<%= who_helper("Email", "envelope", "What's your email?", "organiser_email") %>
-				<%= who_helper("Guest List", nil, "Enter your guest's emails", "guest_list") %>
+				<%= who_helper("Guest List", nil, "Enter your guest's emails separated by semicolons (;)", "guest_list") %>
 			</article>
 		</section>
 

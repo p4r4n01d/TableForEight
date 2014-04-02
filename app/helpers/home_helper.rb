@@ -15,7 +15,7 @@ module HomeHelper
       when "organiser_email"
         str += '<input type="email" '
       when "guest_list"
-        str += '<textarea id="textarea" rows="6" cols="50" '
+        str += '<textarea id="textarea" rows="6" cols="80" spellcheck="false"'
         fieldName = "textarea"
       end
 
