@@ -1,7 +1,7 @@
 module HomeHelper
 
   def who_helper(labelTitle, spanClass, placeHolder, modelName)
-    str = '<label class="control-label spacingAround letterSpacingFonts">' + labelTitle + "</label>\n"
+    str = '<label class="control-label spacingAround offset-text letterSpacingFonts">' + labelTitle + "</label>\n"
     str += "<div class=\"input-group spacingAround\" id=\"#{modelName}_container\">\n"
   
     if !!spanClass

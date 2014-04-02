@@ -481,3 +481,7 @@ footer{
 .test {
 	border: 10px solid gray;
 }
+
+.offset-text {
+	padding-top: 12px;
+}
