@@ -1,61 +1,74 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-	<style>
-	@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-	</style>
-  </head>
-  <body>
-	<table width="1024px" border="0" cellpadding="0" cellspacing="0" align="center" style="font-family:Calibri;">
-	  <tr>
-		<td colspan="3" bgcolor="#000000" align="left" valign="middle" style="padding:20px;">
-		</td>
-	  </tr>
-	  <tr>
-		<td colspan="3" align="center" valign="middle" style="background:url(http://tableforeight.herokuapp.com/assets/restaurant-img.jpg) transparent center center; font-family:Calibri;">
-			<a href="http://tableforeight.herokuapp.com" title="Table For Eight"><img src="http://tableforeight.herokuapp.com/assets/Table-For-Eight-logo.png" width="200" border="0" alt="Table for Eight" /></a><br />
-			<font style="font-family: Calibri; color: #FFFFFF; font-size: 30px;">Plan. Dine. Socialise.</font>
-		</td>
-	  </tr>
-	  <tr>
-		<td colspan="3" align="center" valign="middle" bgcolor="#D83C33" style="font-family:cusTitleFont;">&nbsp;
-		</td>
-	  </tr>
-	  <tr bgcolor="#D83C33">
-		<td width="5%">&nbsp;</td>
-		<td bgcolor="#FFFFFF" style="padding: 20px;">
-		<h1>Hello, <%= @event.organiser_name %></h1>
-			<p>
-			  To view voting Resutls &amp; stats goto the site, just follow this link: <a href="http://tableforeight.herokuapp.com/result/<%= @event.unique_id %>" style="padding:10px; color: #fff; background: #D83C33;">Click Here to View Voting Resutls</a>.
-			</p>
-			<p>
-			  Please do your voting before <%= @event.cutoff_at %>.
-			</p>
-			<p>Thanks for joining in and have a great day!</p>
-		</td>
-		<td width="5%">&nbsp;</td>
-	  </tr>
-	  <tr>
-		<td colspan="3" align="center" valign="middle" bgcolor="#D83C33" style="font-family:cusTitleFont;">&nbsp;
-		</td>
-	  </tr>
-	  <tr>
-		<td width="5%" bgcolor="#D83C33">&nbsp;</td>
-		<td style="font-family:Calibri;padding: 20px;">Visit Our Website: <a href="http://tableforeight.herokuapp.com" title="Table For Eight">tableforeight.herokuapp.com</a></td>
-		<td width="5%" bgcolor="#D83C33">&nbsp;</td>
-	  </tr>
-	  <tr>
-		<td colspan="3" bgcolor="#000000" align="center" valign="middle" style="font-family:Calibri;padding: 10px;">
-			<img src="http://tableforeight.herokuapp.com/assets/Table-For-Eight-logo.png" width="50" border="0" alt="Table for Eight Logo" />
-			<br /><font style="color: #FFFFFF; font-size: 15px;">Table For Eight &copy; Copyright 2014.</font>
-		</td>
-	  </tr>
-  </table>
-  </body>
+
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+		<style>
+			@font-face
+			{font-family:Calibri;
+			panose-1:2 15 5 2 2 2 4 3 2 4;}
+			@font-face
+			{font-family:Tahoma;
+			panose-1:2 11 6 4 3 5 4 4 2 4;}
+		</style>
+	</head>
+
+	<body>
+		<table width="1024px" border="0" cellpadding="0" cellspacing="0" align="center" style="font-family:Calibri;">
+			<tr>
+				<td colspan="3" bgcolor="#000000" align="left" valign="middle" style="padding:20px;">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center" valign="middle" style="background:url(http://tableforeight.herokuapp.com/assets/restaurant-img.jpg) transparent center center; font-family:Calibri;">
+					<a href="http://tableforeight.herokuapp.com" title="Table For Eight"><img src="http://tableforeight.herokuapp.com/assets/Table-For-Eight-logo.png" width="200" border="0" alt="Table For Eight" /></a><br />
+					<font style="font-family: Calibri; color: #FFFFFF; font-size: 30px;">Plan. Dine. Socialise.</font>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center" valign="middle" bgcolor="#D83C33" style="font-family:cusTitleFont;">&nbsp;
+				</td>
+			</tr>
+			<tr bgcolor="#D83C33">
+				<td width="5%">&nbsp;</td>
+				<td bgcolor="#FFFFFF" style="padding: 20px;">
+					<h1>Hello, <%= @event.organiser_name %></h1>
+					<p>
+						You have created an event. 
+					</p>
+					<p>
+						To view the event details, just follow this link: <a href="http://tableforeight.herokuapp.com/result/<%= @event.unique_id %>" style="padding:5px; color: #fff; background: #D83C33;">Click here to view voting results</a>.
+					</p>
+					<p>
+						On the link above you can see the current voting results. <br />
+						Choose a place and date after voting ends on <%= @event.cutoff_at %>.
+					</p>
+					<p>
+						Thanks for using Table For Eight and have a great day!
+					</p>
+					<p>
+						The Table For Eight Team<br />
+						Plan. Dine. Socialise.<br />
+					</p>
+				</td>
+				<td width="5%">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center" valign="middle" bgcolor="#D83C33" style="font-family:cusTitleFont;">&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td width="5%" bgcolor="#D83C33">&nbsp;</td>
+				<td style="font-family:Calibri;padding: 20px;">Visit our website: <a href="http://tableforeight.herokuapp.com" title="Table For Eight">tableforeight.herokuapp.com</a></td>
+				<td width="5%" bgcolor="#D83C33">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="3" bgcolor="#000000" align="center" valign="middle" style="font-family:Calibri;padding: 10px;">
+					<img src="http://tableforeight.herokuapp.com/assets/Table-For-Eight-logo.png" width="50" border="0" alt="Table For Eight Logo" /><br />
+					<font style="color: #FFFFFF; font-size: 15px;">Table For Eight &copy; Copyright 2014.</font>
+				</td>
+			</tr>
+		</table>
+	</body>
+
 </html>
