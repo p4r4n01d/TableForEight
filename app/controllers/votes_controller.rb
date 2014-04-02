@@ -16,9 +16,7 @@ class VotesController < ApplicationController
 
   # GET /api/get/:event_id
   def countvotes
-    respond_to do |format|
-      format.json { render json: @event.votes.get_count_details(@event.id.to_s) }
-    end
+    render json: { @event.votes.get_count_details(@event.id.to_s) }
   end
 
   # POST /api/events/:event_id/votes
@@ -33,25 +31,19 @@ class VotesController < ApplicationController
 
   # DELETE /api/votes/:vote_id
   def destroy
-    respond_to do |format|
-      if @vote.present? && @vote.destroy
-        format.json { head :no_content, status: :ok }
-      else
-        format.json { render json: @vote.errors.full_messages,
-          status: :unprocessable_entity }
-      end
+    if @vote.present? && @vote.destroy
+      render json: { head :no_content, status: :ok }
+    else
+      render json: { @vote.errors.full_messages, status: :unprocessable_entity }
     end
   end
 
   # PUT /api/votes/:vote_id
   def update
-    respond_to do |format|
-      if @vote.present? && @vote.update_attributes(vote_params)
-        format.json { render json: @vote, status: :ok }
-      else
-        format.json { render json: @vote.errors.full_messages,
-          status: :unprocessable_entity }
-      end
+    if @vote.present? && @vote.update_attributes(vote_params)
+      render json: { @vote, status: :ok }
+    else
+      render json: { @vote.errors.full_messages, status: :unprocessable_entity }
     end
   end
 
