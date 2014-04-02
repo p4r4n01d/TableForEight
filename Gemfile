@@ -48,9 +48,9 @@ gem 'devise'
 # Use safe Attributes
 gem 'safe_attributes'
 
+# For tests
 gem 'rspec'
 gem 'rspec-rails'
-gem 'database_cleaner'
 gem 'factory_girl'
 gem 'factory_girl_rails'
 
