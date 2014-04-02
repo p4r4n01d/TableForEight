@@ -35,10 +35,8 @@
 					<h1>Hello, <%= @user.email %></h1>
 					<p>
 						Your friend <%= @event.organiser_name %> is planning a hangout.<br />
-						Help 'em decide when and where! Following this link to vote:<br />
-					</p>
-					<p>
-						<a href="http://tableforeight.herokuapp.com/voting/<%= @event.unique_id %>/<%= @user.unique_id %>" style="padding:10px; color: #fff; background: #D83C33;">Click here to Vote</a>.
+						Help 'em decide when and where! To vote, click on this 
+						<a href="http://tableforeight.herokuapp.com/voting/<%= @event.unique_id %>/<%= @user.unique_id %>" >link</a>.<br />
 					</p>
 					<p>
 						Voting ends on <%= @event.cutoff_at %>.
