@@ -3,6 +3,7 @@ class VotesController < ApplicationController
   before_filter :get_event, :except => [:destroy, :update, :show]
   before_filter :get_vote, :except => [:index, :update, :create, :countvotes]
   before_filter :get_event_vote, :except => [:index, :show, :create, :countvotes, :destroy]
+  respond_to :json
 
   # GET /api/events/:event_id/votes
   def index
