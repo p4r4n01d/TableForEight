@@ -69,7 +69,7 @@ describe EventsController do
       # Check for 201 status code
       expect(response).to be_success
 
-      JSON.parse(response.body)["events"][:id].should == event.id
+      JSON.parse(response.body)[:id].should == event.id
       DatabaseCleaner.clean
     end
 

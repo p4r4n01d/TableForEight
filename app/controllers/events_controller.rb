@@ -1,42 +1,33 @@
 class EventsController < ApplicationController
   
   before_filter :fetch_event, :except => [:index, :create]
-  
+  respond_to :json
+
   # GET /api/events (.:format)
   def index
-	@events = Event.all
-	respond_to do |format|
-	  format.json { render json: @events }
-	end
+	respond_with (@events = Event.all)
   end
 
   # GET /api/events/:id/ (.:format)
   def show
-	respond_to do |format|
-	  format.json { render json: @event }
-	end
+	respond_with @event
   end
 
   # POST /api/events (.:format)
   def create
 	@event = Event.new(event_params)
-	respond_to do |format|
-	  # Have to make sure event is non-null first
-	  if !!@event && @event.save
-		UserMailer. admin_welcome_email(@event).deliver
-		format.json { render :json=>{:status=>'created',:events=>{:id=>@event.unique_id}}}
-	  else
-	    format.json { render json: db_op_failed(event_params),
-	        status: :unprocessable_entity }
-	  end
+	if @event.save
+	  flash[:notice] = "Event was created successfully."
+	  UserMailer.admin_welcome_email(@event).deliver
 	end
+    respond_with(@event)
   end
 
   # PATCH /api/events/:id (.:format)
   def update
 	respond_to do |format|
-	  if !!@event && @event.update_attributes(event_params)
-		format.json { render :json=>{:status=>'ok',:events=>{:id=>@event.unique_id}}}
+	  if @event.present? && @event.update_attributes(event_params)
+	    format.json { render json: @event, status: :ok }
 	  else
 	    format.json { render json: db_op_failed,
 	        status: :unprocessable_entity }
@@ -47,7 +38,7 @@ class EventsController < ApplicationController
   # PUT /api/events/:id (.:format)
   def destroy
 	respond_to do |format|
-	  if !!@event && @event.destroy
+	  if @event.present? && @event.destroy
 		format.json { head :no_content, status: :ok }
 	  else
 	    format.json { render json: db_op_failed,

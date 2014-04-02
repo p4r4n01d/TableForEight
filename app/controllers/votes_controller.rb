@@ -6,16 +6,12 @@ class VotesController < ApplicationController
 
   # GET /api/events/:event_id/votes
   def index
-    respond_to do |format|
-      format.json { render :json => {:events => @event, :votes => @event.votes}}
-    end
+    respond_with @event, @event.votes
   end
 
   # GET /api/votes/:id
   def show
-    respond_to do |format|
-      format.json { render json: @vote }
-    end
+    respond_with @vote
   end
 
   # GET /api/get/:event_id
@@ -28,22 +24,17 @@ class VotesController < ApplicationController
   # POST /api/events/:event_id/votes
   def create
     @vote = @event.votes.create(vote_params)
-    respond_to do |format|
-      if @vote.save
-        UserMailer.welcome_email(@vote, @event).deliver
-        format.json { render :json => {:status => 'created',
-          :events => {:id => @vote.unique_id}}, status: :created}
-      else
-        format.json { render json: @vote.errors.full_messages,
-          status: :unprocessable_entity }
-      end
-    end
+    if @vote.save
+	  flash[:notice] = "Vote was created successfully."
+	  UserMailer.admin_welcome_email(@vote, @event).deliver
+	end
+    respond_with(@vote)
   end
 
   # DELETE /api/votes/:vote_id
   def destroy
     respond_to do |format|
-      if @vote.destroy
+      if @vote.present? && @vote.destroy
         format.json { head :no_content, status: :ok }
       else
         format.json { render json: @vote.errors.full_messages,
@@ -55,9 +46,8 @@ class VotesController < ApplicationController
   # PUT /api/votes/:vote_id
   def update
     respond_to do |format|
-      if !!@vote && @vote.update_attributes(vote_params)
-        format.json { render :json => {:status => 'ok',
-          :events => {:id => @vote.id}}}
+      if @vote.present? && @vote.update_attributes(vote_params)
+        format.json { render json: @vote, status: :ok }
       else
         format.json { render json: @vote.errors.full_messages,
           status: :unprocessable_entity }
