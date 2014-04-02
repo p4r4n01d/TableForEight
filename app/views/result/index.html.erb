@@ -4,134 +4,135 @@
 	
 		<section class="row offset darker-background" id="what">
 			<article class="center-section offset-bot">
-				<div class="service service-dark">
-					<i class="glyphicon glyphicon-info-sign service-icon"></i>
-					<h2>Result</h2>
+				<h2>
+					<i class="glyphicon glyphicon-info-sign service-icon"></i> Result
+				</h2>
 
-					<h3>Select the date and place!</h3>
-					<p>
-						Your friends have voted which restaurant they want to go to and when they want to go.
-					</p>
-					<p>
-						Now it's up to you to set the date and place. 
+				<h3>Select the date and place!</h3>
+				<p>
+					Your friends have voted which restaurant they want to go to and when they want to go.
+				</p>
+				<p>
+					Now it's up to you to set the date and place. 
 						Sounds good? Cool. Check these <span class="title-font">3</span> simple steps:
-						<dl id="num-list">
-							<dt>Who?</dt>
-							<dd>These are the friends who have already voted for the event. Follow up on those who haven't responded yet.</dd>
-								<dt>Where?</dt>
-							<dd>Select among the restaurants your friends voted on. They voted, but you still have the last say.</dd>
-								<dt>When?</dt>
-							<dd>Pick the date for the event</dd>
-						</dl>
-					</p>
-					<p>
-						Ok then, time to choose!
-					</p>
-				</div>	
+					<dl id="num-list">
+						<dt>Who?</dt>
+						<dd>These are the friends who have already voted for the event. Follow up on those who haven't responded yet.</dd>
+						<dt>Where?</dt>
+						<dd>Select among the restaurants your friends voted on. They voted, but you still have the last say.</dd>
+							<dt>When?</dt>
+						<dd>Pick the date for the event</dd>
+					</dl>
+				</p>
+				<p>
+					Ok then, time to choose!
+				</p>
 			</article>
 		</section>
 
 		<section class="row offset lighter-background" id="who">
 			<article class="center-section offset-bot">
-				<div class="service">
-					<i class="glyphicon glyphicon-list-alt service-icon"></i>
-					<h2>Who?</h2>
-					<h3>
-						Guests: <br />
+				<h2>
+					<i class="glyphicon glyphicon-list-alt service-icon"></i> Who?
+				</h2>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<%= @events.organiser_name %>'s Guestlist:
+					</div>
+					<div class="panel-footer">
 						<% @votes.each do |user| %>
-						  <%= user.email %><br />
+							<%= user.email %><br />
 						<% end %>
-					</h3>
-					
+					</div>
 				</div>
 			</article>
 		</section>
 
+
 		<section class="row offset darker-background" id="where">
 			<article class="center-section offset-bot">
-				<div class="service service-dark">
-					<i class="glyphicon glyphicon-cutlery service-icon"></i>
-
-					<h2>Where?</h2>
-					<% (1..5).each do |i| %>
-						<% if !@events.attributes["link#{i}"].blank? %>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									{{ voteResult_where }}
-									<%= @events.attributes['name'+"%01d" % i ] %>
-									<div class="btn-toolbar btn-float-right" role="toolbar">
-
-										<div class="btn-group">
-											<% [1, -1].each do |value| %>
-								    			<%= results_voteButton(value, i, "link") %>
-											<% end %>
-										</div>
-										<div class="btn-group">
-											<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">	Select
-												<span id="SelectPlace<%= i %>" data-original-title="Select this place:" class="glyphicon glyphicon-check"></span>
-											</button>
-										</div>
+				<h2>
+					<i class="glyphicon glyphicon-cutlery service-icon"></i> Where?
+				</h2>
+				<% (1..5).each do |i| %>
+					<% if !@events.attributes["link#{i}"].blank? %>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								{{ voteResult_where }}
+								<%= @events.attributes['name'+"%01d" % i ] %>
+								<div class="btn-toolbar btn-float-right" role="toolbar">
+									<div class="btn-group">
+										<% [1, -1].each do |value| %>
+							    			<%= results_voteButton(value, i, "link") %>
+										<% end %>
 									</div>
-									<div class="panel-footer">
-										<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
+									<div class="btn-group">
+										<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['name'+"%01d" % i ] %>','<%= @events.attributes['link'+"%01d" % i ] %>', 'Restaurant')">	Select
+											<span id="SelectPlace<%= i %>" data-original-title="Select this place:" class="glyphicon glyphicon-check"></span>
+										</button>
 									</div>
 								</div>
+								<div class="panel-footer">
+									<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
+								</div>
 							</div>
-						<% end %>
+						</div>
 					<% end %>
-				</div>
+				<% end %>
 			</article>	
 		</section>
 
 		<section class="row offset lighter-background" id="when">
 			<article class="center-section offset-bot">
-				<div class="service">
-					<i class="glyphicon glyphicon-calendar service-icon"></i>
-					<h2>When?</h2>
-					<% (1..3).each do |i| %>
-						<% if !@events.attributes["date#{i}"].blank? %>
+				<h2>
+					<i class="glyphicon glyphicon-calendar service-icon"></i> When?
+				</h2>
+				<% (1..3).each do |i| %>
+					<% if !@events.attributes["date#{i}"].blank? %>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<div class="btn-toolbar btn-float-right" role="toolbar">
 
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<div class="btn-toolbar btn-float-right" role="toolbar">
-
-										<div class="btn-group">
-											<% [1, -1, 0].each do |value| %>
-									    		<%= results_voteButton(value, i, "date") %>
-											<% end %>
-										</div>
-										<div class="btn-group">
-											<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
+									<div class="btn-group">
+										<% [1, -1, 0].each do |value| %>
+								    		<%= results_voteButton(value, i, "date") %>
+										<% end %>
+									</div>
+									<div class="btn-group">
+										<button type="button" class="btn btn-default btn-sm" ng-click="selection('<%= @events.attributes['date'+"%01d" % i ] %>','', 'Date')">Select
 											<span id="SelectDate<%= i %>" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
 										</button>
-										</div>
-									</div>
-									<div class="panel-footer">
-										<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
 									</div>
 								</div>
+								<div class="panel-footer">
+									<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
+								</div>
 							</div>
-						<% end %>
-					<% end %>					
-					<input type="hidden" id="dtp_input4" value="" />
-				</div>	
+						</div>
+					<% end %>
+				<% end %>					
+				<input type="hidden" id="dtp_input4" value="" />
 			</article>
 		</section>
 
-		<section class="row offset darker-background" id="invite">
-			<article class="center-section offset-bot">
-				<div class="service service-dark" ng-init="results('<%= @events.unique_id %>')">
-					<i class="glyphicon glyphicon-ok service-icon"></i>
-					<div>
-						<h2>Event Summary</h2>
-						<h3 class="dark-text">
-							Restaurant: {{ selectedRestaurant }}<br />
-							Website: {{ selectedRestaurantUrl }}<br />
-							Date: {{ selectedDate }}
-						</h3>
-						<button type="button" class="btn btn-default btn-lg" ng-click="confirmation('<%= @events.unique_id %>')">Confirm Event
+		<section class="row offset darker-background" id="go">
+			<article class="center-section offset-bot" ng-init="results('<%= @events.unique_id %>')">
+				<h2>
+					<i class="glyphicon glyphicon-ok service-icon"></i> Event Summary
+				</h2>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)
+
+						<button type="button" class="btn btn-default btn-float-right btn-lg" ng-click="confirmation('<%= @events.unique_id %>')">Confirm Event
 							<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
 						</button>
+
+					</div>
+					<div class="panel-footer dark-text">
+						Restaurant: {{ selectedRestaurant }}<br />
+						Website: {{ selectedRestaurantUrl }}<br />
+						Date: {{ selectedDate }}
 					</div>
 				</div>
 			</article>

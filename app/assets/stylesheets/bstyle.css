@@ -131,9 +131,6 @@ and (max-device-width: 767px) {
 	}
 }
 
-.colorDark{
-	color: #323232;
-}
 .lighter-background{
 	color: #D83C33;
 	background-color: white;
@@ -330,6 +327,10 @@ footer{
 	font-weight: bold;
 }
 
+
+.colorDark{
+	color: #B4B4B4;
+}
 
 #num-list {
 	counter-reset: list-count;
