@@ -20,18 +20,20 @@ class VotesController < ApplicationController
     @vote = @event.votes.create(vote_params)
     if @vote.save
 	    flash[:notice] = "Vote was created successfully."
-	    UserMailer.admin_welcome_email(@vote, @event).deliver
+	    UserMailer.welcome_email(@vote, @event).deliver
     end
-    respond_with(@vote)
+    respond_with @vote
   end
 
   # DELETE /api/votes/:vote_id
   def destroy
-    if @vote.present? && @vote.destroy
-      render json: { head :no_content, status: :ok }
-    else
-      render json: { @vote.errors.full_messages, status: :unprocessable_entity }
-    end
+    respond_to do |format|
+	  if @vote.present? && @vote.destroy
+        format.json { head :no_content, status: :ok }
+	  else
+        format.json { render json: db_op_failed, status: :unprocessable_entity }
+	  end
+	end
   end
 
   # PUT /api/votes/:vote_id
@@ -46,14 +48,14 @@ class VotesController < ApplicationController
   private
     def get_event
       @event = Event.where('unique_id' => params[:event_id]).first
-      if !@event
+      if @event.blank?
         render json: "No event was found with id: " << params[:event_id], status: :unprocessable_entity
       end
     end
 
     def get_vote
       @vote = Vote.where('unique_id' => params[:id]).first
-      if !@vote
+      if @vote.blank?
         vote_not_found(params[:id])
       end
     end
@@ -61,7 +63,7 @@ class VotesController < ApplicationController
     def get_event_vote
       get_event
       @vote = @event.votes.where('unique_id' => params[:vote_id]).first
-      if !@vote
+      if @vote.blank?
         vote_not_found(params[:vote_id])
       end
     end
