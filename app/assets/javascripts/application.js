@@ -24,6 +24,6 @@
 //= require scrollto/grid
 //= require angular
 //= require javascript
-//= require ctrl
+//= require angular/controllers/application_ctrl.js
 //= require hello.all.js
 //= require_tree .
