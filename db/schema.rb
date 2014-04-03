@@ -29,10 +29,9 @@ ActiveRecord::Schema.define(version: 20140320025742) do
     t.datetime "date1"
     t.datetime "date2"
     t.datetime "date3"
-    t.string   "hash"
+    t.string   "unique_id"
     t.string   "organiser_email"
     t.string   "organiser_name"
-    t.string   "unique_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
