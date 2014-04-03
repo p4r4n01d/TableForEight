@@ -1,28 +1,33 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Table For Eight is an interactive app that takes the hassle and stress out of
+ planning a dining experience with your mates. Invite your friends, and they'll
+ help you plan this out by voting their preferences later. 
 
 * Ruby version
+This project uses Ruby on Rails (version 4.0.4)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
+* Database initialization/creation
+<tt>rake db:migrate</tt>
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+Run: <tt>rake db:migrate RAILS_ENV=test</tt>
+To setup the database and run all the migrations on the testing database.
+Then run:
+     <tt>rspec</tt>
+To run the actual tests.
 
 * Deployment instructions
+We are using Heroku for the production server. This only supports the Postgres
+ database, so ensure that the following line is in the Gemfile:
+<tt>gem 'pg'</tt>
+To push the master branch to heroku use: <tt>heroku push master</tt>
+This requires the heroku toolbelt is installed and a remote for heroku is set up
+ locally for this repository. 
 
-* ...
 
 
+
+-----------
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
