@@ -1,24 +1,24 @@
 <tr bgcolor="#D83C33">
-<td width="5%">&nbsp;</td>
-<td bgcolor="#FFFFFF" style="padding: 20px;">
-	<h1>Hello, <%= @event.organiser_name %></h1>
-	<p>
-		You have created an event. 
-	</p>
-	<p>
-		To view the event details, just follow this <a href="http://tableforeight.herokuapp.com/result/<%= @event.unique_id %>">link</a>.
-	</p>
-	<p>
-		On the link above you can see the current voting results. <br />
-		Choose a place and date after voting ends on <%= @event.cutoff_at %>.
-	</p>
-	<p>
-		Thanks for using Table For Eight and have a great day!
-	</p>
-	<p>
-		The Table For Eight Team<br />
-		Plan. Dine. Socialise.<br />
-	</p>
-</td>
-<td width="5%">&nbsp;</td>
+	<td width="5%">&nbsp;</td>
+	<td bgcolor="#FFFFFF" style="padding: 20px;">
+		<h1>Hello, <%= @event.organiser_name %></h1>
+		<p>
+			Your invitation has been sent! 
+		</p>
+		<p>
+			To view the event details, just follow this <a href="http://tableforeight.herokuapp.com/result/<%= @event.unique_id %>">link</a>.
+		</p>
+		<p>
+			On the link above you can see the current voting results. <br/>
+			Choose a place and date after voting ends on <%= @event.cutoff_at %>.
+		</p>
+		<p>
+			Thanks for using Table For Eight and have a great day!
+		</p>
+		<p>
+			The Table For Eight Team<br/>
+			Plan. Dine. Socialise.
+		</p>
+	</td>
+	<td width="5%">&nbsp;</td>
 </tr>

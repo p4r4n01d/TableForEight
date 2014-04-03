@@ -3,15 +3,15 @@
 	<td bgcolor="#FFFFFF" style="padding: 20px;">
 		<h1>Hello, <%= @user.email %></h1>
 		<p>
-			Voting is done. Now lets party! <br/>
-			Below are the details of the event: <br/>
+			Voting is done. Now let's party! <br/>
+			Below are the details of the event:
 		</p>
 		<p>
 			Where: <%= @event.name1 %>(<%= @event.link1 %>).<br/>
 			When: <%= @event.date %>.<br/>
 			Guests: 
 			<% @users.each do |user| %>
-				<%= user.email %><br />
+				<%= user.email %><br/>
 			<% end %>
 		</p>
 		<p>Have a crazy, fun night out!</p>

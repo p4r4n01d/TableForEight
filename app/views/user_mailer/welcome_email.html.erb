@@ -4,15 +4,15 @@
 		<h1>Hello, <%= @user.email %></h1>
 		<p>
 			Your friend <%= @event.organiser_name %> is planning a hangout.<br />
-			Help 'em decide when and where! To vote, click on 
-			<%= link_to 'this', voting_url(:event_id => @event.unique_id, :vote_id => @user.unique_id) %><br />
+			Help 'em decide when and where! To vote, click on this
+			<%= link_to 'link', voting_url(:event_id => @event.unique_id, :vote_id => @user.unique_id) %>.
 		</p>
 		<p>
 			Voting ends on <%= @event.cutoff_at %>.
 		</p>
 		<p>
-			The Table For Eight Team<br />
-			Plan. Dine. Socialise.<br />
+			The Table For Eight Team<br/>
+			Plan. Dine. Socialise.
 		</p>
 	</td>
 	<td width="5%">&nbsp;</td>
