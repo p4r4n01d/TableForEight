@@ -1,16 +1,23 @@
 class ResultController < ApplicationController
+  before_filter :get_event
+
   def index
-   @events = Event.where('unique_id' => params[:event_id]).first
-    @votes = @events.votes
+   @events = @event
+   @votes = @events.votes
   end
+
   def update
-    @event = Event.where('unique_id' => params[:event_id]).first
     @votes = @event.votes
     UserMailer.admin_email(@votes, @event).deliver
     @votes.each do |vote|
       UserMailer.confirm_email(vote, @event).deliver
     end
-    format.json { render :json=>{:status=>'Done',:events=>{:id=>@event.unique_id}}}
+    render json: @event, status: :ok
   end
+
+  private
+    def get_event
+      @event = Event.where('unique_id' => params[:event_id]).first
+    end
 end
-        
+

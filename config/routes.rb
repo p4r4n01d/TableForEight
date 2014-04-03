@@ -2,10 +2,10 @@ TableForEight::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root to: "home#index"
-  get '/voting/:event_id/:vote_id', to: 'voting#index'
+  get '/voting/:event_id/:vote_id', to: 'voting#index', as: :voting
   get '/api/places/:type', to: 'places#index'
   get '/result/:event_id', to: 'result#index'
-  post '/api/event/:event_id/:vote_id', to: 'votes#update', :defaults => { :format => 'json' } 
+  patch '/api/event/:event_id/:vote_id', to: 'votes#update', :defaults => { :format => 'json' }, as: :update_vote
   post '/email/:event_id', to: 'result#update', :defaults => { :format => 'json' } 
   get '/api/get/:event_id', to: 'votes#countvotes', :defaults => { :format => 'json' } 
   
