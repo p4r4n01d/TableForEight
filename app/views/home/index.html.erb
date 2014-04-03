@@ -49,9 +49,17 @@
 					alert("You are signed in to Facebook");
 				})">facebook</button><br /><br />-->
 
-				<%= who_helper("Name", "user", "What's your name?", "organiser_name") %>
-				<%= who_helper("Email", "envelope", "What's your email?", "organiser_email") %>
-				<%= who_helper("Guest List", nil, "One email per line. Example: john@example.com", "guest_list") %>
+                <%= render partial: "who", :locals => { :label_title => "Name",
+                 :span_class => "user",
+                 :placeHolder => "What's your name?",
+                 :modelName => "organiser_name" } %>
+                <%= render partial: "who", :locals => { :label_title => "Email",
+                 :span_class => "envelope",
+                 :placeHolder => "What's your email?",
+                 :modelName => "organiser_email" } %>
+                <%= render partial: "who", :locals => { :label_title => "Guest List",
+                 :placeHolder =>"One email per line. Example: john@example.com",
+                 :modelName => "guest_list" } %>
 			</article>
 		</section>
 
