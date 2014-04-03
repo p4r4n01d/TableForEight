@@ -11,28 +11,30 @@ describe EventsController do
   
     it "can send an empty list of events" do
       get :index
-      expect(response).to be_success
 
-      # Check that we didn't receive any data back
+      assert_response(:ok)
+
+      # Check that we didn't receive any data.
       expect(JSON.parse(response.body).length).to eq(0)
     end
 
-    it "sends a list of events" do
+    it "can send a list of events" do
       event = FactoryGirl.create_list(:event, 10)
-
       get :index
+
       expect(response).to be_success
 
-      # check to make sure the right amount of events back
+      # Check if the correct number of events is returned.
       expect(JSON.parse(response.body).length).to eq(10)
     end
 
-    it "sends a single event" do
+    it "can send a single event" do
       event = FactoryGirl.create(:event)
       get :show, {:id => event.unique_id}
-      assert_response(200)
 
-      # check that the message attributes are the same.
+      assert_response(:ok)
+
+      # Check if the message attributes are the same.
       json = JSON.parse(response.body)
 
       fields = ['id', 'link1', 'organiser_email']
@@ -43,12 +45,13 @@ describe EventsController do
 
     it "sends null when event does not exist" do
       get :show, {:id => -1}
+
       expect(response).to be_success
 
       response.body.should == "null"
     end
 
-    it "successfully creates a new event" do
+    it "can successfully create a new event" do
       event = FactoryGirl.build(:event)
       post :create, {:event => event.attributes}
 
@@ -57,37 +60,38 @@ describe EventsController do
       JSON.parse(response.body)[:id].should == event.id
     end
 
-    it "does not create event with invalid fields" do
+    it "cannot create event with invalid fields" do
       event = FactoryGirl.build(:event, "link1" => nil)
       post :create, :event => event.attributes
 
-      assert_response(422)
+      assert_response(:unprocessable_entity)
     end
 
-    it "updates an existing event" do
+    it "can update an existing event" do
       event = FactoryGirl.create(:event)
-
       patch :update, {:id => event.unique_id, "organiser_name" => "John"}
+
       expect(response).to be_success
     end
 
-    it "does not update existing event with invalid fields" do
+    it "cannot update existing event with invalid fields" do
       event = FactoryGirl.create(:event)
-
       patch :update, {:id => event.unique_id, :event => {:link1 => nil}}
-      assert_response(422)
+
+      assert_response(:unprocessable_entity)
     end
 
-    it "destroys an existing event" do
+    it "can destroy an existing event" do
       event = FactoryGirl.create(:event)
       delete :destroy, {:id => event.unique_id}
+
       expect(response).to be_success
     end
 
-    it "does not destroy a non-existant event" do
+    it "cannot destroy a non-existent event" do
       delete :destroy, {:id => 100}
-      assert_response(422)
+
+      assert_response(:unprocessable_entity)
     end
   end
-
 end
