@@ -86,7 +86,7 @@
 						<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
 						<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							<input class="form-control" size="16" type="text" value="" ng-model="date<%= i %>">
+							<input class="form-control" size="16" type="datetime-local" value="" ng-model="date<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						</div>
 						<input type="hidden" id="dtp_input<%= i %>" value="" />
