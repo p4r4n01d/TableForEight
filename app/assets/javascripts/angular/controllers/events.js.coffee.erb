@@ -1,0 +1,65 @@
+`var win = typeof(window) === 'undefined' ? {} : window`
+`var mod = typeof(module) === 'undefined' ? {} : module`
+win.tableforeight = win.tableforeight || {}
+
+win.angular.module('tableforeight', ['apis'])
+  .config ($routeProvider) ->
+    $routeProvider
+      .when '/',
+        controller: win.tableforeight.newCtrl
+        templateUrl: '<%= asset_path "new.html" %>'
+      .when '/voting/:event_id',
+        controller: win.tableforeight.votingCtrl
+        templateUrl: '<%= asset_path "voting.html" %>'
+      .when '/result/:event_id',
+        controller: win.tableforeight.resultCtrl
+        templateUrl: '<%= asset_path "result.html" %>'
+      .otherwise redirectTo: '/'
+  .config [ "$httpProvider", (provider) ->
+      provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
+  ]
+
+mod.exports = win.tableforeight.listCtrl = ($scope, $location, Event) ->
+  $scope.events = Event.query()
+
+mod.exports = win.tableforeight.newCtrl = ($scope, $location, Events, Votes) ->
+
+  $scope.save = ->
+    Events.save $scope.events, (events) ->
+			  guest_list = $scope.guests.split '\n'
+			  for email in guest_list
+			  			voting = new Votes(events.unique_id).create({ 'email': email })
+			  $location.path '/result/' + events.unique_id
+
+mod.exports = win.tableforeight.resultCtrl = ($scope, $location, $routeParams, Event, Votes) ->
+  self = @
+  
+  Event.get {event_id: $routeParams.event_id}, (event) ->
+    self.original_event = event
+    $scope.event = new Event self.original_event
+  Event.get {event_id: $routeParams.event_id}, (event) ->
+    self.original_event = event
+    $scope.event = new Event self.original_event
+	
+  $scope.isClean = ->
+    angular.equals(self.original_event, $scope.event)
+
+  $scope.save = ->
+    window.event = $scope.event
+    $scope.event.$update ->
+      $location.path '/'
+
+mod.exports = win.tableforeight.votingCtrl = ($scope, $location, $routeParams, Event) ->
+  self = @
+  
+  Event.get {event_id: $routeParams.event_id}, (event) ->
+    self.original_event = event
+    $scope.event = new Event self.original_event
+	
+  $scope.isClean = ->
+    angular.equals(self.original_event, $scope.event)
+
+  $scope.save = ->
+    window.event = $scope.event
+    $scope.event.$update ->
+      $location.path '/'

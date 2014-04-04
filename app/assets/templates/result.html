@@ -1,0 +1,67 @@
+		<section class="row offset lighter-background" id="when">
+			<article class="center-section offset-bot">
+				<h2>
+					<i class="glyphicon glyphicon-calendar service-icon"></i> When?
+				</h2>
+
+
+
+		<div>
+			<div>
+
+				<div class="panel panel-default" ng-repeat="event in events">
+					<div class="panel-heading">
+						{{ event["date" + ($index + 1)] }}
+
+						<div class="btn-toolbar btn-float-right" role="toolbar">
+							<!-- Selection button -->
+							<div class="btn-group bring-to-front">
+								<button type="button" class="btn btn-default btn-sm">Select
+									<span id="SelectDate{{$index + 1}}" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<ul class="list-group" id="accordion">
+						<li class="list-group-item">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseA{{ $index }}">
+								Accepted: &#x25bc;
+							</a>
+							<ul id="collapseA{{ $index }}" class="collapse">
+								<li>blahdf@fdsgh.com</li>
+								<li>blahdfhsdhdf@fdsgh.com</li>
+								<li>blahdf@fdsgh.com</li>
+								<li>blahdhddf@fdsgh.com</li>
+							</ul>
+						</li>
+
+						<li class="list-group-item">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseB{{ $index }}">
+								Not Accepted: &#x25bc;
+							</a>
+							<ul id="collapseB{{ $index }}" class="collapse">
+								<li>blahdf@fdsgh.com</li>
+							</ul>
+
+						</li>
+						<li class="list-group-item">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseC{{ $index }}">
+								Unsure: &#x25bc;
+							</a>
+							<ul id="collapseC{{ $index }}" class="collapse">
+								<li>blahfdf@fdsgh.com</li>
+								<li>blafhhdf@fdsgh.com</li>
+								<li>blahdf@fdsgh.com</li>
+							</ul>
+						</li>
+					</ul>
+
+
+				</div>
+			</div>
+		</div>
+
+				<input type="hidden" id="dtp_input4" value="" />
+			</article>
+		</section>
