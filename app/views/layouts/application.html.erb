@@ -57,8 +57,10 @@
 
         <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
         <script type="text/javascript">
-          var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-          if (is_firefox) {
+            var width = $(window).width(); 
+            var height = $(window).height(); 
+
+            if ((width >= 1024) || (height >= 768)) {
             $('.form_datetime').datetimepicker({
                 //language:  'fr',
                 weekStart: 1,
