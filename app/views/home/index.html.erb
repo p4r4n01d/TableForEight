@@ -45,9 +45,7 @@
 				<h2>
 					<i class="glyphicon glyphicon-list-alt service-icon"></i> Who?
 				</h2>
-				<!--<button onclick="hello('facebook').login(function(){
-					alert("You are signed in to Facebook");
-				})">facebook</button><br /><br />-->
+				<button onclick="hello('facebook').login()">facebook</button><br /><br />
 
                 <%= render partial: "who", :locals => { :label_title => "Name",
                  :span_class => "user",

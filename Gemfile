@@ -69,6 +69,4 @@ gem 'rails_on_heroku'
 
 gem 'angular-rails'
 
-gem 'sqlite3'
-
 gem 'google_places'
