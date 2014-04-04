@@ -57,6 +57,8 @@
 
         <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
         <script type="text/javascript">
+          var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+          if (is_firefox) {
             $('.form_datetime').datetimepicker({
                 //language:  'fr',
                 weekStart: 1,
@@ -102,6 +104,7 @@
             $(function() {
                 Grid.init();
             });
+        }
         </script>
 
     </body>
