@@ -11,11 +11,11 @@
  str = nil
  case modelName
   when "organiser_name"
-    str = '<input type="text" '
+    str = '<input type="text" required aria-required=”true”'
   when "organiser_email"
-    str = '<input type="email" spellcheck="false" '
+    str = '<input type="email" spellcheck="false" required aria-required=”true”'
   when "guest_list"
-    str = '<textarea rows="6" cols="80" spellcheck="false" '
+    str = '<textarea rows="6" cols="80" spellcheck="false" required aria-required=”true”'
     fieldName = "textarea"
 end %>
 <%= raw(str + "id=\"#{modelName}\"") %> class="form-control letterSpacingFonts"
