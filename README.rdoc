@@ -17,14 +17,16 @@ Then run: <tt>rspec</tt> to run the actual tests.
 
 * Deployment instructions
 We are using Heroku for the production server. This only supports the Postgres
- database, so ensure that the following line is in the Gemfile:
+database, so ensure that the following line is in the Gemfile:
  gem 'pg'
+The sqlite3 gem should not be committed to the Gemfile in the repository as
+Heroku does not support it. You can add it locally, for testing just don't commit it.
 To push the master branch to heroku use: <tt>heroku push master</tt>
 This requires the heroku toolbelt is installed and a remote for heroku is set up
- locally for this repository. 
+locally for this repository. 
 
-
-
+Production website: tableforeight.herokuapp.com
+Heroku repository URL: git@heroku.com:tableforeight.git
 
 -----------
 Please feel free to use a different markup language if you do not plan to run
