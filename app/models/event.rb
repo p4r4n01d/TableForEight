@@ -1,5 +1,4 @@
-require 'open-uri' # Part of ruby no need for gem
-require 'nokogiri'
+require 'net/http'
 
 class Event < ActiveRecord::Base
 
