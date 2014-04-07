@@ -51,12 +51,19 @@
             <%= yield %>
 
             <footer>
-                <p>Table For Eight &copy; Copyright 2014.</p>
+            	<div id="fb-root"></div>
+                <div class="fb-like-box" data-href="https://www.facebook.com/TableForEightApp" data-colorscheme="light"
+			 data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+		<p>Table For Eight &copy; Copyright 2014.</p>
             </footer>
         </div>
 
         <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
         <script type="text/javascript">
+            var width = $(window).width(); 
+            var height = $(window).height(); 
+
+            if ((width >= 1024) || (height >= 768)) {
             $('.form_datetime').datetimepicker({
                 //language:  'fr',
                 weekStart: 1,
@@ -102,6 +109,7 @@
             $(function() {
                 Grid.init();
             });
+        }
         </script>
 
     </body>

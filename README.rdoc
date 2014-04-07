@@ -1,32 +1,32 @@
 == README
 
 Table For Eight is an interactive app that takes the hassle and stress out of
- planning a dining experience with your mates. Invite your friends, and they'll
- help you plan this out by voting their preferences later. 
+planning a dining experience with your mates. Invite your friends, and they'll
+help you plan this out by voting their preferences later. 
 
 * Ruby version
 This project uses Ruby on Rails (version 4.0.4)
 
 * Database initialization/creation
-<tt>rake db:migrate</tt>
+ rake db:migrate
 
 * How to run the test suite
 Run: <tt>rake db:migrate RAILS_ENV=test</tt>
 To setup the database and run all the migrations on the testing database.
-Then run:
-     <tt>rspec</tt>
-To run the actual tests.
+Then run: <tt>rspec</tt> to run the actual tests.
 
 * Deployment instructions
 We are using Heroku for the production server. This only supports the Postgres
- database, so ensure that the following line is in the Gemfile:
-<tt>gem 'pg'</tt>
+database, so ensure that the following line is in the Gemfile:
+ gem 'pg'
+The sqlite3 gem should not be committed to the Gemfile in the repository as
+Heroku does not support it. You can add it locally, for testing just don't commit it.
 To push the master branch to heroku use: <tt>heroku push master</tt>
 This requires the heroku toolbelt is installed and a remote for heroku is set up
- locally for this repository. 
+locally for this repository. 
 
-
-
+Production website: tableforeight.herokuapp.com
+Heroku repository URL: git@heroku.com:tableforeight.git
 
 -----------
 Please feel free to use a different markup language if you do not plan to run
