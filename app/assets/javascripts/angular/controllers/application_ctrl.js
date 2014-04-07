@@ -2,6 +2,7 @@
 
 tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', function ($scope, $http, $templateCache) {
 	
+	var sent_email="NO";
 	$scope.method = 'GET';
 	 
 	$scope.vote_process = function(event_id, vote_id, type, result) {
@@ -219,7 +220,6 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 	// SENDING INVITATION
 	$scope.sendInvite = function() {
 		var d = new Date();
-		var sent_email="NO";
 		var month = d.getMonth()+1;
 		var day = d.getDate();
 		var datetime = d.getFullYear() + '/' +
@@ -236,37 +236,37 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 		if(ErrorString=="" && sent_email=="NO"){
 			EventJSON = {
 			"event": 
-			{ "date":$scope.date1,
-			 "cutoff_at":$scope.date4,
-			 "link1":$scope.restUrl1,
-			 "name1":$scope.name1,
-			 "link2":$scope.restUrl2,
-			 "name2":$scope.name2,
-			 "link3":$scope.restUrl3,
-			 "name3":$scope.name3,
-			 "link4":$scope.restUrl4,
-			 "name4":$scope.name4,
-			 "link5":$scope.restUrl5,
-			 "name5":$scope.name5,
-			 "date1":$scope.date1,
-			 "date2":$scope.date2,
-			 "date3":$scope.date3,
-			 "organiser_email":$scope.organiser_email,
-			 "organiser_name":$scope.organiser_name }
+			{ "date":$scope.event.date1,
+			 "cutoff_at":$scope.event.date4,
+			 "link1":$scope.event.link1,
+			 "name1":$scope.event.name1,
+			 "link2":$scope.event.link2,
+			 "name2":$scope.event.name2,
+			 "link3":$scope.event.link3,
+			 "name3":$scope.event.name3,
+			 "link4":$scope.event.link4,
+			 "name4":$scope.event.name4,
+			 "link5":$scope.event.link5,
+			 "name5":$scope.event.name5,
+			 "date1":$scope.event.date1,
+			 "date2":$scope.event.date2,
+			 "date3":$scope.event.date3,
+			 "unique_id": "",
+			 "organiser_email":$scope.event.organiser_email,
+			 "organiser_name":$scope.event.organiser_name }
 			 };
-			emailList = $scope.guest_list.split(";");
-			if($scope.guest_list.split("\n").length>1){
-				emailList = $scope.guest_list.split("\n");
+			emailList = $scope.guest_list.split("\n");
+			if($scope.guest_list.split(";").length>1){
+				emailList = $scope.guest_list.split(";");
 			}
 			if($scope.guest_list.split(",").length>1){
-				emailList = $scope.guest_list.split("\n");
+				emailList = $scope.guest_list.split(",");
 			}
 			if($scope.guest_list.split(" ").length>1){
 				emailList = $scope.guest_list.split(" ");
 			}
 			if(emailList.length>1)
 			{
-				EventJsonNew="";
 				EventJsonNew=JSONInterface("/api/events", EventJSON, "POST", "created");
 				if(EventJsonNew!=null)
 				{
@@ -286,7 +286,6 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 						 "date3":"-1",
 						 "confirmed":false }
 						};
-						VoteJsonNew="";
 						VoteJsonNew=JSONInterface("/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
 						if(VoteJsonNew!=null) DataSaved=true;
 						else DataSaved=false;

@@ -19,7 +19,7 @@
     fieldName = "textarea"
 end %>
 <%= raw(str + "id=\"#{modelName}\"") %> class="form-control letterSpacingFonts"
-<%= raw("placeholder=\"#{placeHolder}\" ng-model=\"#{modelName}\"") %><% if fieldName.present? %><%= raw( "></#{fieldName}>") %><% else %><%= raw(" />") %><% end %>
+<%= raw("placeholder=\"#{placeHolder}\" ng-model=\"event.#{modelName}\"") %><% if fieldName.present? %><%= raw( "></#{fieldName}>") %><% else %><%= raw(" />") %><% end %>
       
 </div>
 
