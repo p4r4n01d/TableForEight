@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<div ng-view></div>
-=======
-
-<main class="container">
+<main class="container" ng-controller="newCtrl">
 	<div id="eventRefresh">
 
 		<section class="row" id="home">
@@ -48,7 +44,7 @@
 				<h2>
 					<i class="glyphicon glyphicon-list-alt service-icon"></i> Who?
 				</h2>
-				<button onclick="hello('facebook').login()">facebook</button><br /><br />
+				<!--<button onclick="hello('facebook').login()">facebook</button><br /><br />-->
 
                 <%= render partial: "who", :locals => { :label_title => "Name",
                  :span_class => "user",
@@ -70,10 +66,10 @@
 					<i class="glyphicon glyphicon-cutlery service-icon"></i> Where?
 				</h2>
 				<% (1..5).each do |i| %>
-					<label class="control-label spacingAround">{{ name<%= i %> }}</label>
+					<label class="control-label spacingAround">{{ event.name<%= i %> }}</label>
 					<div class="input-group spacingAround">
 						<span class="input-group-addon glyphicon glyphicon-globe"></span>
-				  		<input type="url" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl<%= i %>" ng-change="fetch(restUrl<%= i %>, <%= i %>)"/>
+				  		<input type="url" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="event.link<%= i %>"/>
 					</div>
 				<% end %>
 			</article>
@@ -89,7 +85,7 @@
 						<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
 						<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							<input class="form-control" size="16" type="datetime-local" value="" ng-model="date<%= i %>">
+							<input class="form-control" size="16" type="datetime-local" value="" ng-model="event.date<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						</div>
 						<input type="hidden" id="dtp_input<%= i %>" value="" />
@@ -99,7 +95,7 @@
 					<label for="dtp_input4" class="control-label">Vote before</label>
 					<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
-						<input class="form-control" size="16" type="datetime-local" value="" ng-model="date4">
+						<input class="form-control" size="16" type="datetime-local" value="" ng-model="event.cutoff_at">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					</div>
 					<input type="hidden" id="dtp_input4" value="" />
@@ -115,11 +111,10 @@
 				<p>{{ inviteResult }}</p>
 				<div id="resultDivContainer"></div>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default btn-lg" ng-click="sendInvite()">
+					<button type="button" class="btn btn-default btn-lg" ng-click="save()">
 					<span class="glyphicon glyphicon-envelope"></span> Send!</button>
 				</div>
 			</article>
 		</section>
 	</div>
 </main>
->>>>>>> 951b85583ef8f6bcbe7f9918bbec6e3c4181b460
