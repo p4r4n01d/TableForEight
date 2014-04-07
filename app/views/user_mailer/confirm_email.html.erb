@@ -9,10 +9,6 @@
 		<p>
 			Where: <%= @event.name1 %>(<%= @event.link1 %>).<br/>
 			When: <%= @event.date %>.<br/>
-			Guests: 
-			<% @users.each do |user| %>
-				<%= user.email %><br/>
-			<% end %>
 		</p>
 		<p>Have a crazy, fun night out!</p>
 		<p>
