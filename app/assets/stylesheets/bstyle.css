@@ -487,3 +487,17 @@ footer{
 .offset-text {
 	padding-top: 12px;
 }
+
+.feedback-form {
+	color: #323232;
+}
+.feedback-form h3 {
+	color: #323232;
+}
+
+
+.half-col {
+	float: left;
+	padding-left: 20px;
+	padding-right: 20px;
+}
