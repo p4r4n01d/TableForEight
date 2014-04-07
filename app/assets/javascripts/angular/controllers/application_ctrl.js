@@ -255,15 +255,15 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 			 "organiser_email":$scope.event.organiser_email,
 			 "organiser_name":$scope.event.organiser_name }
 			 };
-			emailList = $scope.guest_list.split("\n");
+			emailList = $scope.event.guest_list.split("\n");
 			if($scope.event.guest_list.split(";").length>1){
-				emailList = $scope.guest_list.split(";");
+				emailList = $scope.event.guest_list.split(";");
 			}
-			if($scope.guest_list.split(",").length>1){
-				emailList = $scope.guest_list.split(",");
+			if($scope.event.guest_list.split(",").length>1){
+				emailList = $scope.event.guest_list.split(",");
 			}
-			if($scope.guest_list.split(" ").length>1){
-				emailList = $scope.guest_list.split(" ");
+			if($scope.event.guest_list.split(" ").length>1){
+				emailList = $scope.event.guest_list.split(" ");
 			}
 			if(emailList.length>1)
 			{
