@@ -2,64 +2,72 @@
 `var mod = typeof(module) === 'undefined' ? {} : module`
 win.tableforeight = win.tableforeight || {}
 
+
+# Angular Routing for UI
 win.angular.module('tableforeight', ['apis'])
   .config ($routeProvider) ->
     $routeProvider
-      .when '/',
+      .when '/', # path is 'example.com/#/'
         controller: win.tableforeight.newCtrl
         templateUrl: '<%= asset_path "new.html" %>'
-      .when '/voting/:event_id',
+      .when '/voting/:event_id', # path is 'example.com/#/voting/:event_id'
         controller: win.tableforeight.votingCtrl
         templateUrl: '<%= asset_path "voting.html" %>'
-      .when '/result/:event_id',
+      .when '/result/:event_id', # path is 'example.com/#/result/:vote_id'
         controller: win.tableforeight.resultCtrl
         templateUrl: '<%= asset_path "result.html" %>'
-      .otherwise redirectTo: '/'
+      .otherwise redirectTo: '/' # path is 'example.com/#/'
   .config [ "$httpProvider", (provider) ->
+	  #Set CSRF tokent for ROR authentication
       provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
   ]
+  
+# Retrieves all Events from ror REST/JSON API ('/api/events')
+mod.exports = win.tableforeight.listCtrl = ($scope, $location, Events) ->
+  # Call all Events
+  $scope.events = Events.query()
 
-mod.exports = win.tableforeight.listCtrl = ($scope, $location, Event) ->
-  $scope.events = Event.query()
 
+# Creates a new Events and POST to ror REST/JSON API ('/api/events')
+# Creates new Votes and POST to ror REST/JSON API ('/api/events/:event_id/votes')
 mod.exports = win.tableforeight.newCtrl = ($scope, $location, Events, Votes) ->
 
+  $scope.tesda = ->
+    testValue()
+
+  # Saves the new event from the UI
   $scope.save = ->
     Events.save $scope.events, (events) ->
+			  #Gets List of Guests in an array format
 			  guest_list = $scope.guests.split '\n'
 			  for email in guest_list
-			  			voting = new Votes(events.unique_id).create({ 'email': email })
-			  $location.path '/result/' + events.unique_id
+			  			#Creating each for Vote with guest email for the relevant Event
+			  			voting = new Votes(events.unique_id).create({ 'email': email })		
+			  $location.path '/result/' + events.unique_id #Returns path to the results page
 
+
+# Gets and sets Event to and from ror REST/JSON API ('/api/events/:event_id')
+# Gets and sets Vote to and from ror REST/JSON API ('/api/votes/:vote_id')
 mod.exports = win.tableforeight.resultCtrl = ($scope, $location, $routeParams, Event, Votes) ->
   self = @
   
   Event.get {event_id: $routeParams.event_id}, (event) ->
     self.original_event = event
     $scope.event = new Event self.original_event
-  Event.get {event_id: $routeParams.event_id}, (event) ->
-    self.original_event = event
-    $scope.event = new Event self.original_event
-	
-  $scope.isClean = ->
-    angular.equals(self.original_event, $scope.event)
+    votes = new Votes($scope.event.unique_id).all()
+    $scope.votes_view = get_votes(votes)
 
-  $scope.save = ->
-    window.event = $scope.event
-    $scope.event.$update ->
-      $location.path '/'
-
-mod.exports = win.tableforeight.votingCtrl = ($scope, $location, $routeParams, Event) ->
+mod.exports = win.tableforeight.votingCtrl = ($scope, $location, $routeParams, Vote) ->
   self = @
   
-  Event.get {event_id: $routeParams.event_id}, (event) ->
-    self.original_event = event
-    $scope.event = new Event self.original_event
+  Vote.get {vote_id: $routeParams.event_id}, (vote) ->
+    self.original_vote = vote
+    $scope.vote = new Event self.original_vote
 	
   $scope.isClean = ->
-    angular.equals(self.original_event, $scope.event)
+    angular.equals(self.original_vote, $scope.vote)
 
   $scope.save = ->
-    window.event = $scope.event
-    $scope.event.$update ->
+    window.vote = $scope.vote
+    $scope.vote.$update ->
       $location.path '/'

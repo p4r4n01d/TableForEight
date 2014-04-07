@@ -1,3 +1,66 @@
+				<section class="row offset lighter-background" id="when">
+			<article class="center-section offset-bot">
+				<h2>
+					<i class="glyphicon glyphicon-calendar service-icon"></i> Where?
+				</h2>
+
+
+
+		<div>
+					Voting RESULT: {{ votes_view }}<br /><br />
+			<div ng-repeat="i in [1,2,3,4,5]">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						{{ event['link'+($index+1)] }}
+						<div class="btn-toolbar btn-float-right" role="toolbar">
+							<!-- Selection button -->
+							<div class="btn-group bring-to-front">
+								<button type="button" class="btn btn-default btn-sm">Select
+									<span id="SelectDate" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<ul class="list-group" id="accordion">
+						<li class="list-group-item">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseA">
+								Accepted: &#x25bc;
+							</a>
+							<ul id="collapseA" class="collapse">
+								<li ng-repeat="email in votes_view.restaurants['link' + i + 'yes'].emails ">{{ email }}</li>
+							</ul><span class="badge">{{ votes_view.restaurants['link' + i + 'yes'].count }}</span>
+						</li>
+
+						<li class="list-group-item">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseB">
+								Not Accepted: &#x25bc;
+							</a>
+							<ul id="collapseB" class="collapse">
+								<li ng-repeat="email in votes_view.restaurants['link' + i + 'no'].emails ">{{ email }}</li>
+							</ul>
+							<span class="badge">{{ votes_view.restaurants['link' + i + 'no'].count }}</span>
+
+						</li>
+						<li class="list-group-item">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseC">
+								Unsure: &#x25bc;
+							</a>
+							<ul id="collapseC" class="collapse">
+								<li ng-repeat="email in votes_view.restaurants['link' + i + 'didnotvote'].emails ">{{ email }}</li>
+							</ul>
+							<span class="badge">{{ votes_view.restaurants['link' + i + 'didnotvote'].count }}</span>
+						</li>
+					</ul>
+
+
+				</div>
+			</div>
+		</div>
+
+				<input type="hidden" id="dtp_input4" value="" />
+			</article>
+		</section>
 		<section class="row offset lighter-background" id="when">
 			<article class="center-section offset-bot">
 				<h2>
@@ -8,16 +71,14 @@
 
 		<div>
 			<div>
-
-				<div class="panel panel-default" ng-repeat="event in events">
+				<div class="panel panel-default">
 					<div class="panel-heading">
-						{{ event["date" + ($index + 1)] }}
 
 						<div class="btn-toolbar btn-float-right" role="toolbar">
 							<!-- Selection button -->
 							<div class="btn-group bring-to-front">
 								<button type="button" class="btn btn-default btn-sm">Select
-									<span id="SelectDate{{$index + 1}}" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
+									<span id="SelectDate" data-original-title="Select this date:" class="glyphicon glyphicon-check"></span>
 								</button>
 							</div>
 						</div>
@@ -25,10 +86,10 @@
 
 					<ul class="list-group" id="accordion">
 						<li class="list-group-item">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseA{{ $index }}">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseA">
 								Accepted: &#x25bc;
 							</a>
-							<ul id="collapseA{{ $index }}" class="collapse">
+							<ul id="collapseA" class="collapse">
 								<li>blahdf@fdsgh.com</li>
 								<li>blahdfhsdhdf@fdsgh.com</li>
 								<li>blahdf@fdsgh.com</li>
@@ -37,19 +98,19 @@
 						</li>
 
 						<li class="list-group-item">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseB{{ $index }}">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseB">
 								Not Accepted: &#x25bc;
 							</a>
-							<ul id="collapseB{{ $index }}" class="collapse">
+							<ul id="collapseB" class="collapse">
 								<li>blahdf@fdsgh.com</li>
 							</ul>
 
 						</li>
 						<li class="list-group-item">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseC{{ $index }}">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseC">
 								Unsure: &#x25bc;
 							</a>
-							<ul id="collapseC{{ $index }}" class="collapse">
+							<ul id="collapseC" class="collapse">
 								<li>blahfdf@fdsgh.com</li>
 								<li>blafhhdf@fdsgh.com</li>
 								<li>blahdf@fdsgh.com</li>
