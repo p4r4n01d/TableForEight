@@ -69,7 +69,7 @@ class EventsController < ApplicationController
 
   def event_params
 	unless params[:event].blank?
-	  params.require(:event).permit(:date, :cutoff_at, :link1, :name1, :link2, :name2, :link3, :name3, :link4, :name4, :link5, :name5, :date1, :date2, :date3, :hash, :organiser_email, :organiser_name)
+	  params.require(:event).permit(:date, :cutoff_at, :link1, :name1, :link2, :name2, :link3, :name3, :link4, :name4, :link5, :name5, :date1, :date2, :date3, :unique_id, :organiser_email, :organiser_name)
 	end
   end
 end

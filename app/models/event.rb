@@ -2,6 +2,8 @@ require 'open-uri' # Part of ruby no need for gem
 require 'nokogiri'
 
 class Event < ActiveRecord::Base
+
+  private
   has_many :votes
   
   validates :organiser_email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
@@ -46,8 +48,7 @@ class Event < ActiveRecord::Base
     link = get_page_title(link)
   end
 
-  private
     def assign_unique_token
-      self.unique_id = SecureRandom.hex(20)
+      self.unique_id = SecureRandom.urlsafe_base64(20)
     end
 end

@@ -23,7 +23,8 @@
 //= require scrollto/waypoints-sticky
 //= require scrollto/jquery.scrollto
 //= require scrollto/grid
-//= require angular
+//= require angular.min
+//= require angular-resource
 //= require tableforeight
 //= require voting
 //= require_tree ./angular

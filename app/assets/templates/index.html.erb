@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<div ng-view></div>
+=======
+
 <main class="container">
 	<div id="eventRefresh">
 
@@ -44,40 +48,19 @@
 				<h2>
 					<i class="glyphicon glyphicon-list-alt service-icon"></i> Who?
 				</h2>
-				<!--<button onclick="hello('facebook').login()">facebook</button><br /><br />-->
+				<button onclick="hello('facebook').login()">facebook</button><br /><br />
 
-                <label class="control-label spacingAround offset-text letterSpacingFonts">Name</label>
-				<div class="input-group spacingAround" id="organiser_name_container">
-
-				  <span class="input-group-addon glyphicon glyphicon-user"></span>
-
-				<input type="text" required aria-required="true" id="organiser_name" class="form-control letterSpacingFonts"
-				placeholder="What's your name?" ng-model="organiser_name" />
-				      
-				</div>
-
-
-				                <label class="control-label spacingAround offset-text letterSpacingFonts">Email</label>
-				<div class="input-group spacingAround" id="organiser_email_container">
-
-				  <span class="input-group-addon glyphicon glyphicon-envelope"></span>
-
-				<input type="email" spellcheck="false" required aria-required="true" id="organiser_email" class="form-control letterSpacingFonts"
-				placeholder="What's your email?" ng-model="organiser_email" />
-				      
-				</div>
-
-
-				<label class="control-label spacingAround offset-text letterSpacingFonts">Guest List</label>
-				<div class="input-group spacingAround" id="guest_list_container">
-
-
-				<textarea rows="6" cols="80" spellcheck="false" required aria-required="true" id="guest_list" class="form-control letterSpacingFonts"
-				placeholder="One email per line. Example: john@example.com" ng-model="guest_list"></textarea>
-				      
-				</div>
-
-
+                <%= render partial: "who", :locals => { :label_title => "Name",
+                 :span_class => "user",
+                 :placeHolder => "What's your name?",
+                 :modelName => "organiser_name" } %>
+                <%= render partial: "who", :locals => { :label_title => "Email",
+                 :span_class => "envelope",
+                 :placeHolder => "What's your email?",
+                 :modelName => "organiser_email" } %>
+                <%= render partial: "who", :locals => { :label_title => "Guest List",
+                 :placeHolder =>"One email per line. Example: john@example.com",
+                 :modelName => "guest_list" } %>
 			</article>
 		</section>
 
@@ -86,13 +69,13 @@
 				<h2>
 					<i class="glyphicon glyphicon-cutlery service-icon"></i> Where?
 				</h2>
-					<div ng-repeat="i in [1,2,3,4,5]">
-                        <div class="input-group spacingAround">
-                            <span class="input-group-addon glyphicon glyphicon-globe"></span>
-                            {{ event['name'+($index+1)] }}
-                            <input type="url" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="events['link'+($index+1)]"/>
-                        </div>
+				<% (1..5).each do |i| %>
+					<label class="control-label spacingAround">{{ name<%= i %> }}</label>
+					<div class="input-group spacingAround">
+						<span class="input-group-addon glyphicon glyphicon-globe"></span>
+				  		<input type="url" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="restUrl<%= i %>" ng-change="fetch(restUrl<%= i %>, <%= i %>)"/>
 					</div>
+				<% end %>
 			</article>
 		</section>
 
@@ -101,22 +84,22 @@
 				<h2>
 					<i class="glyphicon glyphicon-calendar service-icon"></i> When?
 				</h2>
-				<div ng-repeat="a in [1,2,3]">
+				<% (1..3).each do |i| %>
 					<div class="form-group">
-						<label for="dtp_input{{ ($index+1) }}" class="control-label">Date and Time {{ a }}</label>
-						<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input{{ ($index+1) }}">
+						<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
+						<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							<input class="form-control" size="16" type="text" value="" ng-model="events['date'+($index+1)]">
+							<input class="form-control" size="16" type="datetime-local" value="" ng-model="date<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						</div>
-						<input type="hidden" id="dtp_input{{ ($index+1) }}" value="" />
+						<input type="hidden" id="dtp_input<%= i %>" value="" />
 					</div>
-				</div>
+				<% end %>
 				<div class="form-group"><br /><br />
 					<label for="dtp_input4" class="control-label">Vote before</label>
 					<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
-						<input class="form-control" size="16" type="text" value="" ng-model="events.cutoff_at">
+						<input class="form-control" size="16" type="datetime-local" value="" ng-model="date4">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					</div>
 					<input type="hidden" id="dtp_input4" value="" />
@@ -132,10 +115,11 @@
 				<p>{{ inviteResult }}</p>
 				<div id="resultDivContainer"></div>
 				<div class="btn-group">
-					<button type="button" class="btn btn-default btn-lg" ng-click="save()">
+					<button type="button" class="btn btn-default btn-lg" ng-click="sendInvite()">
 					<span class="glyphicon glyphicon-envelope"></span> Send!</button>
 				</div>
 			</article>
 		</section>
 	</div>
 </main>
+>>>>>>> 951b85583ef8f6bcbe7f9918bbec6e3c4181b460

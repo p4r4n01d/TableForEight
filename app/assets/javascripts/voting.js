@@ -9,17 +9,18 @@ function testValue(){
 }
 
 // Creates the votes result details for angular result.html view (Lists 5 Restaurants and 3 Dates)
-var get_votes = function(votes_json){
+var get_votes = ['votes_json','event_json', function(votes_json, event_json){
 	var _voting = { 
 		restaurants:{},
 		dates:{}
 	};
 	var votes = JSON.stringify(votes_json);
+	var events = JSON.stringify(event_json);
 	for(i = 1; i < 6; i++)
 	{
 		if(i > 0 && i < 4) {
 			for(a = -1; a < 3; a++) {
-				if(a > 1) _voting.dates['date' + i + 'didnotvote'] = get_votes_count(votes, null, 'date' + i);
+				if(a > 1) _voting.dates['date' + i + 'didnotvote'] = get_votes_count(events, votes, null, 'date' + i);
 				else {
 					var voting_type = "yes";
 					switch(a){
@@ -33,12 +34,12 @@ var get_votes = function(votes_json){
 						voting_type = "maybe";
 						break;
 					}
-					_voting.dates['date' + i + voting_type] = get_votes_count(votes, a, 'date' + i);
+					_voting.dates['date' + i + voting_type] = get_votes_count(events, votes, a, 'date' + i);
 				}
 			}
 		}
 		for(b = -1; b < 2; b++) {
-			if(b == 0) _voting.restaurants['link' + i + 'didnotvote'] = get_votes_count(votes, null, 'link' + i);
+			if(b == 0) _voting.restaurants['link' + i + 'didnotvote'] = get_votes_count(events, votes, null, 'link' + i);
 			else {
 				var voting_type = "yes";
 				switch(b){
@@ -49,15 +50,15 @@ var get_votes = function(votes_json){
 					voting_type = "no";
 					break;
 				}
-				_voting.restaurants['link' + i + voting_type] = get_votes_count(votes, b, 'link' + i);
+				_voting.restaurants['link' + i + voting_type] = get_votes_count(events, votes, b, 'link' + i);
 			}
 		}
 	}
 	return _voting;
-};
+}];
 
 // Gets the count & email list of a specific column having a certain value (example: count & email list of who is going to Restaurant 1)
-var get_votes_count = function(votes, vote_value, type){
+var get_votes_count = ['events', 'votes' ,'vote_value' , 'type', function(events, votes, vote_value, type){
 	var _vote_return = {};
 	var _email_list = [];
 	var _vote_count = 0;
@@ -72,4 +73,4 @@ var get_votes_count = function(votes, vote_value, type){
 	_vote_return.count = _vote_count;
 	_vote_return.emails = _email_list;
 	return _vote_return;
-};
+}];
