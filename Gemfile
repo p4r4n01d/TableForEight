@@ -70,5 +70,3 @@ gem 'rails_on_heroku'
 gem 'angular-rails'
 
 gem 'google_places'
-
-gem 'nokogiri'

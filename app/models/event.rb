@@ -37,9 +37,8 @@ class Event < ActiveRecord::Base
     uri = URI(link)
     # Ensure the protocol is specified
     uri.scheme = "http" if !uri.scheme
-    html = Nokogiri::HTML(uri.read)
-    # Search for the title tag (xpath selector)
-    html.xpath('/html/head/title[1]')[0].inner_text()
+    Net::HTTP.get(uri) =~ /<title>(.*?)<\/title>/
+    $1 # get the first result from the matching
   end
 
   def get_page_title!(link)
