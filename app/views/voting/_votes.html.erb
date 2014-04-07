@@ -1,0 +1,21 @@
+<button type="button" class="btn btn-default" <%= raw("ng-click=\"vote_process('" + "#{@events.unique_id}" + "', '" + "#{@votes.unique_id}" + "', '" + "#{type}" + "', '" + "#{i}" + "', '" + "#{value})\"") %>>
+<%
+
+# Button to vote for a restaurant or time
+# value: The numeric value associated with this button
+# i: The number of this button in sequence
+# type: What this button is for 
+
+spanClass = nil
+case value
+  when -1
+    str += "No"
+    spanClass = "down"
+  when 0
+    str += "Maybe"
+  when 1
+    str += "Yes"
+    spanClass = "up"
+  end
+%>
+<% if spanClass.present? %><span class="glyphicon <%= raw ("glyphicon-thumbs-#{spanClass}")%>\"></span><% end %></button>
