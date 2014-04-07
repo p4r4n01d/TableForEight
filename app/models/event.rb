@@ -34,12 +34,10 @@ class Event < ActiveRecord::Base
 
   # Given a URL, extract the page title
   def get_page_title(link)
-    begin
-      html = Nokogiri::HTML(open(link).read)
-    rescue Exception => e
-      puts "Couldn't read \"#{ link }\": #{ e }"
-      exit
-    end
+    uri = URI(link)
+    # Ensure the protocol is specified
+    uri.scheme = "http" if !uri.scheme
+    html = Nokogiri::HTML(uri.read)
     # Search for the title tag (xpath selector)
     html.xpath('/html/head/title[1]')[0].inner_text()
   end
