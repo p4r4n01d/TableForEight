@@ -7,7 +7,7 @@ TableForEight::Application.routes.draw do
   get '/result/:event_id', to: 'result#index'
   patch '/api/event/:event_id/:vote_id', to: 'votes#update', :defaults => { :format => 'json' }, as: :update_vote
   post '/email/:event_id', to: 'result#update', :defaults => { :format => 'json' } 
-  get '/api/get/:event_id', to: 'votes#countvotes', :defaults => { :format => 'json' } 
+  get '/api/event/gettitle/:link', to: 'events#get_page_title', :defaults => { :format => 'json' }
   
  scope :api do
   resources :events, :defaults => { :format => 'json' }  do

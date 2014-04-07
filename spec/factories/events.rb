@@ -4,7 +4,7 @@ FactoryGirl.define do
   end
 
   factory :event do
-    link1 "http://www.superawsomerestraunt.com.au"
+    link1 "http://tableforeight.herokuapp.com"
     date1 "2014-05-05 12:00:00"
     organiser_email
 

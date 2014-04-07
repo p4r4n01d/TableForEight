@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   # POST /api/events (.:format)
   def create
 	@event = Event.new(event_params)
+
 	if @event.save
 	  flash[:notice] = "Event was created successfully."
 	  UserMailer.admin_welcome_email(@event).deliver
@@ -42,6 +43,11 @@ class EventsController < ApplicationController
 	        status: :unprocessable_entity }
 	  end
 	end
+  end
+
+  # GET /api/event/gettitle/:link
+  def get_page_title
+    render json: Event.get_page_title(params[:link])
   end
 
   private
