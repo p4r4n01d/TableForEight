@@ -18,25 +18,22 @@
 					<i class="glyphicon glyphicon-info-sign service-icon"></i> What?
 				</h2>
 
-				<h3>What is <span class="title-font">Table for Eight?</span></h3>
+				<h3>What is <span class="title-font">Table For Eight?</span></h3>
 				<p>
-					Table for Eight is an interactive app that takes the hassle and stress out of planning a dining experience with your mates.
+					Table For Eight is an interactive app that takes the hassle and stress out of planning a dining experience with your mates.
+					Invite your friends, and they'll help you plan this out by voting their preferences later.
 				</p>
+				<br />
 				<p>
-					Invite your guests, and they'll help you plan this out by voting for their preferences later.
-				</p>
-				<p>
-					Sounds good? Just follow these <b>three</b> steps:
+					Sounds good? So how do I start? Just follow these <span class="title-font">three</span> simple steps:
 					<dl id="num-list">
 						<dt>Who?</dt>
-						<dd>Friends! Add 'em to the guest list.
+						<dd>Friends! Who do you want to come? Add 'em to the guest list.
 						Oh, and don't forget to tell them who you are!</dd>
-
 						<dt>Where?</dt>
 						<dd>Let's choose where to eat! List up to five restaurants.</dd>
-
 						<dt>When?</dt>
-						<dd>Sunday brunch, weekday lunch, or Friday dinner? Select up to three dates and time.</dd>
+						<dd>Sunday brunch, weekday lunch, or Friday dinner? Select up to three dates.</dd>
 					</dl>
 				</p>
 			</article>
@@ -49,17 +46,17 @@
 				</h2>
 				<!--<button onclick="hello('facebook').login()">facebook</button><br /><br />-->
 
-				<%= render partial: "who", :locals => { :label_title => "Name",
-					:span_class => "user",
-					:placeHolder => "What's your name?",
-					:modelName => "organiser_name" } %>
-				<%= render partial: "who", :locals => { :label_title => "Email",
-					:span_class => "envelope",
-					:placeHolder => "What's your email?",
-					:modelName => "organiser_email" } %>
-				<%= render partial: "who", :locals => { :label_title => "Guest List",
-					:placeHolder =>"List down your friends' email here.",
-					:modelName => "guest_list" } %>
+                <%= render partial: "who", :locals => { :label_title => "Name",
+                 :span_class => "user",
+                 :placeHolder => "What's your name?",
+                 :modelName => "organiser_name" } %>
+                <%= render partial: "who", :locals => { :label_title => "Email",
+                 :span_class => "envelope",
+                 :placeHolder => "What's your email?",
+                 :modelName => "organiser_email" } %>
+                <%= render partial: "who", :locals => { :label_title => "Guest List",
+                 :placeHolder =>"One email per line. Example: john@example.com",
+                 :modelName => "guest_list" } %>
 			</article>
 		</section>
 
@@ -72,7 +69,7 @@
 					<label class="control-label spacingAround">{{ event.name<%= i %> }}</label>
 					<div class="input-group spacingAround">
 						<span class="input-group-addon glyphicon glyphicon-globe"></span>
-						<input type="url" class="form-control letterSpacingFonts" placeholder="What's the restaurant's website?" ng-model="event.link<%= i %>"/>
+				  		<input type="url" class="form-control letterSpacingFonts" placeholder="Restaurant URL" ng-model="event.link<%= i %>"/>
 					</div>
 				<% end %>
 			</article>
@@ -83,32 +80,25 @@
 				<h2>
 					<i class="glyphicon glyphicon-calendar service-icon"></i> When?
 				</h2>
-
 				<% (1..3).each do |i| %>
 					<div class="form-group">
-						<label for="dtp_input<%= i %>" class="control-label">Tentative date and time <%= i %></label>
+						<label for="dtp_input<%= i %>" class="control-label">Date and Time <%= i %></label>
 						<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							<input class="form-control" size="16" type="datetime-local" value="" ng-model="event.date<%= i %>">
+							<input class="form-control" size="16" placeholder="dd mm yyyy - hh:mm p" ng-model="event.date<%= i %>">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						</div>
 						<input type="hidden" id="dtp_input<%= i %>" value="" />
 					</div>
 				<% end %>
-
 				<div class="form-group"><br /><br />
 					<label for="dtp_input4" class="control-label">Vote before</label>
 					<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
-						<input class="form-control" size="16" type="datetime-local" value="" ng-model="event.cutoff_at">
+						<input class="form-control" size="16" type="text" placeholder="dd mm yyyy - hh:mm p" ng-model="event.cutoff_at">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					</div>
 					<input type="hidden" id="dtp_input4" value="" />
-
-					<p>
-						* This is the deadline for your guests to vote for their preferences.
-					</p>
-
 				</div>
 			</article>
 		</section>
@@ -128,9 +118,9 @@
 				</div>
 			</div>
 			<div class="half-col">
-				<!-- Facebook like box -->
-				<div id="fb-root"><br><br></div>
-				<div class="fb-like-box well" data-href="https://www.facebook.com/TableForEightApp" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+                <!-- Facebook like box -->
+                <div id="fb-root"><br><br></div>
+                <div class="fb-like-box well" data-href="https://www.facebook.com/TableForEightApp" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 			</div>
 			</article>
 		</section>
