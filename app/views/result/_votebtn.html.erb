@@ -25,7 +25,7 @@
  class="btn btn-default btn-sm" data-content="None" data-original-title=<%= '"' + title + ':"' %>>
  {{ <%= raw(type.to_s + i.to_s + templating) %> }}
 
-<% if spanClass.is_present? %>
+<% if spanClass.present? %>
   <span class="glyphicon glyphicon-thumbs-<%= spanClass %>"></span>
 <% end %>
 </button>

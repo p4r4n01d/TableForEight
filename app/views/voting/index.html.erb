@@ -66,8 +66,8 @@
 								{{ voteResult_where }}
 								<%= @events.attributes['name'+"%01d" % i ] %>
 								<div class="btn-group btn-float-right">
-									<%= render partial: "votes", locals: => { :value => 1, :i => i, :type => "link" } %>
-									<%= render partial: "votes", locals: => { :value => -1, :i => i, :type => "link" } %>
+								  <%= voteButton(1, i, "link") %>
+								  <%= voteButton(-1, i, "link") %>
 								</div>
 								<div class="panel-footer">
 									<a href="<%= @events.attributes['link'+"%01d" % i ] %>"><%= @events.attributes['link'+"%01d" % i ] %></a>
@@ -90,9 +90,9 @@
 							<div class="panel-heading">
 								{{ voteResult_when }}
 								<div class="btn-group" style="float: right">
-									<%= render partial: "votes", locals: => { :value => 1, :i => i, :type => "date" } %>
-									<%= render partial: "votes", locals: => { :value => 0, :i => i, :type => "date" } %>
-									<%= render partial: "votes", locals: => { :value => -1, :i => i, :type => "date" } %>
+								  <%= voteButton(1, i, "date") %>
+								  <%= voteButton(0, i, "date") %>
+								  <%= voteButton(-1, i, "date") %>
 								</div>
 								<div class="panel-footer">
 									<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
