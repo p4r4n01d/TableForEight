@@ -256,7 +256,7 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 			 "organiser_name":$scope.event.organiser_name }
 			 };
 			emailList = $scope.guest_list.split("\n");
-			if($scope.guest_list.split(";").length>1){
+			if($scope.event.guest_list.split(";").length>1){
 				emailList = $scope.guest_list.split(";");
 			}
 			if($scope.guest_list.split(",").length>1){
