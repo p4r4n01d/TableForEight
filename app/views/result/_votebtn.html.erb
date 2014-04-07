@@ -1,0 +1,32 @@
+<%
+    templating = ""
+    spanClass = nil
+    case value
+      when -1
+        title = "No"
+        spanClass = "down"
+        templating = "notgoing"
+        id = "no"
+      when 0
+        title = "Not sure"
+        templating = "maybe"
+        id ="maybe"
+        spanClass = "up"
+      when 1
+        title = "Yes"
+        spanClass = "up"
+        templating = "going"
+        id = "yes"
+      end
+%>
+
+<button type="button" <%= raw("id=\"#{type}btn#{id}#{i}\"") %> data-container="body"
+ data-toggle="popover" data-trigger="hover" data-placement="bottom"
+ class="btn btn-default btn-sm" data-content="None" data-original-title=<%= '"' + title + ':"' %>>
+ {{ <%= raw(type.to_s + i.to_s + templating) %> }}
+
+<% if spanClass.is_present? %>
+  <span class="glyphicon glyphicon-thumbs-<%= spanClass %>"></span>
+<% end %>
+</button>
+

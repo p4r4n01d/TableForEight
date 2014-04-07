@@ -63,7 +63,9 @@
 								<div class="btn-toolbar btn-float-right" role="toolbar">
 									<div class="btn-group">
 										<% [1, -1].each do |value| %>
-							    			<%= results_voteButton(value, i, "link") %>
+										    <%= render partial: "votebtn", :locals => { :value => value,
+                                                :i => i,
+                                                :type => "link" } %>
 										<% end %>
 									</div>
 									<div class="btn-group">
@@ -95,7 +97,9 @@
 
 									<div class="btn-group">
 										<% [1, -1, 0].each do |value| %>
-								    		<%= results_voteButton(value, i, "date") %>
+											<%= render partial: "votebtn", :locals => { :value => value,
+                                                :i => i,
+                                                :type => "date" } %>
 										<% end %>
 									</div>
 									<div class="btn-group">
@@ -105,7 +109,7 @@
 									</div>
 								</div>
 								<div class="panel-footer">
-									<%= prettyPrintDate(@events.attributes['date'+"%01d" % i ]) %>
+									<%= @events.attributes['date'+"%01d" % i ] %>
 								</div>
 							</div>
 						</div>
