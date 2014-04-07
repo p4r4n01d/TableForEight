@@ -5,6 +5,18 @@ win.tableforeight = win.tableforeight || {}
 
 # Angular Routing for UI
 win.angular.module('tableforeight', ['apis'])
+  .config ($routeProvider) ->
+    $routeProvider
+      .when '/', # path is 'example.com/#/'
+        controller: win.tableforeight.newCtrl
+        templateUrl: '<%= asset_path "new.html" %>'
+      .when '/voting/:event_id', # path is 'example.com/#/voting/:event_id'
+        controller: win.tableforeight.votingCtrl
+        templateUrl: '<%= asset_path "voting.html" %>'
+      .when '/result/:event_id', # path is 'example.com/#/result/:vote_id'
+        controller: win.tableforeight.resultCtrl
+        templateUrl: '<%= asset_path "result.html" %>'
+      .otherwise redirectTo: '/' # path is 'example.com/#/'
   .config [ "$httpProvider", (provider) ->
 	  #Set CSRF tokent for ROR authentication
       provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
