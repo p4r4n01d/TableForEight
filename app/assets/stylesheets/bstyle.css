@@ -21,7 +21,8 @@ h1{
 	text-align: center;
 }
 h3{
-	color: #C8C8C8;
+/*	color: #C8C8C8;*/
+	color: white;
 }
 
 /**/
@@ -45,6 +46,9 @@ nav {
 	background-color: #323232;
 	color: white;
 }
+.navbar-default {
+	border: transparent;
+}
 .navbar-default .navbar-nav > li > a {
 	color: #ddd;
 	font-weight: bolder;
@@ -66,7 +70,6 @@ div.navbar-header{
 .logo {
 	height: 125px; width: 125px;
 	border-radius: 100px;
-	border-bottom: 1px solid white;
 	float: left;
 	position: relative;
 	bottom: 10px;
@@ -340,7 +343,9 @@ footer{
 	position: relative;
 	padding-left: 40px;
 	font-weight: bold;
-	color: #B4B4B4;
+	color: white;
+	font-size: bold;
+	font-size: 120%;
 }
 #num-list dt:before {
 	content: counter(list-count);
@@ -452,14 +457,13 @@ footer{
 		text-align:center;
 		height: 75px; width: 75px;
 		border-radius: 100px;
-		border-bottom: 1px solid white;
 		padding: 15px;
 		z-index: 1035;
 		background-color: #323232;
 	}
 	.navbar-default .navbar-toggle:hover,
 	.navbar-default .navbar-toggle:focus {
-	  background-color: #323232;
+		background-color: #323232;
 	}
 }
 /*
@@ -478,10 +482,6 @@ footer{
 
 .offset-bot {
 	padding-bottom: 20px;
-}
-
-.test {
-	border: 10px solid gray;
 }
 
 .offset-text {
