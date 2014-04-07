@@ -286,7 +286,7 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 						 "date3":"-1",
 						 "confirmed":false }
 						};
-						VoteJsonNew=JSONInterface("/api/events/"+EventJsonNew+"/votes", VoteJSON, "POST", "created");
+						VoteJsonNew=JSONInterface("/api/events/"+EventJsonNew.unique_id+"/votes", VoteJSON, "POST", "created");
 						if(VoteJsonNew!=null) DataSaved=true;
 						else DataSaved=false;
 					}
