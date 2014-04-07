@@ -495,9 +495,12 @@ footer{
 	color: #323232;
 }
 
-
 .half-col {
 	float: left;
 	padding-left: 20px;
 	padding-right: 20px;
+}
+
+.textwidth {
+	width: 100%;
 }
