@@ -72,3 +72,6 @@ gem 'angular-rails'
 gem 'google_places'
 
 gem 'sqlite3', :group => :development
+
+# Date validator
+gem 'date_validator'
