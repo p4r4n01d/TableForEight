@@ -126,8 +126,8 @@
 				</h2>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)
-
+						Organiser: <%= @events.organiser_name %> (<%= @events.organiser_email %>)<br />
+						{{ email_status }}
 						<button type="button" class="btn btn-default btn-float-right btn-lg" ng-click="confirmation('<%= @events.unique_id %>')">Confirm Event
 							<span id="ConfirmEvent" class="glyphicon glyphicon-check"></span>
 						</button>
