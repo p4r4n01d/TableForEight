@@ -1,4 +1,6 @@
 
+window.console = window.console || {};
+window.console.log = window.console.log || function() {};
 
 tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', function ($scope, $http, $templateCache) {
 	
@@ -55,16 +57,16 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 		$scope.email_status = tempVote_resutl;
 	};
 	
-	$scope.results = function(event_id) {
-		Result_json = "";
-		$http.get('/api/get/'+event_id).
+	$scope.results = function(eid) {
+		var Result_json = {};
+		$http.get('/api/get/'+eid).
 		success(function(response) {
 			Result_json=response;
 			if(Result_json!=""){
-				for(link_count=1;link_count<6;link_count++)
+				for(var ba=1;ba<6;ba++)
 				{
-					link_title="link"+link_count;
-					for(b = 0; b < 2; b++)
+					var link_title="link"+ba;
+					for(var b = 0; b < 2; b++)
 					{
 						tempObj=null;
 						tempObj1=null;
@@ -75,20 +77,20 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 							tempObj= Result_json.voting[link_title].going.count;
 							tempObj1= Result_json.voting[link_title].going.emails;
 							scopeCount=link_title+'going';
-							divPlace="#linkbtnyes"+link_count;
+							divPlace="#linkbtnyes"+ba;
 							break;
 							case 1:
 							tempObj= Result_json.voting[link_title].notgoing.count;
 							tempObj1= Result_json.voting[link_title].notgoing.emails;
 							scopeCount=link_title+'notgoing';
-							divPlace="#linkbtnno"+link_count;
+							divPlace="#linkbtnno"+ba;
 							break;
 						}
 						for(i = 0; i < tempObj.length; i++)
 						{
 							objYes = tempObj[i];
-							$scope[scopeCount] = objYes.Counts;
-							if(objYes.Counts>0)
+							$scope[scopeCount] = objYes.counts;
+							if(objYes.counts>0)
 							{
 								var tempDate="";
 								divDetails=$(divPlace);
@@ -101,9 +103,9 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 						}
 					}
 				}
-				for(link_count=1;link_count<4;link_count++)
+				for(var ab=1;ab<4;ab++)
 				{
-					link_title="date"+link_count;
+					var link_title="date"+ab;
 					for(b = 0; b < 3; b++)
 					{
 						tempObj=null;
@@ -115,26 +117,26 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 							tempObj= Result_json.voting[link_title].going.count;
 							tempObj1= Result_json.voting[link_title].going.emails;
 							scopeCount=link_title+'going';
-							divPlace="#datebtnyes"+link_count;
+							divPlace="#datebtnyes"+ab;
 							break;
 							case 1:
 							tempObj= Result_json.voting[link_title].notgoing.count;
 							tempObj1= Result_json.voting[link_title].notgoing.emails;
 							scopeCount=link_title+'notgoing';
-							divPlace="#datebtnno"+link_count;
+							divPlace="#datebtnno"+ab;
 							break;
 							case 2:
 							tempObj= Result_json.voting[link_title].maybe.count;
 							tempObj1= Result_json.voting[link_title].maybe.emails;
 							scopeCount=link_title+'maybe';
-							divPlace="#datebtnmaybe"+link_count;
+							divPlace="#datebtnmaybe"+ab;
 							break;
 						}
 						for(i = 0; i < tempObj.length; i++)
 						{
 							objYes = tempObj[i];
-							$scope[scopeCount] = objYes.Counts;
-							if(objYes.Counts>0)
+							$scope[scopeCount] = objYes.counts;
+							if(objYes.counts>0)
 							{
 								var tempDate="";
 								divDetails=$(divPlace);
@@ -229,15 +231,11 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 		var restaurant_error="";
 		var date_error="";
 		var ErrorString="";
-		for(i=1;i<=5;i++)
-		{
-			if($scope['date'+i]=="undefined");
-		}
 		if(ErrorString=="" && sent_email=="NO"){
 			EventJSON = {
 			"event": 
 			{ "date":$scope.event.date1,
-			 "cutoff_at":$scope.event.date4,
+			 "cutoff_at":$scope.event.cutoff_at,
 			 "link1":$scope.event.link1,
 			 "name1":$scope.event.name1,
 			 "link2":$scope.event.link2,
@@ -251,16 +249,15 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 			 "date1":$scope.event.date1,
 			 "date2":$scope.event.date2,
 			 "date3":$scope.event.date3,
-			 "unique_id": "",
 			 "organiser_email":$scope.event.organiser_email,
 			 "organiser_name":$scope.event.organiser_name }
 			 };
-			emailList = $scope.event.guest_list.split("\n");
+			emailList = $scope.event.guest_list.split(",");
+			if($scope.event.guest_list.split("\n").length>1){
+				emailList = $scope.event.guest_list.split("\n");
+			}
 			if($scope.event.guest_list.split(";").length>1){
 				emailList = $scope.event.guest_list.split(";");
-			}
-			if($scope.event.guest_list.split(",").length>1){
-				emailList = $scope.event.guest_list.split(",");
 			}
 			if($scope.event.guest_list.split(" ").length>1){
 				emailList = $scope.event.guest_list.split(" ");
@@ -275,7 +272,7 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 					{
 						VoteJSON = {
 						"vote": 
-						{ "email":emailList[i].replace(";","").replace("\n","").replace(" ","").replace("<","").replace(">",""),
+						{ "email":emailList[i].replace(";","").replace(",","").replace("\n","").replace(" ","").replace("<","").replace(">",""),
 						 "link1":"-1",
 						 "link2":"-1",
 						 "link3":"-1",
@@ -294,16 +291,16 @@ tableforeight.controller('eventCtrl', ['$scope', '$http', '$templateCache', func
 					{
 						sent_email="YES";
 						$scope.inviteResult = "Email sent";
+						window.location.replace("/result/"+EventJsonNew.unique_id+"");
 					}
 					else $scope.inviteResult = "Email not sent";
 				}
 			}
 		}
-		else $scope.inviteResult = "Email sent";
+		else $scope.inviteResult = "Email sent already!";
 	};
 }]);
 
-$('.btn').popover();
 
 
 

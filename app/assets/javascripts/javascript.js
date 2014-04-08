@@ -10,7 +10,7 @@ var JSONInterface = function(url, jsObj, type, get_status) {
 		async: false,
 		contentType: "application/json; charset=utf-8",        
 		success: function(result, status) {
-			if(status=="success" && result.status==get_status) NewjsonObject=result.events.id;
+			if(status=="success") NewjsonObject=result;
 		},
 		error:function(xhr, ajaxOptions, thrownError) {
 			divResult.html(xhr.status + "<br />" + thrownError);
@@ -18,5 +18,9 @@ var JSONInterface = function(url, jsObj, type, get_status) {
 	});
 	return NewjsonObject;
 };
-
+window.console = window.console || {};
+window.console.log = window.console.log || function() {};
 window.tableforeight = angular.module('tableforeight', []);
+
+
+$('.btn').popover();
