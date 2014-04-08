@@ -134,10 +134,12 @@ and (max-device-width: 767px) {
 	}
 }
 
+/* White Sections */
 .lighter-background{
 	color: #D83C33;
 	background-color: white;
 }
+/* Red Sections */
 .darker-background{
 	color: #FBEAEA;
 	background-color: #D83C33;
@@ -335,6 +337,7 @@ footer{
 	color: #B4B4B4;
 }
 
+/* Numbered List */
 #num-list {
 	counter-reset: list-count;
 	font-family: cusTitleFont;
@@ -364,6 +367,7 @@ footer{
 	margin-bottom: 10px;
 }
 
+/* Restaurant image */
 .img-background {
 	background:url("restaurant-img.jpg");
 	background-size: cover;
@@ -373,6 +377,7 @@ footer{
 	position: absolute;
 	left: 0;
 	opacity: 0.9;
+	z-index: -1;
 }
 /*.blur {
  	-webkit-filter: blur(2px);
@@ -400,6 +405,7 @@ footer{
 	min-height: 500px;
 }
 
+/* centers content */
 .center-section {
 	margin-left: auto;
 	margin-right: auto;
@@ -466,24 +472,10 @@ footer{
 		background-color: #323232;
 	}
 }
-/*
-.img-background {
-	background-size: cover;
-	background-image: "/assts/restaurant-img.jpg"
-	background-repeat: no-repeat;
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: -20px;
-	left: 0;
-	opacity: 0.9;
-	margin: auto;
-}*/
 
 .offset-bot {
 	padding-bottom: 20px;
 }
-
 .offset-text {
 	padding-top: 12px;
 }
@@ -502,5 +494,5 @@ footer{
 }
 
 .textwidth {
-	width: 100%;
+	width: 90%;
 }
