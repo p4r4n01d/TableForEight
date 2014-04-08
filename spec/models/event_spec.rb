@@ -25,6 +25,9 @@ describe Event do
     it { should allow_value(10.days.from_now).for(:date1) }
     it { should allow_value(10.days.from_now).for(:date2) }
     it { should allow_value(10.days.from_now).for(:date3) }
+    
+    it { should allow_value("Bob").for(:organiser_name) }
+    it { should_not allow_value("B0b1").for(:organiser_name) }
   end
 end
 

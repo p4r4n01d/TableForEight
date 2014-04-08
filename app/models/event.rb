@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   private
   has_many :votes
   
-  validates :organiser_email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validates :organiser_email, format: { with: /.+@.+\..+/i, on: :create }
   validates :organiser_email, :link1, :date1, :presence => true
 
   # Need to validate date1 seperately as it must be present
@@ -32,6 +32,9 @@ class Event < ActiveRecord::Base
              before: Proc.new { Time.now + 1.year } ,
              message: 'must be after today and less than a year into the future' },
      :if => lambda { |o| o.date3.present? }
+
+  validates_format_of :organiser_name, with: /\A([a-zA-Z,.'-])+\Z/i, on: :create,
+     allow_blank: true
 
   before_create :assign_unique_token, :setLinks
 
