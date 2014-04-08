@@ -8,10 +8,10 @@
         templating = "notgoing"
         id = "no"
       when 0
-        title = "Not sure"
+        title = "Maybe"
         templating = "maybe"
         id ="maybe"
-        spanClass = "up"
+        spanClass = ""
       when 1
         title = "Yes"
         spanClass = "up"
@@ -22,7 +22,7 @@
 
 <button type="button" <%= raw("id=\"#{type}btn#{id}#{i}\"") %> data-container="body"
  data-toggle="popover" data-trigger="hover" data-placement="bottom"
- class="btn btn-default btn-sm" data-content="None" data-original-title=<%= '"' + title + ':"' %>>
+ class="btn btn-default btn-sm dark-text" data-content="None" data-original-title="<%= title %>" >
  {{ <%= raw(type.to_s + i.to_s + templating) %> }}
 
 <% if spanClass.present? %>
