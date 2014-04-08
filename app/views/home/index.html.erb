@@ -73,7 +73,7 @@
 						<label class="control-label spacingAround">{{ event.name<%= i %> }}</label>
 						<div class="input-group spacingAround">
 							<span class="input-group-addon glyphicon glyphicon-globe"></span>
-							<input type="url" class="form-control letterSpacingFonts" <% if (i == 1) %> required <% end %>  placeholder="What's the restaurant's website?" ng-model="event.link<%= i %>"/>
+							<input type="url" class="form-control letterSpacingFonts" <% if (i == 1) %> required aria-required="true" <% end %>  placeholder="What's the restaurant's website?" ng-model="event.link<%= i %>"/>
 						</div>
 					<% end %>
 				</article>
@@ -89,7 +89,7 @@
 							<label for="dtp_input<%= i %>" class="control-label">Tentative date and time <%= i %></label>
 							<div class="input-group date form_datetime" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input<%= i %>">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-								<input class="form-control" size="16" <% if (i == 1) %> required <% end %>  placeholder="dd mm yyyy - hh:mm p" ng-model="event.date<%= i %>">
+								<input class="form-control" size="16" <% if (i == 1) %> required aria-required="true" <% end %>  placeholder="dd mm yyyy - hh:mm p" ng-model="event.date<%= i %>">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 							</div>
 							<input type="hidden" id="dtp_input<%= i %>" value="" />
@@ -99,7 +99,7 @@
 						<label for="dtp_input4" class="control-label">Vote before</label>
 						<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar cusorhand"></span></span>
-							<input class="form-control" size="16" required type="text" placeholder="dd mm yyyy - hh:mm p" ng-model="event.cutoff_at">
+							<input class="form-control" size="16" required aria-required="true" type="text" placeholder="dd mm yyyy - hh:mm p" ng-model="event.cutoff_at">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						</div>
 						<input type="hidden" id="dtp_input4" value="" />
@@ -130,8 +130,8 @@
 		                <div id="fb-root"><br></div>
 		                <div class="fb-like-box well" data-href="https://www.facebook.com/TableForEightApp" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 					</div>
-					</article>
-				</section>
+				</article>
+			</section>
 
 		</form>
 
