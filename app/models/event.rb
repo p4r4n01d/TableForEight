@@ -36,27 +36,27 @@ class Event < ActiveRecord::Base
   validates_format_of :organiser_name, with: /\A([a-zA-Z,.'-])+\Z/i, on: :create,
      allow_blank: true
 
-  before_create :assign_unique_token, :setLinks
+  before_create :assign_unique_token, :set_links
 
-  def setLinks
+  def set_links
     if self.link1.present?
-      self.name1 = get_page_title!(self.link1)
+      self.name1 = get_page_title(self.link1)
     end
-    
+
     if self.link2.present?
-      self.name2 = get_page_title!(self.link2)
+      self.name2 = get_page_title(self.link2)
     end
 
     if self.link3.present?
-      self.name3 = get_page_title!(self.link3)
+      self.name3 = get_page_title(self.link3)
     end
 
     if self.link4.present?
-      self.name4 = get_page_title!(self.link4)
+      self.name4 = get_page_title(self.link4)
     end
 
     if self.link5.present?
-      self.name5 = get_page_title!(self.link5)
+      self.name5 = get_page_title(self.link5)
     end
   end
 
@@ -67,10 +67,6 @@ class Event < ActiveRecord::Base
     uri.scheme = "http" if !uri.scheme
     Net::HTTP.get(uri) =~ /<title>(.*?)<\/title>/
     $1 # get the first result from the matching
-  end
-
-  def get_page_title!(link)
-    link = get_page_title(link)
   end
 
   def assign_unique_token
