@@ -50,17 +50,22 @@
 					</h2>
 					<!--<button onclick="hello('facebook').login()">facebook</button><br /><br />-->
 
-					<%= render partial: "who", :locals => { :label_title => "Name",
+					<%= render partial: "who", :locals => { :label_title => "Name *",
 						:span_class => "user",
 						:placeHolder => "What's your name?",
 						:modelName => "organiser_name" } %>
-					<%= render partial: "who", :locals => { :label_title => "Email",
+					<%= render partial: "who", :locals => { :label_title => "Email *",
 						:span_class => "envelope",
 						:placeHolder => "What's your email?",
 						:modelName => "organiser_email" } %>
-					<%= render partial: "who", :locals => { :label_title => "Guest List",
+					<%= render partial: "who", :locals => { :label_title => "Guest List *",
 						:placeHolder =>"List down your friends' email here.",
 						:modelName => "guest_list" } %>
+					<p>
+						Tip: Separate your guest's emails with a comma.<br>
+						eg. joe@gmail.com, mary@live.com, etc.
+					</p>
+
 				</article>
 			</section>
 
@@ -76,6 +81,10 @@
 							<input type="url" class="form-control letterSpacingFonts" <% if (i == 1) %> required aria-required="true" <% end %>  placeholder="What's the restaurant's website?" ng-model="event.link<%= i %>"/>
 						</div>
 					<% end %>
+					<p>
+						Tip: Enter the selected restaurant's website URL.<br>
+						eg. http://www.example.com
+					</p>
 				</article>
 			</section>
 
@@ -95,6 +104,9 @@
 							<input type="hidden" id="dtp_input<%= i %>" value="" />
 						</div>
 					<% end %>
+					<p>
+						Tip: These are the tentative date and time options for your guests to vote.
+					</p>
 					<div class="form-group"><br /><br />
 						<label for="dtp_input4" class="control-label">Vote before</label>
 						<div class="input-group date form_datetime cusorhand" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input4">
@@ -104,7 +116,7 @@
 						</div>
 						<input type="hidden" id="dtp_input4" value="" />
 						<p>
-							* This is the deadline for your guests to vote for their preferences.
+							Tip: This is the deadline for your guests to vote for their preferences.
 						</p>
 					</div>
 				</article>
